@@ -220,7 +220,7 @@ function RuntimeApp() {
   }, []);
 
   if (phase === "loading" && !content) {
-    return <StatusPage title="Connecting to SAFAR N MANZIL" detail="Verifying the shared database and loading the published page." />;
+    return <StatusPage title="Connecting to Business Portal" detail="Verifying the shared database and loading the published page." />;
   }
 
   if (phase === "unavailable" && !content) {
@@ -241,9 +241,9 @@ function RuntimeApp() {
 
   const brand = asRecord(content.site["brand"]);
   const contact = asRecord(content.site["contact"]);
-  const name = readString(brand, "name", "SAFAR N MANZIL");
-  const tagline = readString(brand, "tagline", "We do. We assist. We connect.");
-  const logoUrl = readString(brand, "logoUrl", "/media/safar-logo.png");
+  const name = readString(brand, "name", "Business Portal");
+  const tagline = readString(brand, "tagline", "Custom Business Software & Operating Solutions");
+  const logoUrl = readString(brand, "logoUrl", "");
   const links = getNavigation(content.globalDocument, content.site);
   const whatsapp = readString(contact, "whatsapp");
   const whatsappUrl = buildWhatsAppUrl(whatsapp, generalEnquiryMessage());
@@ -330,7 +330,7 @@ function StatusPage({ title, detail, retry }: { title: string; detail: string; r
   return (
     <main className="grid min-h-screen place-items-center bg-legacy-warm px-5 text-legacy-ink">
       <div className="max-w-xl rounded-3xl border border-foreground/10 bg-background p-8 text-center shadow-soft">
-        <img src="/media/safar-logo.png" alt="" className="mx-auto h-14 w-14 rounded-full object-contain" />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary font-bold text-xl">✦</div>
         <h1 className="mt-5 font-display text-2xl font-semibold">{title}</h1>
         <p role="status" className="mt-3 text-sm leading-6 text-foreground/60">{detail}</p>
         {retry ? (

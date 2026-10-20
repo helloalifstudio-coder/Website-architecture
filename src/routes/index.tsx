@@ -29,9 +29,9 @@ import { submitWebsiteEnquiry } from "../lib/website-capture";
 export const Route = createFileRoute("/")({
   head: ({ loaderData }) => ({
     meta: [
-      { title: loaderData?.publishedDocument?.metadata?.seo.title ?? "Safar N manzil — Your care, carried home" },
+      { title: loaderData?.publishedDocument?.metadata?.seo.title ?? "Enterprise Business — Custom Software & Operating Systems" },
       { name: "description", content: loaderData?.publishedDocument?.metadata?.seo.description ?? "Practical help for your family in India, coordinated while you live in the Gulf—with the plan, price and proof shared clearly." },
-      { property: "og:title", content: loaderData?.publishedDocument?.metadata?.seo.title ?? "Safar N manzil — Your care, carried home" },
+      { property: "og:title", content: loaderData?.publishedDocument?.metadata?.seo.title ?? "Enterprise Business — Custom Software & Operating Systems" },
       { property: "og:description", content: loaderData?.publishedDocument?.metadata?.seo.description ?? "One trusted point of contact for family needs in India, from the first request to the final update." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -74,7 +74,7 @@ function ContactForm({ whatsapp, email }: { whatsapp: string; email: string }) {
   const [form, setForm] = useState({ name: "", phone: "", city: "", need: "" });
   const [sending, setSending] = useState(false);
   const digits = whatsapp.replace(/[^\d]/g, "");
-  const message = `Hello Safar N manzil,%0A%0AName: ${encodeURIComponent(form.name)}%0APhone: ${encodeURIComponent(form.phone)}%0ACity in India: ${encodeURIComponent(form.city)}%0AWhat is needed: ${encodeURIComponent(form.need)}`;
+  const message = `Hello,%0A%0AName: ${encodeURIComponent(form.name)}%0APhone: ${encodeURIComponent(form.phone)}%0ACity: ${encodeURIComponent(form.city)}%0ARequirement: ${encodeURIComponent(form.need)}`;
   const target = digits
     ? `https://wa.me/${digits}?text=${message}`
     : email
@@ -152,7 +152,7 @@ function LandingPage() {
   const journey = list<{ title?: string; description?: string }>(how, "steps");
   const trustItems = list<{ title?: string; description?: string }>(trust, "items");
   const proofPoints = list<string>(updates, "points");
-  const brandName = "Safar N manzil";
+  const brandName = "Enterprise Business";
   const publicContact = settings.publicContact;
   const storySlides: StorySlide[] = [
     { id: "dreams", title: "You carry the dream.", accent: "We help carry the responsibility.", text: "While you build a future in the Gulf, we help with the things that still need doing at home.", image: campaignDreams.url, imageAlt: "A Gulf resident thinking about family and responsibilities in India" },
@@ -392,7 +392,7 @@ function LandingPage() {
             <InvoiceExample title="A clear breakdown, not a surprise bill." text="Every request is different. Before work begins, you see what will be done, the outside costs and our fee as separate lines." rows={[
               { id: "work", title: "The work requested", text: "Written in plain language" },
               { id: "outside", title: "Outside costs", text: "Shop, worker or materials" },
-              { id: "fee", title: "Safar N manzil fee", text: "Shown separately" },
+              { id: "fee", title: "Transparent service fee", text: "Shown separately" },
             ]} />
           </div>
         </section>

@@ -11,7 +11,7 @@ import castArt from "../assets/safar-cast.png";
 
 const TITLE = "Why we started, and how we work";
 const DESCRIPTION =
-  "SAFAR N MANZIL exists so that a son or daughter in the Gulf never has to depend on luck when their parents in India need help.";
+  "We exist to provide local businesses with modern, scalable software and dedicated technical partnership.";
 
 const PRINCIPLES = [
   {
@@ -100,7 +100,7 @@ function AboutPage() {
             from the market — and hope it goes well.
           </p>
           <p className="mt-4 text-muted-foreground">
-            We built SAFAR N MANZIL so that hope is not the plan. One message to us, and a
+            We built this platform so that hope is not the plan. One message to us, and a
             checked person handles it, at a price we tell you first, with photos coming back
             to your phone.
           </p>

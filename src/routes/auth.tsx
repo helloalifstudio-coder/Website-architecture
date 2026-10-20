@@ -7,9 +7,9 @@ import { getSupabase, isSupabaseConfigured } from "../lib/supabase";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — Safar Studio" },
-      { name: "description", content: "Restricted sign-in for approved SAFAR N MANZIL website editors." },
-      { property: "og:title", content: "Sign in — Safar Studio" },
+      { title: "Sign in — Visual Studio" },
+      { name: "description", content: "Restricted sign-in for approved website editors." },
+      { property: "og:title", content: "Sign in — Visual Studio" },
       { property: "og:description", content: "Restricted sign-in for approved website editors." },
       { property: "og:type", content: "website" },
       { name: "robots", content: "noindex, nofollow" },
@@ -35,7 +35,7 @@ function AuthPage() {
           </div>
           <h1 className="mt-4 font-display text-xl font-bold text-foreground">Connect the database first</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Safar Studio uses your shared Supabase project for approved editor sign-in and page publishing.
+            Visual Studio uses your shared Supabase project for approved editor sign-in and page publishing.
           </p>
           <Link
             to="/connect"
@@ -83,8 +83,8 @@ function AuthPage() {
           <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-primary font-display text-lg font-bold text-primary-foreground">
             S
           </div>
-          <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-primary">Safar Studio</p>
-          <h1 className="mt-2 font-display text-xl font-bold text-foreground">SAFAR N MANZIL</h1>
+          <p className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-primary">Visual Studio</p>
+          <h1 className="mt-2 font-display text-xl font-bold text-foreground">Business Console</h1>
           <p className="mt-1 text-sm text-muted-foreground">Sign in with an approved editor account</p>
         </div>
 

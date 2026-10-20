@@ -7,12 +7,12 @@ import { saveStoredSupabaseConfig, testSupabaseConnection } from "../lib/supabas
 export const Route = createFileRoute("/connect")({
   head: () => ({
     meta: [
-      { title: "Connect this device — SAFAR N MANZIL" },
+      { title: "Connect this device — Business Console" },
       {
         name: "description",
-        content: "Set up the SAFAR N MANZIL console on a new phone or computer in one tap.",
+        content: "Set up the console on a new phone or computer in one tap.",
       },
-      { property: "og:title", content: "Connect this device — SAFAR N MANZIL" },
+      { property: "og:title", content: "Connect this device — Business Console" },
       { property: "og:description", content: "One-tap console setup for a new device." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

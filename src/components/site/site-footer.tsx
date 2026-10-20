@@ -136,7 +136,7 @@ export function SiteFooter({
 
        <div className="border-t border-legacy-light/10">
          <div className="mx-auto flex max-w-[1280px] flex-col gap-3 px-6 py-6 text-sm text-legacy-light/45 sm:flex-row sm:items-center sm:justify-between sm:px-10">
-          <p>{str(footer, "legal", "© SAFAR N MANZIL. All rights reserved.")}</p>
+          <p>{str(footer, "legal", "© Enterprise Portal. All rights reserved.")}</p>
           <Link
             to="/auth"
              className="inline-flex items-center gap-2 rounded-full border border-legacy-light/15 px-4 py-2 font-medium text-legacy-light/75 transition hover:border-primary hover:text-primary"
