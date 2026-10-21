@@ -161,7 +161,7 @@ function RuntimeApp() {
           setContent(null);
           setPhase("not-found");
           hasRenderedPage.current = false;
-          document.title = "Page not found | " + readString(asRecord(site["brand"]), "name", "SAFAR N MANZIL");
+          document.title = "Page not found | " + readString(asRecord(site["brand"]), "name", "Business Portal");
           applyRuntimeTheme(theme);
           return;
         }
