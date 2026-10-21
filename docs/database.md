@@ -1,6 +1,6 @@
 # Supabase database and access control
 
-Safar Studio uses Supabase Auth and PostgreSQL for shared website drafts, publication state and revision history. The browser receives only the project URL and public anon key. PostgreSQL row-level security (RLS), not the UI, is the authorization boundary.
+**website-editor** uses Supabase Auth and PostgreSQL for shared website drafts, publication state and revision history. The browser receives only the project URL and public anon key. PostgreSQL row-level security (RLS), not the UI, is the authorization boundary.
 
 ## CMS migrations
 

@@ -1,6 +1,6 @@
-# Safar Studio architecture
+# website-editor Architecture
 
-Safar Studio is the public SAFAR N MANZIL website and the authenticated visual page editor. The platform is a modular monolith: one deployed application, one reviewed component registry and one shared CMS database. Do not split it into services unless observed traffic or operational boundaries justify that complexity.
+**website-editor** is a universal service-business website engine combining a high-performance public website and an authenticated Puck visual studio. The platform is a modular monolith: one deployed application, one reviewed component registry and one shared CMS database. Do not split it into services unless observed traffic or operational boundaries justify that complexity.
 
 ## Runtime responsibilities
 

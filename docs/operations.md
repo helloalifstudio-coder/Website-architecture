@@ -1,4 +1,4 @@
-# Operating Safar Studio
+# Operating website-editor
 
 ## Routine publishing workflow
 

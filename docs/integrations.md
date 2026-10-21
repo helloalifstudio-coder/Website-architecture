@@ -1,6 +1,6 @@
 # Integration boundaries
 
-Safar Studio's current release is the public website and the Puck visual page builder. Old plans and environment variable names may mention other capabilities; do not treat CRM, finance, outbound messaging, social publishing or automation consoles as shipped in this route tree.
+website-editor's current release is the public website and the Puck visual page builder. Old plans and environment variable names may mention other capabilities; do not treat CRM, finance, outbound messaging, social publishing or automation consoles as shipped in this route tree.
 
 ## Supabase
 

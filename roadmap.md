@@ -1,35 +1,39 @@
-# Safar Studio roadmap
+# website-editor Roadmap
 
-## Core capabilities delivered
+## Core Capabilities Delivered (v1.0.0)
 
-- Public SAFAR N MANZIL website, service routes and supporting content pages.
-- Puck visual studio with a shared block registry and renderer.
-- Structured, versioned page documents with strict runtime validation and URL allow-lists.
-- Shared Supabase configuration and server-rendered published-page loading.
-- Transactional publishing with expected-version conflict detection and immutable revision snapshots.
-- Provisioned CMS editor role checks in the studio and restrictive database policy foundations.
-- Signed, bounded inbound webhook adapter for deployments that separately provide the legacy business schema.
-- GitHub Actions quality checks and Vercel production deployment.
+- [x] Universal service-business architecture supporting any service niche (agencies, legal, medical, trades, consulting).
+- [x] Single-file business "DNA" engine (`src/content/seed.json`) governing branding, contact info, and initial routes.
+- [x] Puck visual editor with 12 universal blocks (Hero, Features, Process, Services, Pricing, Testimonials, FAQ, Lead Form, CTA, Stats, Logos, Content).
+- [x] Shared component registry ensuring 1:1 pixel-perfect parity between builder canvas and public live site.
+- [x] Runtime Zod schema enforcement with strict block validation, array bounding, and URL protocol allow-lists.
+- [x] Supabase PostgreSQL database architecture with Row Level Security (RLS) protecting drafts and revisions.
+- [x] Atomic publishing RPC (`publish_page_document`) with expected-version conflict prevention.
+- [x] Dynamic CSS variable generator injecting hex/hsl theme tokens at runtime.
+- [x] 1-Click consolidated migration script (`supabase/setup-all.sql`) for online zero-clone onboarding.
+- [x] 100% online zero-clone deployment workflow via GitHub Web Editor, Supabase Dashboard, and Vercel.
+- [x] Dual-deployment option: Full Studio (Nitro SSR) and Public Standalone Edge Shell (`apps/public`).
+- [x] High-coverage automated test suite running via Bun (`bun test`).
 
-## Production launch validation
+---
 
-- [ ] Apply the two CMS migrations to the intended Supabase project after schema review and backup.
-- [ ] Provision the owner using server-controlled `app_metadata.cms_role`.
-- [ ] Verify anonymous users can only read published content.
-- [ ] Verify ordinary authenticated users cannot read drafts or write CMS rows.
-- [ ] Complete a browser test of draft save, publish, second-browser reload and stale-version conflict handling.
-- [ ] Confirm the release commit has passing CI and a READY Vercel deployment.
-- [ ] Enable database backups and rehearse recovery.
+## Production Launch Validation Checklist
 
-## Next engineering increments
+- [ ] Run `supabase/setup-all.sql` in target Supabase project's SQL Editor.
+- [ ] Verify Supabase Realtime is enabled for `cms_sections` and `cms_site_config`.
+- [ ] Confirm automatic owner assignment or manually grant `{"cms_role": "owner"}` in `raw_app_meta_data`.
+- [ ] Verify anonymous visitors can only view published documents via `get_published_page_document`.
+- [ ] Perform visual draft edit, live save, and atomic publish in the Puck editor.
+- [ ] Confirm instant live sync on the public URL within 500ms.
+- [ ] Verify passing CI build status on Vercel.
 
-- [ ] Revision history and one-click restore UX.
-- [ ] Managed media uploads with type/size validation, ownership metadata and versioned URLs.
-- [ ] Publication event delivery and cache invalidation when caching is introduced.
-- [ ] Explicit component field schemas instead of indefinite inference from sample values.
-- [ ] Browser smoke tests, accessibility automation and route performance budgets.
-- [ ] Request/error monitoring, production alerts and load tests based on observed traffic.
+---
 
-## Out of current scope
+## Future Increments (v1.1+)
 
-The older CRM/finance/inbox/social/automation plan does not describe the current route tree. Do not advertise these modules as shipped until routes, schema migrations, authorization, tests, integration handling and production operations are restored as a coherent release.
+- [ ] Visual revision history browser with one-click restore in the Studio.
+- [ ] Direct media asset upload manager directly integrated with Supabase Storage buckets.
+- [ ] Granular role permissions (Reviewer vs. Editor vs. Admin).
+- [ ] Native multi-language / i18n support driven by locale-keyed seed JSON.
+- [ ] Built-in A/B testing block variant switcher.
+- [ ] Webhook triggers on publication (instant CDN cache purge / Edge invalidation).

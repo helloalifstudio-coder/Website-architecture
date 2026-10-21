@@ -1,5 +1,7 @@
 {
-  "name": "public-website",
+  "name": "website-editor-public",
+  "version": "1.0.0",
+  "description": "Public edge-rendered client application for website-editor.",
   "private": true,
   "type": "module",
   "scripts": {

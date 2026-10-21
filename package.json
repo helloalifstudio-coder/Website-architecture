@@ -1,8 +1,15 @@
 {
-  "name": "safar-studio",
+  "name": "website-editor",
+  "version": "1.0.0",
+  "description": "Universal plug-and-play visual website engine and studio editor for service businesses with sub-second Realtime database sync.",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "homepage": "https://github.com/helloalifstudio-coder/Website-architecture#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helloalifstudio-coder/Website-architecture.git"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
@@ -100,7 +107,6 @@
     "typescript-eslint": "^8.56.1",
     "vite": "8.1.5"
   },
-  "description": "Schema-driven visual website editor and publishing platform for SAFAR N MANZIL.",
   "engines": {
     "node": ">=22"
   }

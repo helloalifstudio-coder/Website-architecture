@@ -1,4 +1,4 @@
-# Safar Studio — schema-driven website platform
+# website-editor — Schema-Driven Website Platform
 
 Status: architecture and release baseline for the public website and visual page studio.
 

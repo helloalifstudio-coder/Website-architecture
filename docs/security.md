@@ -1,6 +1,6 @@
 # Security model
 
-Safar Studio has two trust domains: anonymous readers of published website content and explicitly provisioned CMS editors. The browser can see a Supabase project URL and public anon key; it must never see a database password, service-role key or webhook secret.
+**website-editor** has two trust domains: anonymous readers of published website content and explicitly provisioned CMS editors. The browser can see a Supabase project URL and public anon key; it must never see a database password, service-role key or webhook secret.
 
 ## Authentication and authorization
 

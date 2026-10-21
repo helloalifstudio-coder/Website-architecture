@@ -1,6 +1,6 @@
 # Production deployment runbook
 
-Safar Studio runs on Vercel and uses Supabase for shared content. Deploy code and apply database migrations as separate reviewed operations; a Vercel build must never mutate the production schema.
+**website-editor** runs on Vercel and uses Supabase for shared content. Deploy code and apply database migrations as separate reviewed operations; a Vercel build must never mutate the production schema.
 
 ## 1. Preflight
 

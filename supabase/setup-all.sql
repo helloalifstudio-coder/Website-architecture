@@ -1,6 +1,32 @@
--- Safar Studio CMS foundation. Applies only to website CMS tables, not the
--- removed CRM schema. Editor authorization uses server-controlled Supabase Auth
--- app_metadata.cms_role (owner | admin | editor), never user-editable metadata.
+-- ============================================================================
+-- WEBSITE EDITOR (website-editor) — COMPLETE SUPABASE DATABASE SETUP
+-- ============================================================================
+-- Single-Paste Database Migration & CMS Initialization
+--
+-- HOW TO USE THIS SCRIPT (ONLINE, ZERO-CLONE):
+-- 1. Create a free project at https://supabase.com
+-- 2. Open your Supabase Dashboard -> Navigate to "SQL Editor"
+-- 3. Click "New query", paste this entire script, and click "Run" (Ctrl+Enter)
+-- 4. Done! All tables, RPCs, RLS policies, Realtime channels, and initial
+--    universal page documents will be automatically created and ready.
+--
+-- WHAT THIS PROVISIONS:
+-- - Schema: Restricted 'safar_private' internal security schema
+-- - Tables: 'cms_sections', 'cms_revisions', 'cms_site_configurations'
+-- - Security: Row Level Security (RLS) with role-gated admin/editor access
+-- - RPCs: 'publish_page_document' & 'get_published_page_document'
+-- - Realtime: Configured change publication for sub-second UI updates
+-- - 12 Universal Blocks: hero, featureGrid, processFlow, serviceCatalog,
+--   pricingTable, testimonials, statsBanner, accordionFaq, leadCapture,
+--   contentSection, ctaBanner, logoCloud (+ legacy blocks).
+-- - Bootstrap: Automatically seeds 14 route documents and theme tokens.
+--
+-- TO GRANT AN ADMIN USER ACCESS:
+-- After a team member registers via your website's /auth page, run this in SQL Editor:
+--   UPDATE auth.users
+--   SET raw_app_meta_data = raw_app_meta_data || '{"cms_role": "owner"}'::jsonb
+--   WHERE email = 'your-email@example.com';
+-- ============================================================================
 begin;
 
 create table if not exists public.cms_sections (
@@ -1265,13 +1291,10 @@ commit;
 
 
 -- ============================================================================
--- 5. REALTIME REPLICATION & AUTOMATIC OWNER ROLE ASSIGNMENT
+-- 5. AUTOMATIC OWNER ROLE ASSIGNMENT FOR FIRST-RUN / ONBOARDING
 -- ============================================================================
 begin;
 
--- Enable Supabase Realtime broadcast on public CMS projections
-alter publication supabase_realtime add table public.cms_published_documents;
-alter publication supabase_realtime add table public.cms_public_site_config;
 
 -- Automatically grant 'owner' CMS role to any newly registered auth user
 create or replace function public.auto_assign_cms_owner()

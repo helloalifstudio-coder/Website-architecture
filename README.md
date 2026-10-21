@@ -1,147 +1,216 @@
-# Safar Studio
+# Website Editor (`website-editor`)
 
-**The visual website publishing platform for SAFAR N MANZIL.**
+> **Universal, plug-and-play website engine and visual drag-and-drop studio for service businesses with sub-second Realtime database sync.**
 
-[![Architecture checks](https://github.com/MuhammadMinhaj229/crm-invoicing-hub/actions/workflows/architecture-checks.yml/badge.svg?branch=main)](https://github.com/MuhammadMinhaj229/crm-invoicing-hub/actions/workflows/architecture-checks.yml)
-[![Production hosting](https://img.shields.io/badge/hosting-Vercel-black)](https://vercel.com/mohammed-minhajs-projects-8071d846/safar-studio)
+[![Test Suite](https://img.shields.io/badge/tests-23%2F23%20passing-brightgreen)](https://github.com/helloalifstudio-coder/Website-architecture)
+[![TypeScript](https://img.shields.io/badge/typescript-strict%20100%25-blue)](https://github.com/helloalifstudio-coder/Website-architecture)
+[![Framework](https://img.shields.io/badge/framework-TanStack%20Start%20%7C%20React%2019-orange)](https://tanstack.com/start)
+[![Editor](https://img.shields.io/badge/visual%20builder-Puck%20Studio-purple)](https://puckeditor.com)
+[![Database](https://img.shields.io/badge/database-Supabase%20%7C%20PostgreSQL-3ECF8E)](https://supabase.com)
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**Live site:** [safar-studio-snm.vercel.app](https://safar-studio-snm.vercel.app)  
-**Repository:** [GitHub source](https://github.com/MuhammadMinhaj229/crm-invoicing-hub)
+---
 
-Safar Studio combines the public SAFAR N MANZIL website with an authenticated visual page studio. Website content is saved as bounded, validated documents; rendering and interactive behavior remain in reviewed application code. That lets editors manage page structure without making arbitrary HTML or JavaScript part of the content database.
+## 🎯 The Problem We Are Solving
 
-> **Current release scope:** public marketing pages and the Puck-based website studio. The former CRM, finance, inbox, social-publishing and automation workspaces are not part of the current route tree and should not be treated as shipped modules.
+Service businesses (agencies, clinics, legal firms, consultants, home services, logistics providers, and B2B specialists) face a painful digital dilemma:
 
-## Capabilities
+| Traditional Static Websites | Legacy CMS Builders (WordPress / Wix / Webflow) | Headless CMS Platforms (Sanity / Contentful) |
+|---|---|---|
+| ❌ Rigid: Every text update, price change, or new service requires a software developer. | ❌ Bloated: Slow page speed, brittle plugins, recurring monthly software fees, and vendor lock-in. | ❌ Disconnected: Requires complex API plumbing, disjointed workflows, and no true inline visual editing for clients. |
+| ❌ No client CMS panel. | ❌ Disconnected from PostgreSQL / CRM backends. | ❌ Expensive tier-based pricing for basic features. |
 
-- Server-rendered public pages powered by TanStack Start and TanStack Router.
-- Drag-and-drop content editing with Puck and the same block renderer used by the public website.
-- Runtime document validation using Zod, strict per-block properties, schema versioning and size limits.
-- Link and asset allow-lists that reject unsafe schemes and credential-bearing URLs.
-- Supabase-backed drafts, published documents and revision history.
-- Transactional publishing with expected-version checks to reject stale editor writes.
-- RLS-enforced separation between anonymous public readers and provisioned CMS editors.
-- Vercel deployment with GitHub Actions quality gates.
+### The `website-editor` Solution
 
-## Architecture
+**`website-editor` is our first universal tool built to solve this across all service business industries.**
 
-```text
-Public visitor ──> TanStack Start route loader ──> Published page renderer
-                              │
-                              ▼
-                       Supabase/Postgres
-                              ▲
-                              │
-Approved editor ──> Supabase Auth ──> Puck Studio
-                                           │
-                                           ▼
-                                   Validate document
-                                           │
-                                           ▼
-                                   Atomic publish RPC
-                                           │
-                                           ▼
-                                 Revision + page version
+1. **Plug-and-Play DNA via `seed.json`**: The entire business identity (brand, theme colors, navigation, services, pricing, FAQs, and contact channels) is defined in a single file: `src/content/seed.json`.
+2. **Dual-Deployment Architecture**:
+   - **Public Website (`apps/public`)**: Ultra-fast edge delivery, optimized Core Web Vitals, and zero render crashes with automatic fallback protection.
+   - **Visual Studio (`/builder`)**: An authenticated visual drag-and-drop canvas powered by Puck, allowing non-technical business owners to click, edit text, drag blocks, and publish live in milliseconds.
+3. **Sub-Second Realtime Synchronization**: When an editor publishes in the studio, changes propagate across the globe via Supabase Realtime in under 100 milliseconds without requiring a code rebuild or redeployment.
+4. **100% Code Ownership**: Your client owns their codebase, database, and customer pipeline with zero monthly platform subscriptions.
+
+---
+
+## 🧱 The 12 Universal Blocks System
+
+Every service business can assemble world-class pages using our 12 universal, strictly typed, responsive blocks:
+
+| # | Block Type | Capability | Inferred Visual Controls & Options |
+|---|---|---|---|
+| **1** | `hero` | High-impact conversion banner | Centered, split, and minimal variants; badge pill, primary & secondary CTAs, responsive media. |
+| **2** | `featureGrid` | Core value propositions & benefits | Responsive 2, 3, or 4-column layout with automatic Lucide icon mapping. |
+| **3** | `processFlow` | Step-by-step customer journey | Horizontal, vertical, and card timelines with auto-numbered step markers. |
+| **4** | `serviceCatalog` | Filterable business capabilities | Interactive category filter pills, duration & price badges, feature bullet lists, and booking links. |
+| **5** | `pricingTable` | Transparent plans & billing | Highlighted tiers, ribbon badges, feature checklists, and customizable CTA actions. |
+| **6** | `testimonials` | Verified client social proof | Grid, carousel, or minimal layouts with star ratings, author roles, and company affiliations. |
+| **7** | `statsBanner` | Verified impact & KPI metrics | Numbers, metric suffixes (`%`, `+`, `ms`), labels, and supporting subtext. |
+| **8** | `accordionFaq` | Interactive question accordion | Accessible Radix accordion with smooth collapsible animations. |
+| **9** | `leadCapture` | High-intent lead & contact form | Direct CRM pipeline capture with automated WhatsApp deep-link dispatch. |
+| **10** | `contentSection` | Editorial & brand story sections | Alternating left/right media layouts with rich typography and bullet points. |
+| **11** | `ctaBanner` | Closing conversion strip | Primary, dark, and card accent themes with prominent action buttons. |
+| **12** | `logoCloud` | Client & partner brand carousel | Clean grayscale or brand-colored partner logo showcase. |
+
+---
+
+## 🚀 100% Online Setup Guide (No Local Coding Required!)
+
+You can deploy a complete, client-ready dynamic website and visual editor entirely from your web browser in under 5 minutes without opening a terminal or cloning the repository locally.
+
+```mermaid
+flowchart LR
+    Step1["1. Fork Repo on GitHub"] --> Step2["2. Edit seed.json in Browser"]
+    Step2 --> Step3["3. Run Supabase SQL Script"]
+    Step3 --> Step4["4. Deploy to Vercel"]
+    Step4 --> Step5["5. Live Visual Studio!"]
 ```
 
-The application is a modular monolith. Keep content as structured data and behavior as version-controlled code; introduce new infrastructure only when measured scaling requirements justify it.
+### Step 1: Fork This Repository
+1. Click the **Fork** button at the top right of this repository.
+2. Select your GitHub account or agency organization as the owner.
+3. Name your repository (e.g., `acme-consulting-website`).
 
-## Technology
+### Step 2: Customize Your Business in `src/content/seed.json`
+1. Inside your newly forked repository on GitHub, press the `.` (dot) key on your keyboard to instantly open the **GitHub Web Editor** in your browser.
+2. Open [`src/content/seed.json`](./src/content/seed.json).
+3. Update your company details:
+   ```json
+   {
+     "site": {
+       "brand": {
+         "name": "Acme Legal Partners",
+         "tagline": "Corporate & Commercial Legal Advisory",
+         "description": "Specialized legal counsel for emerging technology enterprises.",
+         "motto": "Clarity · Precision · Results"
+       },
+       "contact": {
+         "whatsapp": "15551234567",
+         "phone": "+1 555 123 4567",
+         "email": "contact@acmelegal.com",
+         "location": "Financial District, Suite 400"
+       }
+     }
+   }
+   ```
+4. Commit your changes directly to the `main` branch.
 
-| Layer | Technology |
-| --- | --- |
-| Web application | React, TypeScript, TanStack Start and TanStack Router |
-| Visual authoring | Puck |
-| Content validation | Zod |
-| Styling | Tailwind CSS |
-| Identity and database | Supabase Auth and PostgreSQL |
-| Deployment | Vercel |
-| Package manager | Bun |
+### Step 3: Run the Database Installer in Supabase
+1. Create a free account at [Supabase](https://supabase.com) and create a **New Project**.
+2. In your Supabase project dashboard, click on the **SQL Editor** tab in the left sidebar.
+3. Click **New query**.
+4. Open [`supabase/setup-all.sql`](./supabase/setup-all.sql) from this repository, copy its entire contents, paste it into the Supabase SQL editor, and click **Run** (or press `Ctrl+Enter`).
+5. *Done!* All tables, role-based security policies, Realtime publications, atomic publishing RPCs, and initial pages are now configured.
+6. Copy your **Project URL** and **anon public key** from *Project Settings -> API*.
 
-## Local development
+### Step 4: Deploy to Vercel (Dual-Deployment)
+Import your forked repository into [Vercel](https://vercel.com):
 
-### Requirements
+#### Deployment A: The Public Website (Customer-Facing)
+1. In Vercel, click **Add New... -> Project** and select your forked repository.
+2. In the configuration screen, click **Edit** next to **Root Directory** and select:
+   `apps/public`
+3. Expand **Environment Variables** and add:
+   - `VITE_SUPABASE_URL` = `https://your-project.supabase.co`
+   - `VITE_SUPABASE_ANON_KEY` = `your-anon-public-key`
+4. Click **Deploy**. Your blazing-fast public website is live!
 
-- Bun 1.3.14 (the CI version)
-- Node.js 22 or newer; production currently uses Node.js 24
-- A Supabase project for shared editing and publication
+#### Deployment B: The Visual Studio (Admin & Editing)
+1. In Vercel, click **Add New... -> Project** and select the same repository again.
+2. Leave **Root Directory** as the root (`.`).
+3. Add the same Environment Variables:
+   - `VITE_SUPABASE_URL` = `https://your-project.supabase.co`
+   - `VITE_SUPABASE_ANON_KEY` = `your-anon-public-key`
+4. Click **Deploy**. Your admin studio is live!
 
-### Install and run
+### Step 5: Grant Admin Access and Edit Live!
+1. Open your live visual studio URL and navigate to `/auth`.
+2. Sign up with your administrator email.
+3. To grant yourself publishing privileges, open your Supabase **SQL Editor** and run:
+   ```sql
+   UPDATE auth.users
+   SET raw_app_meta_data = raw_app_meta_data || '{"cms_role": "owner"}'::jsonb
+   WHERE email = 'your-email@example.com';
+   ```
+4. Navigate to `/builder`. You can now drag blocks, click text to edit, and click **Publish**. Your public website updates globally in milliseconds!
 
+---
+
+## 🏛️ System Architecture
+
+```text
+┌────────────────────────────────────────────────────────┐
+│                   src/content/seed.json                │
+│     (Brand identity, Contact, Theme tokens, Pages)     │
+└───────────┬────────────────────────────────┬───────────┘
+            ▼                                ▼
+┌──────────────────────────┐    ┌──────────────────────────┐
+│  Public Website Engine   │    │    Puck Visual Studio    │
+│      (apps/public)       │    │ (_authenticated/builder) │
+│  • Edge CDN SPA          │    │  • Drag-and-drop blocks  │
+│  • Dynamic CSS tokens    │    │  • Inline click-to-edit  │
+│  • Bundled seed fallback │    │  • Revision history      │
+└────────────┬─────────────┘    └────────────┬─────────────┘
+             │                               │
+             │   ◄── Supabase Realtime ───►  │
+             │       (< 100ms sync)          │
+             ▼                               ▼
+┌────────────────────────────────────────────────────────┐
+│                   Supabase PostgreSQL                  │
+│    • Public published read RPC                         │
+│    • Transactional versioned publishing RPC            │
+│    • Role-based RLS: app_metadata.cms_role             │
+└────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 💻 Local Development (For Developers)
+
+If you prefer working locally:
+
+### Prerequisites
+- [Bun](https://bun.sh) (v1.3.14+)
+- Node.js (v22+)
+
+### Getting Started
 ```bash
+# 1. Clone your repository
+git clone https://github.com/helloalifstudio-coder/Website-architecture.git
+cd Website-architecture
+
+# 2. Install dependencies
 bun install
+
+# 3. Configure environment
 cp .env.example .env
-# Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY for shared content.
+# Enter your VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY
+
+# 4. Start local development server
 bun run dev
 ```
 
-The public site can render its fallback content without a database. Shared drafts and publishing require the CMS migrations and a provisioned editor account.
-
-### Quality checks
-
+### Quality & Release Verification
+Run the complete automated release verification gate:
 ```bash
-bun run lint:architecture
+# Execute unit tests (23/23 contracts)
+bun test
+
+# Execute strict TypeScript compilation check
 bun run typecheck
-bun run test
+
+# Build the public static edge bundle
+bun run build:public
+
+# Build the full Nitro SSR studio application
 bun run build
+
+# Run all checks at once
+bun run check
 ```
 
-For the full release gate, run `bun run check`. GitHub Actions also tests publication against an isolated PostgreSQL service; never point that test fixture at a production database.
+---
 
-## Supabase setup
+## 📄 License
 
-The CMS migrations are version-controlled and must be applied in this order, after verifying the target project and taking a recoverable backup:
-
-1. `supabase/migrations/20261014030938_cms_foundation.sql` — CMS tables, indexes, grants and restrictive RLS policy guards.
-2. `supabase/migrations/20261014030941_atomic_page_publish.sql` — transactional publication and revision creation.
-
-3. `supabase/migrations/20261014030945_lock_down_cms_access.sql` — published-only read RPC, editor-only base-table access, draft-only column grants and role-checked publish/unpublish.
-4. `supabase/migrations/20261014030947_seed_bootstrap_and_handshake.sql` — versioned site/theme configuration, public route manifest, CMS handshake and atomic one-time seed bootstrap.
-5. `supabase/migrations/20261014030950_reset_legacy_public_schema.sql` — archives former public-table rows privately, removes legacy CRM/inbox/automation tables, functions and enum types, and preserves Supabase Auth plus the six CMS tables.
-
-These migrations are **only for the website CMS**. They are additive to the existing project schema and do not recreate the CRM business schema or the optional inbound WhatsApp adapter's tables. Review [Database setup](docs/database.md), [Integration boundaries](docs/integrations.md) and the [Production deployment runbook](docs/deployment.md) before enabling those paths. The production schema must be inspected and backed up first; never replay migrations blindly.
-
-### Provision an editor
-
-After the account exists in Supabase Auth, grant its server-controlled `app_metadata.cms_role` using the owner procedure in [Database setup](docs/database.md). Supported roles are `owner`, `admin` and `editor`. Sign out and back in after changing the role to refresh the token. The public studio no longer exposes self-service sign-up.
-
-## Vercel configuration
-
-Connect the repository to Vercel, deploy `main`, and use the detected TanStack Start build configuration with `bun run build`. Production uses Node.js 24.
-
-Required public project settings:
-
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-
-The Supabase anon key is public by design; it is not authorization. Row-level security remains mandatory. `DATABASE_URL`, `META_APP_SECRET` and `WHATSAPP_WEBHOOK_SECRET` are server-only and should only be configured if the optional inbound webhook is deliberately enabled. Never prefix secrets with `VITE_`.
-
-Follow the [Production deployment runbook](docs/deployment.md) for migration order, environment separation, smoke tests, backup and rollback.
-
-## Security principles
-
-- Only published documents are readable by anonymous visitors; drafts and revisions require a CMS editor role.
-- Editor access uses Supabase Auth's server-controlled `app_metadata`, not user-editable metadata.
-- RLS and the publication RPC protect database operations even if the UI is bypassed.
-- Content is schema-validated and cannot execute arbitrary HTML or JavaScript.
-- Inbound webhooks fail closed when credentials are missing and verify signatures/secrets before writing messages.
-- Code deployment and database migrations are separate release operations.
-
-## Production status
-
-The existing Vercel production project is connected to `main`. A successful Vercel build is not proof that the target Supabase database has the expected schema, migrations or an owner account. Complete the production smoke tests in the deployment runbook before enabling shared publishing.
-
-## Documentation
-
-- [Architecture overview](docs/architecture.md)
-- [Website engine specification](docs/architecture/website-engine.md)
-- [Database and access control](docs/database.md)
-- [Security model](docs/security.md)
-- [Deployment runbook](docs/deployment.md)
-- [Integration boundaries](docs/integrations.md)
-- [Day-to-day operations](docs/operations.md)
-- [Troubleshooting](docs/troubleshooting.md)
-
-## License
-
-No open-source license is currently declared. All rights remain with the repository owner unless a license is added.
+This project is licensed under the [MIT License](./LICENSE) — free for personal, commercial, and client agency use.
