@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { BUILDER_PAGES, defaultDocument } from "../../lib/page-builder/model";
+import { bundledDocuments } from "../../lib/page-builder/published-state";
 import { documentToPuck, puckToDocument, safarPuckConfig } from "../../lib/page-builder/puck-config";
 import {
   fetchCmsHandshake,
@@ -49,7 +50,7 @@ function StudioPage() {
     fetchDocumentState(page)
       .then((s) => {
         if (!alive) return;
-        const doc = s.draft ?? s.published ?? defaultDocument(page);
+        const doc = s.draft ?? s.published ?? bundledDocuments.get(page) ?? defaultDocument(page);
         setVersion(s.version);
         setPageMetadata(doc.metadata);
         setData(documentToPuck(doc));

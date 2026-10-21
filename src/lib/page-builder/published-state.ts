@@ -29,7 +29,7 @@ export type PublicDocumentResolution =
   | { status: "unavailable"; document: null };
 
 const seed = prepareCmsSeed(seedBlueprint as unknown);
-const bundledDocuments = new Map<string, PageDocument>(
+export const bundledDocuments = new Map<string, PageDocument>(
   seed.pages.map(({ page, document }) => [page, document] as const),
 );
 

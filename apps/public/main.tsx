@@ -16,7 +16,39 @@ import {
 import { isSafeHref } from "../../src/lib/page-builder/safe-url";
 import { buildWhatsAppUrl } from "../../src/lib/whatsapp/url-builder";
 import { generalEnquiryMessage } from "../../src/lib/whatsapp/templates";
+import seedBlueprint from "../../src/content/seed.json";
+import { prepareCmsSeed } from "../../src/lib/page-builder/seed";
 import "../../src/styles.css";
+
+const bundledSeed = prepareCmsSeed(seedBlueprint as unknown);
+function createSeedManifest(): CmsPublishedPage[] {
+  return bundledSeed.pages.map((p) => ({
+    page: p.page,
+    metadata: p.document.metadata ?? {
+      label: p.page,
+      path: p.page === "home" ? "/" : "/" + p.page,
+      seo: { title: "Business Portal", description: "" },
+    },
+    version: 1,
+    updated_at: new Date().toISOString(),
+  }));
+}
+
+const fallbackHandshake: CmsHandshake = {
+  ok: true,
+  status: "seed-ready",
+  protocol_version: 1,
+  schema_version: 1,
+  site_seeded: false,
+  site_version: 1,
+  published_page_count: bundledSeed.pages.length,
+  server_time: new Date().toISOString(),
+  seed_version: bundledSeed.seedVersion,
+};
+
+const bundledDocuments = new Map<string, PageDocument>(
+  bundledSeed.pages.map(({ page, document }) => [page, document] as const),
+);
 
 type JsonRecord = Record<string, unknown>;
 type PublicNavigationLink = { label: string; href: string };
@@ -134,28 +166,53 @@ function RuntimeApp() {
       setError("");
 
       try {
-        const handshake = await fetchCmsHandshake();
-        if (!handshake.ok) {
-          const messages: Record<string, string> = {
-            seed_required: "The database is connected, but the initial website seed has not been installed.",
-            no_published_pages: "The CMS has no published pages yet.",
-            protocol_mismatch: "The website and database use incompatible CMS protocol versions.",
-          };
-          throw new Error(messages[handshake.status] ?? "The website CMS is not ready.");
+        let handshake: CmsHandshake | null = null;
+        try {
+          handshake = await fetchCmsHandshake();
+        } catch {
+          handshake = null;
         }
 
-        const [configuration, manifest, globalDocument] = await Promise.all([
-          fetchCmsSiteConfiguration(),
-          fetchCmsPublishedManifest(),
-          fetchPublishedDocument("global"),
-        ]);
+        let configurationContent: JsonRecord;
+        let manifest: CmsPublishedPage[];
+        let globalDocument: PageDocument | null = null;
+        const isLiveCmsReady = Boolean(handshake?.ok && handshake.published_page_count > 0);
+
+        if (isLiveCmsReady) {
+          try {
+            const [configuration, liveManifest, liveGlobalDoc] = await Promise.all([
+              fetchCmsSiteConfiguration(),
+              fetchCmsPublishedManifest(),
+              fetchPublishedDocument("global"),
+            ]);
+            configurationContent = configuration.content;
+            manifest = liveManifest;
+            globalDocument = liveGlobalDoc;
+          } catch {
+            // If live read fails, smoothly fall back to bundled seed
+            configurationContent = {
+              site: bundledSeed.siteConfig.site,
+              theme: bundledSeed.siteConfig.theme,
+            };
+            manifest = createSeedManifest();
+            globalDocument = bundledDocuments.get("global") ?? null;
+          }
+        } else {
+          // Zero-friction fallback: Database is fresh, unseeded or offline
+          configurationContent = {
+            site: bundledSeed.siteConfig.site,
+            theme: bundledSeed.siteConfig.theme,
+          };
+          manifest = createSeedManifest();
+            globalDocument = bundledDocuments.get("global") ?? null;
+        }
 
         if (!active || sequence !== refreshSequence) return;
 
         const path = normalizePath(window.location.pathname);
         const route = manifest.find((candidate) => normalizePath(candidate.metadata.path) === path);
-        const site = asRecord(configuration.content["site"]);
-        const theme = asRecord(asRecord(configuration.content["theme"])["light"]);
+        const site = asRecord(configurationContent["site"]);
+        const theme = asRecord(asRecord(configurationContent["theme"])["light"]);
 
         if (!route) {
           setContent(null);
@@ -166,8 +223,19 @@ function RuntimeApp() {
           return;
         }
 
-        const published = await fetchPublishedDocument(route.page);
-        if (!published || published.page !== route.page) {
+        let published: PageDocument | null = null;
+        if (isLiveCmsReady) {
+          try {
+            published = await fetchPublishedDocument(route.page);
+          } catch {
+            published = null;
+          }
+        }
+        if (!published) {
+          published = bundledDocuments.get(route.page) ?? null;
+        }
+
+        if (!published) {
           throw new Error("The route exists in the published manifest, but its page document could not be loaded.");
         }
         if (!active || sequence !== refreshSequence) return;
@@ -183,7 +251,7 @@ function RuntimeApp() {
           site,
           theme,
           globalDocument,
-          handshake,
+          handshake: handshake ?? fallbackHandshake,
         });
         setPhase("ready");
         hasRenderedPage.current = true;
