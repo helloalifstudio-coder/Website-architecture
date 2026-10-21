@@ -3,25 +3,29 @@
   "version": 1,
   "site": {
     "brand": {
-      "name": "SAFAR N MANZIL",
-      "tagline": "Help for your family in India, while you work in the Gulf",
-      "description": "We do the shopping, parcels, home repairs, hospital visits and paperwork for your family back home in India — with photos, updates and a clear price agreed before we start.",
-      "motto": "We do. We assist. We connect.",
-      "logoUrl": "/media/safar-logo.png"
+      "name": "Enterprise Business",
+      "tagline": "Custom Business Software, Visual CMS & Operating Solutions",
+      "description": "We partner with local enterprises to deliver world-class digital storefronts, automated customer pipelines, and reliable operating systems.",
+      "motto": "Reliable · Fast · Trusted",
+      "logoUrl": ""
     },
     "contact": {
-      "whatsapp": "917207071874",
-      "phone": "",
-      "email": "",
-      "location": ""
+      "whatsapp": "919000000000",
+      "phone": "+91 90000 00000",
+      "email": "contact@example.com",
+      "location": "Main Commercial District, City"
     },
     "location": {
-      "city": "",
-      "region": "",
+      "city": "City",
+      "region": "State",
       "country": "India"
     },
-    "serviceAreas": [],
-    "hours": "We reply every day. Urgent family needs come first.",
+    "serviceAreas": [
+      "Local & Regional Markets",
+      "Enterprise Clients",
+      "Global Partners"
+    ],
+    "hours": "Mon – Sat, 09:00 – 19:00 IST",
     "navigation": [
       {
         "label": "Home",
@@ -30,22 +34,22 @@
       {
         "label": "Services",
         "href": "/services",
-        "hint": "What we can do for your family"
+        "hint": "What we can do for your business"
       },
       {
         "label": "How it works",
         "href": "/about",
-        "hint": "Who we are and how we work"
+        "hint": "Who we are and our partnership model"
       },
       {
         "label": "Questions",
         "href": "/faq",
-        "hint": "Price, trust and timing"
+        "hint": "Common questions and transparent answers"
       },
       {
         "label": "Talk to us",
         "href": "/contact",
-        "hint": "Send your request"
+        "hint": "Start your pilot project"
       }
     ],
     "legalLinks": [
@@ -59,45 +63,44 @@
       }
     ],
     "cta": {
-      "primary": "Ask for help now",
+      "primary": "Start Your Pilot",
       "whatsapp": "Message us on WhatsApp",
-      "call": "Call us"
+"call": "Call our team"
     },
     "messages": {
       "enquiry": [
-        "I live in the Gulf and I need help for my family in India.",
-        "Please tell me how you can help and what it costs."
+        "I would like to inquire about your professional services.",
+        "Please share your capabilities, timeline, and next steps."
       ],
-      "service": "Please tell me what you need from me and what it will cost.",
-      "emailSubject": "Help for my family"
+      "service": "Please share your service specifications, timeline, and pricing.",
+      "emailSubject": "Business Service Inquiry"
     },
     "header": {
       "rotatingMessages": [
-        "We do...",
-        "We assist...",
-        "We provide...",
-        "We are always here...",
-        "We are always with you..."
+        "Tailored Software Solutions",
+        "Visual CMS Studio",
+        "Automated CRM Pipelines",
+        "Dedicated Operational Support"
       ]
     },
     "footer": {
-      "legal": "© SAFAR N MANZIL. All rights reserved.",
+      "legal": "© Enterprise Business. All rights reserved.",
       "teamLoginLabel": "Team login",
       "exploreLabel": "Explore",
       "contactLabel": "Reach us"
     },
     "forms": {
       "namePlaceholder": "Your name",
-      "phonePlaceholder": "Your WhatsApp number",
-      "cityPlaceholder": "Family's city in India",
-      "needPlaceholder": "What does your family need?",
-      "successMessage": "Thank you — we will message you soon.",
-      "errorMessage": "We could not save this right now. Please message us on WhatsApp."
+      "phonePlaceholder": "Your WhatsApp / phone number",
+      "cityPlaceholder": "City, State, Country",
+      "needPlaceholder": "How can we assist your business?",
+      "successMessage": "Thank you — we have received your inquiry and will follow up shortly.",
+      "errorMessage": "We could not save this right now. Please message us directly."
     },
     "seo": {
-      "siteName": "SAFAR N MANZIL",
-      "defaultTitle": "Safar N manzil — Your care, carried home",
-      "defaultDescription": "Practical help for your family in India, coordinated while you live in the Gulf—with the plan, price and proof shared clearly."
+      "siteName": "Enterprise Business",
+      "defaultTitle": "Enterprise Business — Custom Software & Operating Systems",
+      "defaultDescription": "High-performance software and operating systems for growing service businesses."
     }
   },
   "theme": {
@@ -151,8 +154,8 @@
       "label": "Home",
       "path": "/",
       "seo": {
-        "title": "SAFAR N MANZIL — Help for your family in India, while you work in the Gulf",
-        "description": "We do the shopping, parcels, home repairs, hospital visits and paperwork for your family back home in India — with photos, updates and a clear price agreed before we start."
+        "title": "Enterprise Business — Custom Software, Visual CMS & Operating Systems",
+        "description": "Automate customer operations, eliminate developer dependency, and manage your entire business from a single real-time dashboard."
       },
       "blocks": [
         {
@@ -168,24 +171,24 @@
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "For families living in the Gulf",
-            "title": "Your care,",
-            "accent": "carried home.",
-            "text": "One message to us, and a checked, honest person helps your parents in India — shopping, repairs, hospital visits, paperwork — with photos and updates sent back to you.",
-            "image": "/media/safar-hero-family.png",
-            "imageAlt": "A son in the Gulf arranging help for his parents in India",
+            "eyebrow": "ENTERPRISE-GRADE DIGITAL INFRASTRUCTURE",
+            "title": "Scale Your Business With",
+            "accent": "Modern Operating Systems.",
+            "text": "We partner with local businesses to provide custom digital storefronts, automated WhatsApp pipelines, and self-serve visual management with zero developer bottlenecks.",
+            "image": "",
+            "imageAlt": "Modern Digital Infrastructure",
             "buttons": [
               {
-                "id": "home-002",
-                "label": "Tell us what they need",
+                "id": "home-btn-1",
+                "label": "Start Your Pilot",
                 "href": "/contact",
                 "style": "solid",
                 "size": "md"
               },
               {
-                "id": "home-003",
-                "label": "See the care journey",
-                "href": "#journey",
+                "id": "home-btn-2",
+                "label": "Explore Platform",
+                "href": "/services",
                 "style": "outline",
                 "size": "md"
               }
@@ -205,33 +208,33 @@
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Our story in two minutes",
-            "title": "The worry you carry. The help we bring.",
-            "text": "From a worried night in the Gulf to your parents cared for at home — the whole journey, scene by scene.",
+            "eyebrow": "PLATFORM OVERVIEW",
+            "title": "Engineered for Complete Operational Control",
+            "text": "See how our integrated software stack powers local businesses with visual management, live customer pipelines, and zero-downtime reliability.",
             "items": [
               {
-                "id": "home-005",
-                "title": "Elderly care visits",
-                "text": ""
+                "id": "film-01",
+                "title": "Live Visual Page Editor",
+                "text": "Update copy, photos, and prices on the fly."
               },
               {
-                "id": "home-006",
-                "title": "Groceries and medicines",
-                "text": ""
+                "id": "film-02",
+                "title": "Realtime Customer CRM",
+                "text": "Multi-agent WhatsApp inbox and automated lead tracking."
               },
               {
-                "id": "home-007",
-                "title": "Home and repair checks",
-                "text": ""
+                "id": "film-03",
+                "title": "Instant 1-Tap Invoicing",
+                "text": "Digital PDF invoices with Cash vs. UPI ledgers."
               },
               {
-                "id": "home-008",
-                "title": "Photo proof after every task",
-                "text": ""
+                "id": "film-04",
+                "title": "Direct Business Intelligence",
+                "text": "Mobile dashboard with live revenue and conversion metrics."
               }
             ],
-            "src": "/media/safar-brand-film.mp4",
-            "poster": "/media/safar-brand-film-poster.jpg"
+            "src": "",
+            "poster": ""
           },
           "anchor": "film"
         },
@@ -241,39 +244,39 @@
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 5,
-            "spaceBottom": 5,
+            "spaceTop": 4,
+            "spaceBottom": 4,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "We understand the distance.",
-            "text": "The practical needs back home do not pause while you are away.",
+            "title": "Engineered For Real Business Operations",
+            "text": "Designed from the ground up for owners who need simplicity, speed, and complete control.",
             "items": [
               {
-                "id": "home-010",
-                "title": "You carry the dream.",
-                "accent": "We help carry the responsibility.",
-                "text": "While you build a future in the Gulf, we help with the things that still need doing at home.",
-                "image": "/media/safar-campaign-dreams.png",
-                "imageAlt": "A Gulf resident thinking about family and responsibilities in India"
+                "id": "slide-01",
+                "title": "Zero Developer Dependency",
+                "accent": "FULL CONTROL",
+                "text": "Change announcements, prices, and banners with 1 click without paying a developer or touching code.",
+                "image": "",
+                "imageAlt": "Visual Editor"
               },
               {
-                "id": "home-011",
-                "title": "Your family’s needs",
-                "accent": "still reach you first.",
-                "text": "Groceries, appointments, repairs and paperwork can feel heavier when you have to solve them from another country.",
-                "image": "/media/safar-campaign-family-worries.png",
-                "imageAlt": "A family in India sharing practical concerns with a relative in the Gulf"
+                "id": "slide-02",
+                "title": "Instant Lead Capture",
+                "accent": "HIGH CONVERSION",
+                "text": "Never miss a customer inquiry across Google, WhatsApp, or Instagram with automated routing.",
+                "image": "",
+                "imageAlt": "Customer CRM"
               },
               {
-                "id": "home-012",
-                "title": "One message starts",
-                "accent": "a clear journey.",
-                "text": "Tell us what is needed. We confirm the task, share the plan, wait for approval and return with an update.",
-                "image": "/media/safar-campaign-how-it-works.png",
-                "imageAlt": "A simple illustrated journey from request to completed help"
+                "id": "slide-03",
+                "title": "Realtime Collections",
+                "accent": "FINANCIAL CLARITY",
+                "text": "Track Cash, UPI, and bank transfers automatically with daily closing reconciliations.",
+                "image": "",
+                "imageAlt": "Cashflow Ledger"
               }
             ]
           }
@@ -290,29 +293,29 @@
             "hideMobile": false,
             "hideDesktop": false
           },
-          "anchor": "journey",
           "props": {
-            "eyebrow": "One request, one clear journey",
-            "title": "You can't always be there for your parents in India. But we can.",
-            "text": "The hardest part of living abroad is the helplessness you feel when your family needs something back home. Stop worrying about untrustworthy vendors or making your parents do the heavy lifting. We act as your trusted local proxy.",
+            "eyebrow": "OUR PROCESS",
+            "title": "How We Partner With You",
+            "text": "A structured, transparent three-step journey from initial audit to automated daily operations.",
             "items": [
               {
-                "id": "home-014",
-                "title": "You message us",
-                "text": "Tell us in one message what your family needs."
+                "id": "step-01",
+                "title": "01 Architecture & Audit",
+                "text": "We assess your customer workflows, daily bottlenecks, and digital gaps to design your tailor-made system."
               },
               {
-                "id": "home-015",
-                "title": "You approve",
-                "text": "We confirm the plan and the cost before any work begins."
+                "id": "step-02",
+                "title": "02 Engineering & Integration",
+                "text": "We deploy your custom web app, visual admin editor, and branded software tools configured in your name."
               },
               {
-                "id": "home-016",
-                "title": "Proof returns",
-                "text": "Photos, the bill and a short update come back to your phone."
+                "id": "step-03",
+                "title": "03 Empower & Scale",
+                "text": "You control content, monitor live cashflow, and retain customers effortlessly with our ongoing technical partnership."
               }
             ]
-          }
+          },
+          "anchor": "journey"
         },
         {
           "id": "home-017",
@@ -326,53 +329,31 @@
             "hideMobile": false,
             "hideDesktop": false
           },
-          "anchor": "services",
           "props": {
-            "eyebrow": "Help shaped around real life",
-            "title": "Three ways we help you",
-            "text": "Instead of searching for many different people, just ask SAFAR N MANZIL. Here is how we handle your requests — and we tell you the price before we start.",
+            "eyebrow": "SOLUTIONS IN ACTION",
+            "title": "Tailored to Your Business Model",
+            "text": "Whether you run retail, manufacturing, services, or appointments, our modular systems adapt to your workflow.",
             "items": [
               {
-                "id": "home-018",
-                "title": "Groceries & gifts",
-                "text": "Surprise them with gifts or make sure their weekly groceries arrive without them lifting a finger. You see the bill.",
-                "image": "/media/safar-story-groceries.png",
-                "href": "/services"
+                "id": "story-01",
+                "title": "Retail & Wholesalers",
+                "text": "High-speed product catalogs with automated stock reduction and 1-tap WhatsApp billing receipts.",
+                "href": "/services/groceries-and-gifts",
+                "image": ""
               },
               {
-                "id": "home-019",
-                "title": "Parcel & logistics",
-                "text": "We pick up papers and parcels, send them and tell you where they are.",
-                "image": "/media/safar-story-repairs.png",
-                "href": "/services"
+                "id": "story-02",
+                "title": "Service & Contracting Firms",
+                "text": "Capture high-value leads, dispatch customized quotations, and collect milestone payments with clear tracking.",
+                "href": "/services/home-repairs",
+                "image": ""
               },
               {
-                "id": "home-020",
-                "title": "Trusted home repairs",
-                "text": "From plumbing to electrical work, we send verified, honest professionals so your family is never taken advantage of. Price fixed first.",
-                "image": "/media/safar-story-health.png",
-                "href": "/services"
-              },
-              {
-                "id": "home-021",
-                "title": "Medical & errands",
-                "text": "We arrange safe transport and go with your parents to hospital visits, bring medicines and run their local errands — then tell you how it went.",
-                "image": "/media/safar-story-groceries.png",
-                "href": "/services"
-              },
-              {
-                "id": "home-022",
-                "title": "Documentation & legal",
-                "text": "Certificates, bank and government work. We keep going until the paper is in hand.",
-                "image": "/media/safar-story-repairs.png",
-                "href": "/services"
-              },
-              {
-                "id": "home-023",
-                "title": "Property & coordination",
-                "text": "We visit your house or land, help with rent, check repairs and send photos.",
-                "image": "/media/safar-story-health.png",
-                "href": "/services"
+                "id": "story-03",
+                "title": "Membership & Clinics",
+                "text": "Automate renewal reminders before subscriptions expire, schedule appointments, and manage patient/client records.",
+                "href": "/services/medical-and-errands",
+                "image": ""
               }
             ]
           }
@@ -383,36 +364,31 @@
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
+            "spaceTop": 4,
+            "spaceBottom": 4,
+            "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Trust is not a slogan",
-            "title": "See what stays under your control.",
-            "text": "Show how each request is agreed, handled and completed.",
+            "eyebrow": "TRANSPARENCY & TRUST",
+            "title": "Built For Long-Term Partnership",
+            "text": "We don't build a generic website and disappear. We operate as your dedicated internal IT division.",
             "items": [
               {
-                "id": "home-025",
-                "title": "Request confirmed",
-                "text": "Explain what the customer sees at this stage."
+                "id": "trust-01",
+                "title": "100% Platform Ownership",
+                "text": "You own every line of code, cloud database, domain, and deployment from day one."
               },
               {
-                "id": "home-026",
-                "title": "Plan and price approved",
-                "text": "Explain what the customer sees at this stage."
+                "id": "trust-02",
+                "title": "No Developer Lock-in",
+                "text": "Update copy, images, and prices anytime through the visual admin editor with zero technical skill."
               },
               {
-                "id": "home-027",
-                "title": "Work coordinated",
-                "text": "Explain what the customer sees at this stage."
-              },
-              {
-                "id": "home-028",
-                "title": "Proof returned",
-                "text": "Explain what the customer sees at this stage."
+                "id": "trust-03",
+                "title": "Dedicated Senior Architect",
+                "text": "Direct line with your technical co-founder. No junior support queues or unresolved tickets."
               }
             ]
           }
@@ -423,30 +399,35 @@
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 5,
-            "spaceBottom": 5,
-            "background": "muted",
+            "spaceTop": 4,
+            "spaceBottom": 4,
+            "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "A clear breakdown, not a surprise bill.",
-            "text": "Every real request is different. This example shows the structure you can expect, without using any customer or payment details.",
+            "title": "Transparent Billing & Instant Invoicing",
+            "text": "Deliver clear, itemized digital invoices to customers via WhatsApp in 1 tap.",
             "items": [
               {
-                "id": "home-030",
-                "title": "The work requested",
-                "text": "Written in plain language"
+                "id": "inv-01",
+                "title": "Enterprise System Setup & Configuration",
+                "text": "₹ 0"
               },
               {
-                "id": "home-031",
-                "title": "Outside costs",
-                "text": "Shop, worker or materials"
+                "id": "inv-02",
+                "title": "Visual CMS & Storefront Deployment",
+                "text": "₹ 0"
               },
               {
-                "id": "home-032",
-                "title": "Safar N manzil fee",
-                "text": "Shown separately"
+                "id": "inv-03",
+                "title": "WhatsApp CRM & Automation Setup",
+                "text": "₹ 0"
+              },
+              {
+                "id": "inv-04",
+                "title": "Total Agreed Investment",
+                "text": "Included in Pilot"
               }
             ]
           }
@@ -464,32 +445,22 @@
             "hideDesktop": false
           },
           "props": {
-            "title": "Questions families ask",
+            "title": "Frequently Asked Questions",
             "items": [
               {
-                "id": "home-034",
-                "question": "How much does it cost?",
-                "answer": "It depends on the job. We always tell you the cost before we start, and the final bill matches what we agreed. You pay the actual expense plus our service charge — nothing is added afterwards."
+                "id": "h-faq-1",
+                "question": "How does the zero-upfront pilot work?",
+                "answer": "We partner with selected businesses to deploy our custom website and software suite at zero upfront cost. You experience live operational value first before any commercial commitment."
               },
               {
-                "id": "home-035",
-                "question": "How do I pay from the Gulf?",
-                "answer": "You can pay us after the work is done, using the method that is easiest for you. We send the bill with photos first, so you always see what you are paying for."
+                "id": "h-faq-2",
+                "question": "Can I update the website without knowing code?",
+                "answer": "Yes. Our platform includes an embedded Visual CMS. Click on any text, photo, banner, or price directly on your screen and update it live in seconds."
               },
               {
-                "id": "home-036",
-                "question": "Who actually goes to my parents' house?",
-                "answer": "A person from our team, or a worker we have checked ourselves. They carry an ID. For repairs and outside workers, our coordinator stays with them for the whole visit."
-              },
-              {
-                "id": "home-037",
-                "question": "How do I know the work was really done?",
-                "answer": "Every job comes back with photos, the bill and a short message on WhatsApp. You see what happened even though you are thousands of kilometres away."
-              },
-              {
-                "id": "home-038",
-                "question": "How do I start?",
-                "answer": "Send us one message with what your family needs. We reply with the plan, who will go and what it will cost. If you agree, we do it."
+                "id": "h-faq-3",
+                "question": "Who owns the code and customer database?",
+                "answer": "You own 100% of your platform from day one. All code repositories, database instances, and domain registrations belong entirely to your business."
               }
             ]
           }
@@ -500,18 +471,18 @@
           "layout": {
             "align": "center",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 4,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Ready to Upgrade Your Business?",
+            "text": "Message our team on WhatsApp or schedule an operational audit. We are ready to build your custom system.",
             "buttons": [
               {
-                "id": "home-040",
+                "id": "cs-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -526,8 +497,8 @@
       "label": "Services",
       "path": "/services",
       "seo": {
-        "title": "Services — SAFAR N MANZIL",
-        "description": "Shopping, parcels, home repairs, hospital visits and paperwork for your family in India."
+        "title": "Services & Systems — Enterprise Business",
+        "description": "Explore our modular business software: Visual CMS, WhatsApp CRM, Digital Invoicing, and Inventory Management."
       },
       "blocks": [
         {
@@ -543,8 +514,8 @@
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Services",
-            "text": "What we can do for your family",
+            "eyebrow": "SOFTWARE SUITE",
+            "text": "Integrated Business Systems",
             "level": "h1"
           }
         },
@@ -561,7 +532,7 @@
             "hideDesktop": false
           },
           "props": {
-            "text": "We do the shopping, parcels, home repairs, hospital visits and paperwork for your family back home in India — with photos, updates and a clear price agreed before we start."
+            "text": "We replace fragmented apps, messy spreadsheets, and developer dependency with modern, connected software systems custom-branded for your business."
           }
         },
         {
@@ -577,44 +548,44 @@
             "hideDesktop": false
           },
           "props": {
-            "title": "",
-            "subtitle": "",
+            "title": "Core Operating Modules",
+            "subtitle": "Explore our integrated systems designed for rapid deployment and immediate business impact.",
             "columns": 3,
             "items": [
               {
                 "id": "services-044",
-                "title": "Groceries & gifts",
-                "text": "Weekly shopping, medicines and surprise gifts delivered to your parents' door.",
+                "title": "Visual CMS & Storefront",
+                "text": "Ultra-fast website with an embedded visual admin editor so you can edit text, photos, and prices in seconds.",
                 "href": "/services/groceries-and-gifts"
               },
               {
                 "id": "services-045",
-                "title": "Trusted home repairs",
-                "text": "Plumbing, electrical, appliance and AC work done by people we have checked.",
+                "title": "WhatsApp CRM & Lead Pipeline",
+                "text": "Multi-agent WhatsApp inbox, automated customer capture, and deal stages for every incoming enquiry.",
                 "href": "/services/home-repairs"
               },
               {
                 "id": "services-046",
-                "title": "Medical visits & errands",
-                "text": "Safe transport, hospital company and the small errands nobody should do alone.",
+                "title": "Instant Invoicing & Billing",
+                "text": "Generate professional PDF bills, share via WhatsApp in 1 tap, and maintain a daily Cash vs UPI ledger.",
                 "href": "/services/medical-and-errands"
               },
               {
                 "id": "services-047",
-                "title": "Parcels & deliveries",
-                "text": "Sending something home, or collecting something for you.",
+                "title": "Inventory & SKU Management",
+                "text": "Track stock movements, receive low-stock alerts, and auto-deduct inventory as invoices are generated.",
                 "href": "/services/parcels-and-deliveries"
               },
               {
                 "id": "services-048",
-                "title": "Paperwork & documents",
-                "text": "Government offices, bills, renewals and the queues that go with them.",
+                "title": "Client Records & Dues Tracker",
+                "text": "Automated recurring renewal reminders and fee tracking for gyms, academies, and membership firms.",
                 "href": "/services/paperwork-and-documents"
               },
               {
                 "id": "services-049",
-                "title": "Property checks",
-                "text": "Someone to look in on the house, land or flat you left behind.",
+                "title": "Mobile Owner Dashboard",
+                "text": "A single screen showing today's revenue, active enquiries, website traffic, and customer retention metrics.",
                 "href": "/services/property-checks"
               }
             ]
@@ -633,8 +604,8 @@
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Need a Custom Software Solution?",
+            "text": "Send us a message on WhatsApp and we reply the same day.",
             "buttons": [
               {
                 "id": "services-051",
@@ -649,145 +620,125 @@
       ]
     },
     "service:groceries-and-gifts": {
-      "label": "Service · Groceries & gifts",
+      "label": "Visual CMS",
       "path": "/services/groceries-and-gifts",
       "seo": {
-        "title": "Groceries & gifts — SAFAR N MANZIL",
-        "description": "Weekly shopping, medicines and surprise gifts delivered to your parents' door."
+        "title": "Visual CMS & Storefront — Enterprise Business",
+        "description": "Ultra-fast website with an embedded visual editor."
       },
       "blocks": [
         {
-          "id": "service-groceries-and-gifts-052",
+          "id": "sg-1",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceTop": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Service",
-            "text": "Groceries & gifts",
+            "eyebrow": "MODULE 01",
+            "text": "Visual CMS & Web Engineering",
             "level": "h1"
           }
         },
         {
-          "id": "service-groceries-and-gifts-053",
+          "id": "sg-2",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 0,
+            "spaceTop": 1,
             "spaceBottom": 3,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "Your parents should not be carrying heavy bags or standing in queues. Tell us what they need — the monthly ration, fresh vegetables, medicines, or a gift for a birthday — and our person buys it and takes it to their home."
+            "text": "We build ultra-fast, modern web applications that give business owners a private visual admin editor. Update text, banners, and product catalogs instantly without writing code."
           }
         },
         {
-          "id": "service-groceries-and-gifts-054",
+          "id": "sg-3",
           "type": "cards",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "How it works",
-            "subtitle": "",
-            "columns": 3,
-            "items": [
-              {
-                "id": "service-groceries-and-gifts-055",
-                "title": "1. You send the list",
-                "text": "A message with what is needed is enough."
-              },
-              {
-                "id": "service-groceries-and-gifts-056",
-                "title": "2. We confirm the cost",
-                "text": "We tell you the price before we buy."
-              },
-              {
-                "id": "service-groceries-and-gifts-057",
-                "title": "3. We shop and deliver",
-                "text": "Our person buys it and hands it over at home."
-              },
-              {
-                "id": "service-groceries-and-gifts-058",
-                "title": "4. You get the proof",
-                "text": "Photos and the bill come back to your phone."
-              }
-            ]
-          }
-        },
-        {
-          "id": "service-groceries-and-gifts-059",
-          "type": "cards",
-          "layout": {
-            "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "title": "What you get",
-            "subtitle": "You pay the actual bill plus a service charge we agree with you before we start. Nothing is added later.",
+            "title": "Included Capabilities",
+            "subtitle": "Key features built into every storefront deployment.",
             "columns": 2,
             "items": [
               {
-                "id": "service-groceries-and-gifts-060",
-                "title": "Shopping list confirmed with you on WhatsApp",
-                "text": ""
+                "id": "sg-c1",
+                "title": "Click-to-Edit Visual Admin",
+                "text": "Change copy, photos, and banners directly on your live website."
               },
               {
-                "id": "service-groceries-and-gifts-061",
-                "title": "Photo of the items before delivery",
-                "text": ""
-              },
-              {
-                "id": "service-groceries-and-gifts-062",
-                "title": "Original bill shared with you",
-                "text": ""
-              },
-              {
-                "id": "service-groceries-and-gifts-063",
-                "title": "Delivery confirmation from your parents",
-                "text": ""
+                "id": "sg-c2",
+                "title": "Zero-Downtime Atomic Publishing",
+                "text": "Changes update in realtime across all edge locations with instant rollbacks."
               }
             ]
           }
         },
         {
-          "id": "service-groceries-and-gifts-064",
+          "id": "sg-4",
+          "type": "cards",
+          "layout": {
+            "align": "left",
+            "width": "normal",
+            "spaceTop": 2,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "title": "Technical Highlights",
+            "subtitle": "Production engineering standards.",
+            "columns": 2,
+            "items": [
+              {
+                "id": "sg-c3",
+                "title": "Mobile Optimized",
+                "text": "Responsive design fine-tuned for high conversion on smartphones."
+              },
+              {
+                "id": "sg-c4",
+                "title": "100% Clean Code Ownership",
+                "text": "You own the full codebase and cloud deployments from day one."
+              }
+            ]
+          }
+        },
+        {
+          "id": "sg-5",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
             "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Upgrade Your Website",
+            "text": "Contact us to replace your static website with a live visual CMS.",
             "buttons": [
               {
-                "id": "service-groceries-and-gifts-065",
+                "id": "sg-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -799,145 +750,125 @@
       ]
     },
     "service:home-repairs": {
-      "label": "Service · Trusted home repairs",
+      "label": "WhatsApp CRM",
       "path": "/services/home-repairs",
       "seo": {
-        "title": "Trusted home repairs — SAFAR N MANZIL",
-        "description": "Plumbing, electrical, appliance and AC work done by people we have checked."
+        "title": "WhatsApp CRM & Lead Pipeline — Enterprise Business",
+        "description": "Automated WhatsApp lead capture and multi-agent customer pipeline."
       },
       "blocks": [
         {
-          "id": "service-home-repairs-066",
+          "id": "shr-1",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceTop": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Service",
-            "text": "Trusted home repairs",
+            "eyebrow": "MODULE 02",
+            "text": "WhatsApp CRM & Lead Pipeline",
             "level": "h1"
           }
         },
         {
-          "id": "service-home-repairs-067",
+          "id": "shr-2",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 0,
+            "spaceTop": 1,
             "spaceBottom": 3,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "The worry is not the broken tap. It is who walks into your parents' house. We send workers we have checked ourselves, we stay while the work happens, and we make sure your family is not overcharged."
+            "text": "Local customers communicate on WhatsApp. We engineer custom-tailored CRM systems that capture every inquiry across Google, Instagram, and web, routing them directly into a shared WhatsApp pipeline."
           }
         },
         {
-          "id": "service-home-repairs-068",
+          "id": "shr-3",
           "type": "cards",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "How it works",
-            "subtitle": "",
-            "columns": 3,
-            "items": [
-              {
-                "id": "service-home-repairs-069",
-                "title": "1. You describe the problem",
-                "text": "A photo or voice note works."
-              },
-              {
-                "id": "service-home-repairs-070",
-                "title": "2. We inspect",
-                "text": "Our person visits and sends you an honest estimate."
-              },
-              {
-                "id": "service-home-repairs-071",
-                "title": "3. We supervise the work",
-                "text": "Nobody is left alone with your parents."
-              },
-              {
-                "id": "service-home-repairs-072",
-                "title": "4. We show you the result",
-                "text": "Photos of the finished work reach you."
-              }
-            ]
-          }
-        },
-        {
-          "id": "service-home-repairs-073",
-          "type": "cards",
-          "layout": {
-            "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "title": "What you get",
-            "subtitle": "Material cost plus the worker's charge, both shown to you before the work begins.",
+            "title": "Core Capabilities",
+            "subtitle": "Enterprise messaging infrastructure simplified for local teams.",
             "columns": 2,
             "items": [
               {
-                "id": "service-home-repairs-074",
-                "title": "Problem understood over a call or photo",
-                "text": ""
+                "id": "shr-c1",
+                "title": "Multi-Agent Shared Inbox",
+                "text": "Your team can answer customer conversations from a single centralized WhatsApp screen."
               },
               {
-                "id": "service-home-repairs-075",
-                "title": "Estimate shared with you before work starts",
-                "text": ""
-              },
-              {
-                "id": "service-home-repairs-076",
-                "title": "Photos during and after the work",
-                "text": ""
-              },
-              {
-                "id": "service-home-repairs-077",
-                "title": "Final bill with no hidden additions",
-                "text": ""
+                "id": "shr-c2",
+                "title": "Automated Instant Greetings",
+                "text": "Never miss an enquiry after hours with automated greetings and catalog sharing."
               }
             ]
           }
         },
         {
-          "id": "service-home-repairs-078",
+          "id": "shr-4",
+          "type": "cards",
+          "layout": {
+            "align": "left",
+            "width": "normal",
+            "spaceTop": 2,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "title": "Lead Stages & Automation",
+            "subtitle": "Structure your sales process from contact to closed transaction.",
+            "columns": 2,
+            "items": [
+              {
+                "id": "shr-c3",
+                "title": "Visual Sales Pipeline",
+                "text": "Track leads from initial inquiry to proposal, negotiation, and closed sale."
+              },
+              {
+                "id": "shr-c4",
+                "title": "Automated Follow-ups",
+                "text": "Schedule reminder messages to keep deals moving forward without manual effort."
+              }
+            ]
+          }
+        },
+        {
+          "id": "shr-5",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
             "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Automate Your WhatsApp Sales",
+            "text": "Message our team to integrate our CRM with your WhatsApp Business number.",
             "buttons": [
               {
-                "id": "service-home-repairs-079",
+                "id": "shr-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -949,145 +880,125 @@
       ]
     },
     "service:medical-and-errands": {
-      "label": "Service · Medical visits & errands",
+      "label": "Digital Invoicing",
       "path": "/services/medical-and-errands",
       "seo": {
-        "title": "Medical visits & errands — SAFAR N MANZIL",
-        "description": "Safe transport, hospital company and the small errands nobody should do alone."
+        "title": "Digital Invoicing & Cashflow — Enterprise Business",
+        "description": "1-tap WhatsApp digital PDF billing and cash ledger."
       },
       "blocks": [
         {
-          "id": "service-medical-and-errands-080",
+          "id": "sme-1",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceTop": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Service",
-            "text": "Medical visits & errands",
+            "eyebrow": "MODULE 03",
+            "text": "Instant Invoicing & Cashflow Ledgers",
             "level": "h1"
           }
         },
         {
-          "id": "service-medical-and-errands-081",
+          "id": "sme-2",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 0,
+            "spaceTop": 1,
             "spaceBottom": 3,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "Hospital days are long and confusing. Our person picks your parents up, stays with them through the queue, helps with the forms, collects the reports and sends you an update the same day."
+            "text": "High-speed digital invoice generator that creates PDF bills, sends them straight to customer WhatsApp chats, and keeps a real-time ledger of Cash vs. UPI collections for daily closing."
           }
         },
         {
-          "id": "service-medical-and-errands-082",
+          "id": "sme-3",
           "type": "cards",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "How it works",
-            "subtitle": "",
-            "columns": 3,
-            "items": [
-              {
-                "id": "service-medical-and-errands-083",
-                "title": "1. You tell us the appointment",
-                "text": "Or ask us to arrange one."
-              },
-              {
-                "id": "service-medical-and-errands-084",
-                "title": "2. We arrange safe transport",
-                "text": "Pick-up from home, drop back home."
-              },
-              {
-                "id": "service-medical-and-errands-085",
-                "title": "3. We stay with them",
-                "text": "Through the queue, the forms and the doctor."
-              },
-              {
-                "id": "service-medical-and-errands-086",
-                "title": "4. You get the update",
-                "text": "Reports and what happened, same day."
-              }
-            ]
-          }
-        },
-        {
-          "id": "service-medical-and-errands-087",
-          "type": "cards",
-          "layout": {
-            "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "title": "What you get",
-            "subtitle": "Transport cost plus a companion charge for the hours used, agreed before the day.",
+            "title": "Billing Features",
+            "subtitle": "Fast, branded customer invoices in one tap.",
             "columns": 2,
             "items": [
               {
-                "id": "service-medical-and-errands-088",
-                "title": "Appointment day and time confirmed with you",
-                "text": ""
+                "id": "sme-c1",
+                "title": "1-Tap WhatsApp PDF Delivery",
+                "text": "Generate polished branded bills and dispatch directly to the customer's chat."
               },
               {
-                "id": "service-medical-and-errands-089",
-                "title": "Update message while they are at the hospital",
-                "text": ""
-              },
-              {
-                "id": "service-medical-and-errands-090",
-                "title": "Photos of reports and prescriptions",
-                "text": ""
-              },
-              {
-                "id": "service-medical-and-errands-091",
-                "title": "A short summary of what the doctor said",
-                "text": ""
+                "id": "sme-c2",
+                "title": "Cash vs. UPI Breakdown",
+                "text": "Instant daily collection closing so you always know your exact ledger balance."
               }
             ]
           }
         },
         {
-          "id": "service-medical-and-errands-092",
+          "id": "sme-4",
+          "type": "cards",
+          "layout": {
+            "align": "left",
+            "width": "normal",
+            "spaceTop": 2,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "title": "CRM Syncing",
+            "subtitle": "Every transaction connects to the central database.",
+            "columns": 2,
+            "items": [
+              {
+                "id": "sme-c3",
+                "title": "Automatic Customer History",
+                "text": "Every invoice syncs to the customer's profile in the CRM automatically."
+              },
+              {
+                "id": "sme-c4",
+                "title": "Itemized Tax & Presets",
+                "text": "Easily configure GST, custom discounts, and payment terms in seconds."
+              }
+            ]
+          }
+        },
+        {
+          "id": "sme-5",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
             "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Simplify Your Daily Billing",
+            "text": "Connect with us to test our invoicing generator for your store or firm.",
             "buttons": [
               {
-                "id": "service-medical-and-errands-093",
+                "id": "sme-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -1099,135 +1010,125 @@
       ]
     },
     "service:parcels-and-deliveries": {
-      "label": "Service · Parcels & deliveries",
+      "label": "Inventory Management",
       "path": "/services/parcels-and-deliveries",
       "seo": {
-        "title": "Parcels & deliveries — SAFAR N MANZIL",
-        "description": "Sending something home, or collecting something for you."
+        "title": "Inventory & SKU Management — Enterprise Business",
+        "description": "Real-time stock tracking and low-inventory warnings."
       },
       "blocks": [
         {
-          "id": "service-parcels-and-deliveries-094",
+          "id": "spd-1",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceTop": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Service",
-            "text": "Parcels & deliveries",
+            "eyebrow": "MODULE 04",
+            "text": "Inventory & Stock Management",
             "level": "h1"
           }
         },
         {
-          "id": "service-parcels-and-deliveries-095",
+          "id": "spd-2",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 0,
+            "spaceTop": 1,
             "spaceBottom": 3,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "Documents, medicines, a package waiting at a courier office, or something that needs to reach a relative in another city. We pick it up, pack it, send it and track it until it arrives."
+            "text": "Designed for retailers, wholesalers, and manufacturers. Maintain live SKU balances, receive low-stock alerts, and auto-deduct items as customer invoices are issued."
           }
         },
         {
-          "id": "service-parcels-and-deliveries-096",
+          "id": "spd-3",
           "type": "cards",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "How it works",
-            "subtitle": "",
-            "columns": 3,
-            "items": [
-              {
-                "id": "service-parcels-and-deliveries-097",
-                "title": "1. Tell us what and where",
-                "text": "Address and contact are enough."
-              },
-              {
-                "id": "service-parcels-and-deliveries-098",
-                "title": "2. We collect and pack",
-                "text": "Carefully, with a photo before dispatch."
-              },
-              {
-                "id": "service-parcels-and-deliveries-099",
-                "title": "3. We track it",
-                "text": "You get the tracking and the delivery proof."
-              }
-            ]
-          }
-        },
-        {
-          "id": "service-parcels-and-deliveries-100",
-          "type": "cards",
-          "layout": {
-            "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "title": "What you get",
-            "subtitle": "Courier charges plus a small handling charge, told to you upfront.",
+            "title": "Inventory Tools",
+            "subtitle": "Real-time stock control without complex software.",
             "columns": 2,
             "items": [
               {
-                "id": "service-parcels-and-deliveries-101",
-                "title": "Pick-up confirmation",
-                "text": ""
+                "id": "spd-c1",
+                "title": "Realtime SKU Tracking",
+                "text": "Monitor item quantities, variants, and warehouse locations in real time."
               },
               {
-                "id": "service-parcels-and-deliveries-102",
-                "title": "Tracking number shared on WhatsApp",
-                "text": ""
-              },
-              {
-                "id": "service-parcels-and-deliveries-103",
-                "title": "Delivery photo",
-                "text": ""
+                "id": "spd-c2",
+                "title": "Low-Stock Notifications",
+                "text": "Receive WhatsApp or email alerts before high-demand items run out."
               }
             ]
           }
         },
         {
-          "id": "service-parcels-and-deliveries-104",
+          "id": "spd-4",
+          "type": "cards",
+          "layout": {
+            "align": "left",
+            "width": "normal",
+            "spaceTop": 2,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "title": "Supplier Tracking",
+            "subtitle": "Batch intake and delivery tracking.",
+            "columns": 2,
+            "items": [
+              {
+                "id": "spd-c3",
+                "title": "Purchase Orders & Stock In",
+                "text": "Record incoming supplier deliveries with clear batch records."
+              },
+              {
+                "id": "spd-c4",
+                "title": "Auto Invoice Deduction",
+                "text": "Stock balances decrement automatically whenever an invoice is completed."
+              }
+            ]
+          }
+        },
+        {
+          "id": "spd-5",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
             "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Control Your Stock",
+            "text": "Deploy our lightweight inventory manager alongside your invoicing system.",
             "buttons": [
               {
-                "id": "service-parcels-and-deliveries-105",
+                "id": "spd-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -1239,135 +1140,125 @@
       ]
     },
     "service:paperwork-and-documents": {
-      "label": "Service · Paperwork & documents",
+      "label": "Membership & Dues",
       "path": "/services/paperwork-and-documents",
       "seo": {
-        "title": "Paperwork & documents — SAFAR N MANZIL",
-        "description": "Government offices, bills, renewals and the queues that go with them."
+        "title": "Membership & Dues Manager — Enterprise Business",
+        "description": "Automated recurring fee collection and renewal reminders."
       },
       "blocks": [
         {
-          "id": "service-paperwork-and-documents-106",
+          "id": "smd-1",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceTop": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Service",
-            "text": "Paperwork & documents",
+            "eyebrow": "MODULE 05",
+            "text": "Membership & Fee Renewal Manager",
             "level": "h1"
           }
         },
         {
-          "id": "service-paperwork-and-documents-107",
+          "id": "smd-2",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 0,
+            "spaceTop": 1,
             "spaceBottom": 3,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "Certificates, pension paperwork, bill payments, document collection, attestation runs — the tasks that take a full day of standing in line. We do the running so your parents do not have to."
+            "text": "Member management and fee cycle automation for gyms, academies, and membership businesses. Tracks attendance, active packages, overdue fees, and dispatches automated WhatsApp reminder links."
           }
         },
         {
-          "id": "service-paperwork-and-documents-108",
+          "id": "smd-3",
           "type": "cards",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "How it works",
-            "subtitle": "",
-            "columns": 3,
-            "items": [
-              {
-                "id": "service-paperwork-and-documents-109",
-                "title": "1. You tell us the task",
-                "text": "We check what documents are needed."
-              },
-              {
-                "id": "service-paperwork-and-documents-110",
-                "title": "2. We do the running",
-                "text": "Office visits, queues, submissions."
-              },
-              {
-                "id": "service-paperwork-and-documents-111",
-                "title": "3. You get every receipt",
-                "text": "Photographed and sent to you."
-              }
-            ]
-          }
-        },
-        {
-          "id": "service-paperwork-and-documents-112",
-          "type": "cards",
-          "layout": {
-            "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "title": "What you get",
-            "subtitle": "Official fees at actual cost plus a charge for the time used, agreed beforehand.",
+            "title": "Fee Automation",
+            "subtitle": "Eliminate manual payment follow-ups.",
             "columns": 2,
             "items": [
               {
-                "id": "service-paperwork-and-documents-113",
-                "title": "List of what is required, confirmed first",
-                "text": ""
+                "id": "smd-c1",
+                "title": "Automated WhatsApp Alerts",
+                "text": "Members receive polite reminder links before their membership cycle expires."
               },
               {
-                "id": "service-paperwork-and-documents-114",
-                "title": "Receipts and acknowledgements photographed",
-                "text": ""
-              },
-              {
-                "id": "service-paperwork-and-documents-115",
-                "title": "Final document handed over or couriered",
-                "text": ""
+                "id": "smd-c2",
+                "title": "Overdue Tracking",
+                "text": "Clear dashboard highlighting pending payments and collection totals."
               }
             ]
           }
         },
         {
-          "id": "service-paperwork-and-documents-116",
+          "id": "smd-4",
+          "type": "cards",
+          "layout": {
+            "align": "left",
+            "width": "normal",
+            "spaceTop": 2,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "title": "Member Profiles",
+            "subtitle": "Attendance and package management.",
+            "columns": 2,
+            "items": [
+              {
+                "id": "smd-c3",
+                "title": "Pass & Plan Management",
+                "text": "Configure monthly, quarterly, and annual packages with custom rates."
+              },
+              {
+                "id": "smd-c4",
+                "title": "Attendance & Check-in",
+                "text": "Simple mobile-first check-in tool for staff at front desks."
+              }
+            ]
+          }
+        },
+        {
+          "id": "smd-5",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
             "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Automate Member Fees",
+            "text": "Schedule a live demo to stop revenue leakage in your membership business.",
             "buttons": [
               {
-                "id": "service-paperwork-and-documents-117",
+                "id": "smd-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -1379,135 +1270,125 @@
       ]
     },
     "service:property-checks": {
-      "label": "Service · Property checks",
+      "label": "Owner Dashboard",
       "path": "/services/property-checks",
       "seo": {
-        "title": "Property checks — SAFAR N MANZIL",
-        "description": "Someone to look in on the house, land or flat you left behind."
+        "title": "Mobile Owner Intelligence Dashboard — Enterprise Business",
+        "description": "Realtime mobile dashboard for daily revenue and customer metrics."
       },
       "blocks": [
         {
-          "id": "service-property-checks-118",
+          "id": "spc-1",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceTop": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Service",
-            "text": "Property checks",
+            "eyebrow": "MODULE 06",
+            "text": "Mobile Owner Intelligence Dashboard",
             "level": "h1"
           }
         },
         {
-          "id": "service-property-checks-119",
+          "id": "spc-2",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 0,
+            "spaceTop": 1,
             "spaceBottom": 3,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "An empty house needs eyes on it. We visit, check the locks, water and condition, meet the caretaker or tenant if needed, and send you a photo record of every visit."
+            "text": "A single mobile dashboard showing today's collections, website lead conversions, social media inquiries, and customer purchase histories in real time."
           }
         },
         {
-          "id": "service-property-checks-120",
+          "id": "spc-3",
           "type": "cards",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "How it works",
-            "subtitle": "",
-            "columns": 3,
-            "items": [
-              {
-                "id": "service-property-checks-121",
-                "title": "1. You share the address",
-                "text": "And what you want checked."
-              },
-              {
-                "id": "service-property-checks-122",
-                "title": "2. We visit",
-                "text": "On the schedule you choose."
-              },
-              {
-                "id": "service-property-checks-123",
-                "title": "3. You get the record",
-                "text": "Photos and a short honest note."
-              }
-            ]
-          }
-        },
-        {
-          "id": "service-property-checks-124",
-          "type": "cards",
-          "layout": {
-            "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
-            "background": "muted",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "title": "What you get",
-            "subtitle": "A per-visit charge based on distance, agreed before the first visit.",
+            "title": "Executive Overview",
+            "subtitle": "Instant financial and lead visibility.",
             "columns": 2,
             "items": [
               {
-                "id": "service-property-checks-125",
-                "title": "Visit date agreed with you",
-                "text": ""
+                "id": "spc-c1",
+                "title": "Today's Collections",
+                "text": "Instant ledger of daily Cash vs. UPI collections at a glance."
               },
               {
-                "id": "service-property-checks-126",
-                "title": "Photo set from every room or corner",
-                "text": ""
-              },
-              {
-                "id": "service-property-checks-127",
-                "title": "A short written note on the condition",
-                "text": ""
+                "id": "spc-c2",
+                "title": "Lead Conversion Velocity",
+                "text": "Track the percentage of enquiries turning into paying customers."
               }
             ]
           }
         },
         {
-          "id": "service-property-checks-128",
+          "id": "spc-4",
+          "type": "cards",
+          "layout": {
+            "align": "left",
+            "width": "normal",
+            "spaceTop": 2,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "title": "Mobile-First Accessibility",
+            "subtitle": "Zero confusing IT metrics.",
+            "columns": 2,
+            "items": [
+              {
+                "id": "spc-c3",
+                "title": "Clean Visuals",
+                "text": "Clear charts and numbers designed specifically for busy business owners."
+              },
+              {
+                "id": "spc-c4",
+                "title": "Automated Monthly Summaries",
+                "text": "Receive auto-generated monthly growth graphs directly to your device."
+              }
+            ]
+          }
+        },
+        {
+          "id": "spc-5",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
             "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Gain Total Visibility",
+            "text": "Empower your business with a unified owner intelligence dashboard.",
             "buttons": [
               {
-                "id": "service-property-checks-129",
+                "id": "spc-btn-1",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -1519,33 +1400,33 @@
       ]
     },
     "about": {
-      "label": "How it works",
+      "label": "About",
       "path": "/about",
       "seo": {
-        "title": "How it works — SAFAR N MANZIL",
-        "description": "Who we are and how one message becomes help for your family in India."
+        "title": "About Us — Enterprise Business",
+        "description": "Our philosophy, mission, and long-term partnership model for local enterprises."
       },
       "blocks": [
         {
-          "id": "about-130",
+          "id": "about-001",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
             "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "How it works",
-            "text": "We do. We assist. We connect.",
+            "eyebrow": "ABOUT OUR PARTNERSHIP",
+            "text": "We Are Your Dedicated Technology Division",
             "level": "h1"
           }
         },
         {
-          "id": "about-131",
+          "id": "about-002",
           "type": "imageText",
           "layout": {
             "align": "left",
@@ -1557,16 +1438,16 @@
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "",
-            "title": "Who we are",
-            "text": "We do the shopping, parcels, home repairs, hospital visits and paperwork for your family back home in India — with photos, updates and a clear price agreed before we start.",
-            "image": "/media/safar-cast.png",
-            "imageAlt": "The SAFAR family characters",
+            "eyebrow": "OUR PHILOSOPHY",
+            "title": "Build Systems, Not Just Campaigns",
+            "text": "Marketing ad campaigns stop the moment your ad budget runs out. A custom-built website, WhatsApp CRM, and automated invoicing system run 24/7/365, compounding efficiency and protecting your business.",
+            "image": "",
+            "imageAlt": "Business Systems Engineering",
             "imageSide": "right",
             "buttons": [
               {
-                "id": "about-132",
-                "label": "Ask for help now",
+                "id": "abt-btn-1",
+                "label": "Start a Conversation",
                 "href": "/contact",
                 "style": "solid",
                 "size": "md"
@@ -1575,23 +1456,23 @@
           }
         },
         {
-          "id": "about-133",
+          "id": "about-003",
           "type": "contactStrip",
           "layout": {
             "align": "center",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 4,
+            "spaceBottom": 4,
             "background": "primary",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Need help for your family?",
-            "text": "Send us a message and we reply the same day.",
+            "title": "Partner With Our Technical Team",
+            "text": "Reach out on WhatsApp to learn more about our zero-cost pilot program and how we can support your business.",
             "buttons": [
               {
-                "id": "about-134",
+                "id": "abt-btn-2",
                 "label": "Message us on WhatsApp",
                 "href": "whatsapp",
                 "style": "outline",
@@ -1603,85 +1484,70 @@
       ]
     },
     "faq": {
-      "label": "Questions",
+      "label": "FAQ",
       "path": "/faq",
       "seo": {
-        "title": "Questions — SAFAR N MANZIL",
-        "description": "Answers about price, trust and timing for families in the Gulf."
+        "title": "Frequently Asked Questions — Enterprise Business",
+        "description": "Answers to common questions regarding our software platforms, pilot model, and ownership."
       },
       "blocks": [
         {
-          "id": "faq-135",
+          "id": "faq-001",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
             "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceBottom": 2,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Questions",
-            "text": "Price, trust and timing",
+            "eyebrow": "TRANSPARENT ANSWERS",
+            "text": "Frequently Asked Questions",
             "level": "h1"
           }
         },
         {
-          "id": "faq-136",
+          "id": "faq-002",
           "type": "faq",
           "layout": {
             "align": "left",
             "width": "narrow",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 2,
+            "spaceBottom": 4,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "",
+            "title": "General Inquiries",
             "items": [
               {
-                "id": "faq-137",
-                "question": "How much does it cost?",
-                "answer": "It depends on the job. We always tell you the cost before we start, and the final bill matches what we agreed. You pay the actual expense plus our service charge — nothing is added afterwards."
+                "id": "f-01",
+                "question": "How does the zero-upfront pilot program work?",
+                "answer": "We partner with selected businesses to deploy our custom website and software suite at zero upfront cost. You experience the live operational impact and value first before entering a commercial partnership."
               },
               {
-                "id": "faq-138",
-                "question": "How do I pay from the Gulf?",
-                "answer": "You can pay us after the work is done, using the method that is easiest for you. We send the bill with photos first, so you always see what you are paying for."
+                "id": "f-02",
+                "question": "Can I update the website without knowing how to code?",
+                "answer": "Yes, completely. Our platform includes a private Visual CMS. You can click on any text, photo, banner, or price directly on your screen and update it live in seconds."
               },
               {
-                "id": "faq-139",
-                "question": "Who actually goes to my parents' house?",
-                "answer": "A person from our team, or a worker we have checked ourselves. They carry an ID. For repairs and outside workers, our coordinator stays with them for the whole visit."
+                "id": "f-03",
+                "question": "Who owns the code, data, and domain name?",
+                "answer": "You own 100% of your platform from day one. All GitHub code repositories, cloud database instances, and domain registrations belong entirely to your business."
               },
               {
-                "id": "faq-140",
-                "question": "How do I know the work was really done?",
-                "answer": "Every job comes back with photos, the bill and a short message on WhatsApp. You see what happened even though you are thousands of kilometres away."
+                "id": "f-04",
+                "question": "How are the tools connected with each other?",
+                "answer": "All modules share a unified Supabase database backbone. When you generate an invoice, customer records, CRM deal stages, and inventory balances update automatically in real time."
               },
               {
-                "id": "faq-141",
-                "question": "How do I start?",
-                "answer": "Send us one message with what your family needs. We reply with the plan, who will go and what it will cost. If you agree, we do it."
-              },
-              {
-                "id": "faq-142",
-                "question": "What if it is urgent?",
-                "answer": "Tell us it is urgent in your first message. Hospital and emergency requests are handled first."
-              },
-              {
-                "id": "faq-143",
-                "question": "Will my parents understand your person?",
-                "answer": "Yes. Our people speak the local language, and we explain everything to your parents calmly before anything happens in their home."
-              },
-              {
-                "id": "faq-144",
-                "question": "Which places do you cover?",
-                "answer": "Ask us with the exact area. If we do not cover it directly, we will tell you honestly instead of promising something we cannot do."
+                "id": "f-05",
+                "question": "What ongoing technical support is provided?",
+                "answer": "You have a direct line to your dedicated technical partner on WhatsApp. We monitor system uptime, security, database backups, and feature improvements continuously."
               }
             ]
           }
@@ -1689,477 +1555,375 @@
       ]
     },
     "contact": {
-      "label": "Talk to us",
+      "label": "Contact",
       "path": "/contact",
       "seo": {
-        "title": "Talk to us — SAFAR N MANZIL",
-        "description": "Tell us what your family in India needs. We reply on WhatsApp."
+        "title": "Contact Our Team — Enterprise Business",
+        "description": "Send an enquiry or message us on WhatsApp to discuss your business requirements."
       },
       "blocks": [
         {
-          "id": "contact-145",
+          "id": "contact-001",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "normal",
             "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "Talk to us",
-            "text": "Tell us what your family needs",
+            "eyebrow": "GET IN TOUCH",
+            "text": "Start a Conversation",
             "level": "h1"
           }
         },
         {
-          "id": "contact-146",
+          "id": "contact-002",
           "type": "text",
           "layout": {
             "align": "left",
-            "width": "normal",
-            "spaceTop": 0,
-            "spaceBottom": 3,
+            "width": "narrow",
+            "spaceTop": 2,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "We reply every day. Urgent family needs come first."
+            "text": "Fill out the enquiry form below or click the WhatsApp button to message our team directly. We typically respond within minutes during business hours."
           }
         },
         {
-          "id": "contact-147",
+          "id": "contact-003",
           "type": "enquiryForm",
           "layout": {
             "align": "left",
-            "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "width": "narrow",
+            "spaceTop": 1,
+            "spaceBottom": 4,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "title": "Tell us what you need",
-            "text": "We reply on WhatsApp.",
-            "submitLabel": "Send request"
+            "title": "Tell us about your business",
+            "text": "We reply on WhatsApp or email within minutes.",
+            "submitLabel": "Send Enquiry"
           }
         }
       ]
     },
     "privacy": {
-      "label": "Privacy",
+      "label": "Privacy Policy",
       "path": "/privacy",
       "seo": {
-        "title": "How we handle your information — SAFAR N MANZIL",
-        "description": "What we collect when you use this website, why we keep it, and how to ask us to remove it."
+        "title": "Privacy Policy — Enterprise Business",
+        "description": "Our commitment to data privacy, confidentiality, and security."
       },
       "blocks": [
         {
-          "id": "privacy-148",
+          "id": "p-01",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "",
-            "text": "How we handle your information",
+            "eyebrow": "LEGAL",
+            "text": "Privacy Policy",
             "level": "h1"
           }
         },
         {
-          "id": "privacy-149",
-          "type": "text",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 0,
-            "spaceBottom": 3,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "text": "What we collect when you use this website, why we keep it, and how to ask us to remove it."
-          }
-        },
-        {
-          "id": "privacy-150",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "eyebrow": "",
-            "text": "What we collect",
-            "level": "h2"
-          }
-        },
-        {
-          "id": "privacy-151",
+          "id": "p-02",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "text": "We respect your privacy and are committed to protecting all personal and customer information entrusted to our platforms."
+          }
+        },
+        {
+          "id": "p-03",
+          "type": "heading",
+          "layout": {
+            "align": "left",
+            "width": "narrow",
+            "spaceTop": 2,
             "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "When you send us a request, we keep the details you give us: your name, the number or email you want us to reply on, where your family lives and what you need. We use this only to do the work you asked for and to stay in touch about it."
-          }
-        },
-        {
-          "id": "privacy-152",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
             "eyebrow": "",
-            "text": "What the website records",
+            "text": "1. Information We Collect",
             "level": "h2"
           }
         },
         {
-          "id": "privacy-153",
+          "id": "p-04",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "text": "We collect only information necessary to deliver our business software and support services, including contact information, operational settings, and transaction records."
+          }
+        },
+        {
+          "id": "p-05",
+          "type": "heading",
+          "layout": {
+            "align": "left",
+            "width": "narrow",
+            "spaceTop": 2,
             "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "This website counts visits and clicks using our own records. We do not use outside advertising trackers. We do not try to find out who you are before you tell us."
-          }
-        },
-        {
-          "id": "privacy-154",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
             "eyebrow": "",
-            "text": "Who else sees it",
+            "text": "2. How We Protect Your Data",
             "level": "h2"
           }
         },
         {
-          "id": "privacy-155",
+          "id": "p-06",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "text": "All database connections are encrypted in transit via SSL/TLS and safeguarded by strict Row Level Security (RLS) policies. We never sell or share client data with third parties."
+          }
+        },
+        {
+          "id": "p-07",
+          "type": "heading",
+          "layout": {
+            "align": "left",
+            "width": "narrow",
+            "spaceTop": 2,
             "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "Nobody, except the person doing your job who needs to know the address and the task. We do not sell or rent your details."
-          }
-        },
-        {
-          "id": "privacy-156",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
             "eyebrow": "",
-            "text": "Removing your details",
+            "text": "3. Your Rights & Data Portability",
             "level": "h2"
           }
         },
         {
-          "id": "privacy-157",
+          "id": "p-08",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
-            "spaceBottom": 1,
+            "spaceBottom": 4,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "Ask us and we will delete your records, except anything we must keep for a bill that has already been paid."
+            "text": "You have complete authority over your business data and can request full exports, modifications, or deletions at any time by contacting our support team."
           }
         }
       ]
     },
     "terms": {
-      "label": "Terms",
+      "label": "Terms of Service",
       "path": "/terms",
       "seo": {
-        "title": "Terms of service — SAFAR N MANZIL",
-        "description": "The simple rules for how we work with you and your family."
+        "title": "Terms of Service — Enterprise Business",
+        "description": "Standard operating terms, service level commitments, and code ownership."
       },
       "blocks": [
         {
-          "id": "terms-158",
+          "id": "t-01",
           "type": "heading",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 4,
-            "spaceBottom": 3,
+            "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "eyebrow": "",
-            "text": "Terms of service",
+            "eyebrow": "LEGAL",
+            "text": "Terms of Service",
             "level": "h1"
           }
         },
         {
-          "id": "terms-159",
-          "type": "text",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 0,
-            "spaceBottom": 3,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "text": "The simple rules for how we work with you and your family."
-          }
-        },
-        {
-          "id": "terms-160",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "eyebrow": "",
-            "text": "What we do",
-            "level": "h2"
-          }
-        },
-        {
-          "id": "terms-161",
+          "id": "t-02",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "text": "By using our digital software and web engineering platforms, you agree to these standard operational terms."
+          }
+        },
+        {
+          "id": "t-03",
+          "type": "heading",
+          "layout": {
+            "align": "left",
+            "width": "narrow",
+            "spaceTop": 2,
             "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "We act on your behalf for the task you ask for, in the area we agree. We are not a medical, legal or financial service, and we do not give advice in those matters."
-          }
-        },
-        {
-          "id": "terms-162",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
             "eyebrow": "",
-            "text": "Prices",
+            "text": "1. Platform Ownership & Licensing",
             "level": "h2"
           }
         },
         {
-          "id": "terms-163",
+          "id": "t-04",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "text": "All client-specific content, branding, databases, and custom configurations are the sole property of the client. Core frameworks are provided under standard commercial and open-source licenses."
+          }
+        },
+        {
+          "id": "t-05",
+          "type": "heading",
+          "layout": {
+            "align": "left",
+            "width": "narrow",
+            "spaceTop": 2,
             "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "We tell you the expected cost before we start. If something changes during the work, we stop and tell you before spending more."
-          }
-        },
-        {
-          "id": "terms-164",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
             "eyebrow": "",
-            "text": "Outside workers",
+            "text": "2. Availability & Service Commitments",
             "level": "h2"
           }
         },
         {
-          "id": "terms-165",
+          "id": "t-06",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
+            "spaceBottom": 2,
+            "background": "none",
+            "hideMobile": false,
+            "hideDesktop": false
+          },
+          "props": {
+            "text": "We strive for 99.9% uptime across all edge hosting deployments and provide ongoing maintenance, health monitoring, and security patching."
+          }
+        },
+        {
+          "id": "t-07",
+          "type": "heading",
+          "layout": {
+            "align": "left",
+            "width": "narrow",
+            "spaceTop": 2,
             "spaceBottom": 1,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "For repairs we use workers we have checked, and our coordinator stays during the visit. Any warranty on parts or work comes from the supplier or the worker."
-          }
-        },
-        {
-          "id": "terms-166",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
             "eyebrow": "",
-            "text": "Cancelling",
+            "text": "3. Termination & Data Handover",
             "level": "h2"
           }
         },
         {
-          "id": "terms-167",
+          "id": "t-08",
           "type": "text",
           "layout": {
             "align": "left",
             "width": "narrow",
             "spaceTop": 1,
-            "spaceBottom": 1,
+            "spaceBottom": 4,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
           },
           "props": {
-            "text": "You can cancel before the work starts at no cost. If we have already travelled or bought something, we will ask only for that actual expense."
-          }
-        },
-        {
-          "id": "terms-168",
-          "type": "heading",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 2,
-            "spaceBottom": 0,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "eyebrow": "",
-            "text": "Limits",
-            "level": "h2"
-          }
-        },
-        {
-          "id": "terms-169",
-          "type": "text",
-          "layout": {
-            "align": "left",
-            "width": "narrow",
-            "spaceTop": 1,
-            "spaceBottom": 1,
-            "background": "none",
-            "hideMobile": false,
-            "hideDesktop": false
-          },
-          "props": {
-            "text": "We take care, but we cannot be responsible for delays caused by hospitals, government offices, couriers or suppliers."
+            "text": "Either party may terminate the partnership with written notice. Upon termination, all code repositories, domain DNS records, and database credentials remain under your full ownership."
           }
         }
       ]
     },
     "global": {
-      "label": "Header menu",
-      "path": "/",
+      "label": "Global Elements",
+      "path": "/global",
       "seo": {
-        "title": "Header menu",
-        "description": "Help for your family in India, while you work in the Gulf"
+        "title": "Global Settings",
+        "description": "Global layout and navigation controls."
       },
       "blocks": [
         {
-          "id": "global-170",
+          "id": "global-nav-01",
           "type": "navigation",
           "layout": {
             "align": "left",
             "width": "normal",
-            "spaceTop": 3,
-            "spaceBottom": 3,
+            "spaceTop": 0,
+            "spaceBottom": 0,
             "background": "none",
             "hideMobile": false,
             "hideDesktop": false
@@ -2167,27 +1931,27 @@
           "props": {
             "links": [
               {
-                "id": "global-171",
+                "id": "gn-1",
                 "label": "Home",
                 "href": "/"
               },
               {
-                "id": "global-172",
+                "id": "gn-2",
                 "label": "Services",
                 "href": "/services"
               },
               {
-                "id": "global-173",
+                "id": "gn-3",
                 "label": "How it works",
                 "href": "/about"
               },
               {
-                "id": "global-174",
+                "id": "gn-4",
                 "label": "Questions",
                 "href": "/faq"
               },
               {
-                "id": "global-175",
+                "id": "gn-5",
                 "label": "Talk to us",
                 "href": "/contact"
               }

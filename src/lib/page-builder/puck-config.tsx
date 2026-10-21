@@ -1,5 +1,5 @@
 /**
- * Puck registry for the SAFAR website.
+ * Universal Puck registry for the Website Studio.
  *
  * Every block type from the document model becomes a Puck component. Fields
  * are inferred from each block's starting props, so adding a block to the
@@ -26,6 +26,23 @@ const ENUMS: Record<string, string[]> = {
   level: ["h1", "h2", "h3"],
   style: ["solid", "outline", "text"],
   size: ["sm", "md", "lg"],
+  variant: [
+    "default",
+    "compact",
+    "split",
+    "cards",
+    "horizontal",
+    "vertical",
+    "grid",
+    "carousel",
+    "minimal",
+    "centered",
+    "single",
+    "two-column",
+    "card",
+    "inline",
+  ],
+  theme: ["card", "primary", "outline", "dark", "muted", "accent"],
 };
 
 const LABELS: Record<string, string> = {
@@ -34,6 +51,23 @@ const LABELS: Record<string, string> = {
   src: "Media file URL or site path",
   image: "Picture",
   poster: "Video poster image",
+  ctaText: "Button Text",
+  ctaHref: "Button Link",
+  primaryCta: "Primary Button",
+  secondaryCta: "Secondary Button",
+  cta: "Call to Action",
+  stats: "Metrics / Highlights",
+  features: "Features / Benefits",
+  services: "Services",
+  tiers: "Pricing Tiers",
+  testimonials: "Client Reviews",
+  steps: "Process Steps",
+  logos: "Client / Partner Logos",
+  items: "Items",
+  faqs: "Frequently Asked Questions",
+  billingNote: "Billing Guarantee / Note",
+  eyebrow: "Eyebrow Badge",
+  subtitle: "Subtitle / Supporting Text",
 };
 
 const human = (key: string) =>
@@ -52,30 +86,53 @@ function inferField(key: string, value: unknown): Field | null {
     return { type: "radio", label: human(key), options: [{ label: "Yes", value: true }, { label: "No", value: false }] };
   }
   if (typeof value === "string") {
-    return value.length > 60 || key === "text" || key === "answer"
+    return value.length > 60 || key === "text" || key === "answer" || key === "quote" || key === "summary" || key === "description"
       ? { type: "textarea", label: human(key) }
       : { type: "text", label: human(key) };
   }
   if (Array.isArray(value)) {
-    const sample = (value[0] ?? {}) as Record<string, unknown>;
+    const sample = (value[0] ?? {}) as unknown;
+    if (typeof sample === "string") {
+      return {
+        type: "array",
+        label: human(key),
+        arrayFields: { item: { type: "text", label: "Value" } },
+        defaultItemProps: { item: "" },
+        getItemSummary: (it: Record<string, unknown>, i?: number) => String(it["item"] || `Item ${(i ?? 0) + 1}`),
+      } as Field;
+    }
+    const sampleObj = (sample ?? {}) as Record<string, unknown>;
     const arrayFields: Fields = {};
-    for (const [k, v] of Object.entries(sample)) {
+    for (const [k, v] of Object.entries(sampleObj)) {
       const f = inferField(k, v);
       if (f) arrayFields[k] = f;
     }
-    // Optional keys that some items carry but the first may not.
-    if (key === "items" && !("image" in sample) && !("question" in sample)) {
+    if (key === "items" && !("image" in sampleObj) && !("question" in sampleObj)) {
       arrayFields["image"] = { type: "text", label: "Picture" };
     }
-    const titleKey = ["title", "label", "question"].find((k) => k in sample);
+    const titleKey = ["title", "label", "question", "name", "author", "value"].find((k) => k in sampleObj);
     return {
       type: "array",
       label: human(key),
       arrayFields,
-      defaultItemProps: Object.fromEntries(Object.keys(arrayFields).map((k) => [k, typeof sample[k] === "number" ? 0 : ""])),
+      defaultItemProps: Object.fromEntries(Object.keys(arrayFields).map((k) => [k, typeof sampleObj[k] === "number" ? 0 : ""])),
       getItemSummary: (item: Record<string, unknown>, i?: number) =>
         String((titleKey && item[titleKey]) || `Item ${(i ?? 0) + 1}`),
     } as Field;
+  }
+  if (typeof value === "object" && value !== null) {
+    const objectFields: Fields = {};
+    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+      const f = inferField(k, v);
+      if (f) objectFields[k] = f;
+    }
+    if (Object.keys(objectFields).length > 0) {
+      return {
+        type: "object",
+        label: human(key),
+        objectFields,
+      } as Field;
+    }
   }
   return null;
 }
@@ -111,9 +168,23 @@ export function propsToBlock(type: BlockType, raw: Record<string, unknown>): Blo
     puck?: unknown;
     editMode?: unknown;
   };
-  const items = (v: unknown) =>
-    Array.isArray(v) ? v.map((it) => (it && typeof it === "object" && !("id" in it) ? { id: uid(), ...it } : it)) : v;
-  const withIds = Object.fromEntries(Object.entries(props).map(([k, v]) => [k, items(v)]));
+  const normalize = (v: unknown): unknown => {
+    if (Array.isArray(v)) {
+      return v.map((it) => {
+        if (it && typeof it === "object") {
+          if ("item" in it && Object.keys(it).length === 1 && typeof (it as { item: unknown }).item === "string") {
+            return (it as { item: string }).item;
+          }
+          if (!("id" in it)) {
+            return { id: uid(), ...it };
+          }
+        }
+        return it;
+      });
+    }
+    return v;
+  };
+  const withIds = Object.fromEntries(Object.entries(props).map(([k, v]) => [k, normalize(v)]));
   return {
     id: String(id ?? uid()),
     type,
@@ -148,16 +219,57 @@ function componentFor(type: BlockType, label: string): ComponentConfig<PuckProps
 
 const LIBRARY = [...BLOCK_LIBRARY, { type: "navigation" as BlockType, label: "Header menu", description: "" }];
 
-export const safarPuckConfig: Config = {
+export const universalPuckConfig: Config = {
   components: Object.fromEntries(LIBRARY.map((b) => [b.type, componentFor(b.type, b.label)])),
   categories: {
-    story: { title: "Story sections", components: ["cinematicHero", "serviceFilm", "careJourney", "serviceStory", "trustDossier", "proofReturn", "storyCarousel", "invoiceExample"] },
-    content: { title: "Content", components: ["hero", "heading", "text", "image", "imageText", "cards", "faq", "video", "buttons"] },
-    action: { title: "Actions", components: ["contactStrip", "enquiryForm"] },
-    layout: { title: "Layout", components: ["spacer", "divider", "navigation"] },
+    universal: {
+      title: "Universal Blocks",
+      components: [
+        "hero",
+        "featureGrid",
+        "processFlow",
+        "serviceCatalog",
+        "pricingTable",
+        "testimonials",
+        "statsBanner",
+        "accordionFaq",
+        "leadCapture",
+        "contentSection",
+        "ctaBanner",
+        "logoCloud",
+      ],
+    },
+    content: {
+      title: "Content & Typography",
+      components: ["heading", "text", "image", "imageText", "cards", "faq", "video", "buttons"],
+    },
+    story: {
+      title: "Story & Showcase",
+      components: [
+        "cinematicHero",
+        "serviceFilm",
+        "careJourney",
+        "serviceStory",
+        "trustDossier",
+        "proofReturn",
+        "storyCarousel",
+        "invoiceExample",
+      ],
+    },
+    action: {
+      title: "Forms & Contacts",
+      components: ["contactStrip", "enquiryForm"],
+    },
+    layout: {
+      title: "Layout",
+      components: ["spacer", "divider", "navigation"],
+    },
   },
   root: { render: ({ children }: { children?: React.ReactNode }) => <div className="@container bg-background text-foreground">{children}</div> },
 } as Config;
+
+/** Backward-compatibility alias */
+export const safarPuckConfig = universalPuckConfig;
 
 export function documentToPuck(doc: PageDocument): Data {
   return {

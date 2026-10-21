@@ -6,7 +6,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { BUILDER_PAGES, defaultDocument } from "../../lib/page-builder/model";
-import { documentToPuck, puckToDocument, safarPuckConfig } from "../../lib/page-builder/puck-config";
+import { bundledDocuments } from "../../lib/page-builder/published-state";
+import { documentToPuck, puckToDocument, universalPuckConfig } from "../../lib/page-builder/puck-config";
 import {
   fetchCmsHandshake,
   fetchCmsSiteConfiguration,
@@ -23,8 +24,8 @@ const usePuck = createUsePuck();
 export const Route = createFileRoute("/_authenticated/builder")({
   head: () => ({
     meta: [
-      { title: "Website studio — SAFAR N MANZIL" },
-      { name: "description", content: "Drag, drop, edit and publish every section of the SAFAR website." },
+      { title: "Website Studio" },
+      { name: "description", content: "Drag, drop, edit and publish every section of the website." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -49,7 +50,7 @@ function StudioPage() {
     fetchDocumentState(page)
       .then((s) => {
         if (!alive) return;
-        const doc = s.draft ?? s.published ?? defaultDocument(page);
+        const doc = s.draft ?? s.published ?? bundledDocuments.get(page) ?? defaultDocument(page);
         setVersion(s.version);
         setPageMetadata(doc.metadata);
         setData(documentToPuck(doc));
@@ -144,7 +145,7 @@ function StudioPage() {
         ) : data ? (
           <Puck
             key={page}
-            config={safarPuckConfig}
+            config={universalPuckConfig}
             data={data}
             onPublish={publish}
             headerTitle={BUILDER_PAGES.find((p) => p.id === page)?.label ?? "Page"}

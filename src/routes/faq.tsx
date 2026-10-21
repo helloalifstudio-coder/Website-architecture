@@ -17,15 +17,15 @@ import { site } from "../content/site";
 import { track } from "../lib/analytics";
 import { breadcrumbSchema, faqSchema } from "../lib/seo/json-ld";
 
-const TITLE = "Questions families ask us";
+const TITLE = "Frequently Asked Questions";
 const DESCRIPTION =
-  "Straight answers about price, who visits your parents, how you see proof of the work, and how to start.";
+  "Straightforward answers about our technology, deployment process, pricing, and ongoing support.";
 
 const GROUPS: { key: string; label: string }[] = [
-  { key: "pricing", label: "Money" },
-  { key: "trust", label: "Trust" },
-  { key: "process", label: "Getting started" },
-  { key: "coverage", label: "Where we work" },
+  { key: "pricing", label: "Pricing & Plans" },
+  { key: "trust", label: "Security & Reliability" },
+  { key: "process", label: "Getting Started" },
+  { key: "coverage", label: "Service Capabilities" },
 ];
 
 export const Route = createFileRoute("/faq")({
@@ -41,7 +41,7 @@ export const Route = createFileRoute("/faq")({
     ],
     links: [{ rel: "canonical", href: loaderData?.publishedDocument?.metadata?.path ?? "/faq" }],
     scripts: [
-      { type: "application/ld+json", children: JSON.stringify(faqSchema()) },
+      { type: "application/ld+json", children: JSON.stringify(faqSchema(loaderData?.publishedDocument ?? null)) },
       {
         type: "application/ld+json",
         children: JSON.stringify(
@@ -102,9 +102,9 @@ function FaqPage() {
         })}
 
         <Reveal className="rounded-2xl border border-border bg-accent/40 p-7 text-center">
-          <h2 className="font-display text-xl font-bold">Still unsure?</h2>
+          <h2 className="font-display text-xl font-bold">Have more questions?</h2>
           <p className="mt-2 text-muted-foreground">
-            Ask us directly. If we cannot help, we will say so.
+            Get in touch with our team directly. We are happy to walk you through any technical or operational questions.
           </p>
           <Link
             to="/contact"
@@ -119,9 +119,18 @@ function FaqPage() {
 }
 
 function FaqPageRoute() {
-  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } = Route.useLoaderData();
+  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } =
+    Route.useLoaderData();
   return (
-    <PublishedOr page="faq" pageName="faq" initialDocument={publishedDocument} status={publishedDocumentStatus} siteConfigContent={siteConfigContent} globalDocument={globalDocument} usesSeedFallback={usesSeedFallback}>
+    <PublishedOr
+      page="faq"
+      pageName="faq"
+      initialDocument={publishedDocument}
+      status={publishedDocumentStatus}
+      siteConfigContent={siteConfigContent}
+      globalDocument={globalDocument}
+      usesSeedFallback={usesSeedFallback}
+    >
       <FaqPage />
     </PublishedOr>
   );

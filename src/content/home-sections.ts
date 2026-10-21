@@ -1,8 +1,8 @@
 /**
- * Website CMS: structured sections for the public site.
- * No arbitrary HTML/CSS/JS — every section is a typed, validated content block
- * with draft / published states and full revision history.
+ * Website CMS: structured sections for legacy page components.
+ * Derived dynamically from src/content/seed.json.
  */
+import seedBlueprint from "./seed.json";
 
 export type FieldType = "text" | "textarea" | "tags" | "list";
 
@@ -25,13 +25,23 @@ export interface SectionDef {
 
 export type SectionContent = Record<string, unknown>;
 
-const cta = (label: string, href: string) => ({ label, href });
+interface SeedSiteBrand {
+  name?: string;
+  tagline?: string;
+  description?: string;
+  motto?: string;
+  logoUrl?: string;
+}
+interface SeedSiteData {
+  brand?: SeedSiteBrand;
+}
+const siteData = (seedBlueprint as unknown as { site?: SeedSiteData }).site || {};
 
 export const SECTION_DEFS: SectionDef[] = [
   {
     key: "hero",
     label: "Hero banner",
-    description: "The first thing a family sees — promise, proof and the primary action.",
+    description: "The primary headline, proof points and primary action.",
     fields: [
       { key: "eyebrow", label: "Small line above the headline", type: "text" },
       { key: "title", label: "Headline", type: "text" },
@@ -45,348 +55,29 @@ export const SECTION_DEFS: SectionDef[] = [
       { key: "highlights", label: "Quick highlights", type: "tags" },
     ],
     defaults: {
-      eyebrow: "For families living in the Gulf",
-      title: "Don't let distance become guilt.",
-      subtitle:
-        "One message to us, and a checked, honest person helps your parents in India — shopping, repairs, hospital visits, paperwork — with photos and updates sent back to you.",
-      primaryCtaLabel: "Ask for help now",
-      primaryCtaHref: "#contact",
-      secondaryCtaLabel: "See how it works",
-      secondaryCtaHref: "#how-it-works",
+      eyebrow: "WORLD-CLASS SOLUTIONS",
+      title: siteData.brand?.tagline || "Custom Software & Operating Systems",
+      subtitle: siteData.brand?.description || "High-performance software and cloud systems for growing service businesses.",
+      primaryCtaLabel: "Get Started",
+      primaryCtaHref: "/contact",
+      secondaryCtaLabel: "Our Services",
+      secondaryCtaHref: "/services",
       imageUrl: "",
-      imageAlt: "A son in the Gulf arranging help for his parents in India",
-      highlights: ["People we know and check", "One person to talk to", "Updates on WhatsApp"],
-    },
-  },
-  {
-    key: "promise",
-    label: "The promise",
-    description: "The emotional band right after the hero — why families abroad hand this to you.",
-    fields: [
-      { key: "eyebrow", label: "Small line above the title", type: "text" },
-      { key: "title", label: "Title", type: "text" },
-      { key: "body", label: "Paragraph", type: "textarea" },
-    ],
-    defaults: {
-      eyebrow: "We understand",
-      title: "You can't always be there for your parents in India. But we can.",
-      body: "The hardest part of living abroad is the helplessness you feel when your family needs something back home. Stop worrying about untrustworthy vendors or making your parents do the heavy lifting. We act as your trusted local proxy.",
-    },
-  },
-  {
-    key: "services",
-    label: "Service grid",
-    description: "The deliberate list of what SAFAR does. Keep it specific — never 'anything'.",
-    fields: [
-      { key: "title", label: "Section title", type: "text" },
-      { key: "subtitle", label: "Section subtitle", type: "textarea" },
-      { key: "groceriesImageUrl", label: "Groceries story image URL", type: "text" },
-      { key: "repairsImageUrl", label: "Home services story image URL", type: "text" },
-      { key: "healthcareImageUrl", label: "Healthcare story image URL", type: "text" },
-      {
-        key: "items",
-        label: "Services",
-        type: "list",
-        itemLabel: "Service",
-        itemFields: [
-          { key: "title", label: "Service name", type: "text" },
-          { key: "description", label: "What we actually do", type: "textarea" },
-        ],
-      },
-    ],
-    defaults: {
-      title: "Three ways we help you",
-      subtitle:
-        "Instead of searching for many different people, just ask SAFAR N MANZIL. Here is how we handle your requests — and we tell you the price before we start.",
-      groceriesImageUrl: "",
-      repairsImageUrl: "",
-      healthcareImageUrl: "",
-      items: [
-        {
-          title: "Groceries & gifts",
-          description:
-            "Surprise them with gifts or make sure their weekly groceries arrive without them lifting a finger. You see the bill.",
-        },
-        {
-          title: "Parcel & logistics",
-          description:
-            "We pick up papers and parcels, send them and tell you where they are.",
-        },
-        {
-          title: "Trusted home repairs",
-          description:
-            "From plumbing to electrical work, we send verified, honest professionals so your family is never taken advantage of. Price fixed first.",
-        },
-        {
-          title: "Medical & errands",
-          description:
-            "We arrange safe transport and go with your parents to hospital visits, bring medicines and run their local errands — then tell you how it went.",
-        },
-        {
-          title: "Documentation & legal",
-          description:
-            "Certificates, bank and government work. We keep going until the paper is in hand.",
-        },
-        {
-          title: "Property & coordination",
-          description:
-            "We visit your house or land, help with rent, check repairs and send photos.",
-        },
-      ],
-    },
-  },
-  {
-    key: "cast",
-    label: "Who we help",
-    description: "The three kinds of people in every SAFAR story, shown with our own characters.",
-    fields: [
-      { key: "eyebrow", label: "Small line above the title", type: "text" },
-      { key: "title", label: "Section title", type: "text" },
-      { key: "subtitle", label: "Section subtitle", type: "textarea" },
-      {
-        key: "items",
-        label: "People",
-        type: "list",
-        itemLabel: "Person",
-        itemFields: [
-          { key: "name", label: "Who they are", type: "text" },
-          { key: "description", label: "What we do for them", type: "textarea" },
-        ],
-      },
-    ],
-    defaults: {
-      eyebrow: "Who we help",
-      title: "One family, two countries",
-      subtitle: "You are far away. They are at home. We stand in the middle and do the running around.",
-      items: [
-        {
-          name: "The son working in the Gulf",
-          description: "You send one message. We handle it and send you photos when it is done.",
-        },
-        {
-          name: "The daughter abroad",
-          description: "You can check what happened any time, without calling ten people.",
-        },
-        {
-          name: "Parents at home in India",
-          description: "The same known person comes to the door, with an ID card and a fixed price.",
-        },
-      ],
-    },
-  },
-  {
-    key: "updates",
-    label: "Photo updates",
-    description: "Shows families that every job comes back with proof.",
-    fields: [
-      { key: "eyebrow", label: "Small line above the title", type: "text" },
-      { key: "title", label: "Section title", type: "text" },
-      { key: "subtitle", label: "Section subtitle", type: "textarea" },
-      { key: "imageUrl", label: "Picture URL", type: "text" },
-      { key: "points", label: "What you get back", type: "tags" },
-    ],
-    defaults: {
-      eyebrow: "You always know",
-      title: "Every job comes back with proof",
-      subtitle:
-        "When the work is finished, our person sends a photo, the bill and a short message. You see it on your phone, wherever you are.",
-      imageUrl: "",
-      points: ["A photo of the work", "The shop or worker bill", "Our fee shown separately", "A short message on WhatsApp"],
-    },
-  },
-  {
-    key: "trust",
-    label: "Trust strip",
-    description: "Why a family far away should hand this to you.",
-    fields: [
-      { key: "title", label: "Section title", type: "text" },
-      {
-        key: "items",
-        label: "Trust points",
-        type: "list",
-        itemLabel: "Trust point",
-        itemFields: [
-          { key: "title", label: "Title", type: "text" },
-          { key: "description", label: "Description", type: "textarea" },
-        ],
-      },
-    ],
-    defaults: {
-      title: "Why families trust us",
-      items: [
-        {
-          title: "We know our workers",
-          description:
-            "We check the ID of every worker we send, and we rate them after each job.",
-        },
-        {
-          title: "Price told before work",
-          description:
-            "You say yes to the cost first. We show the shop or worker cost and our fee separately.",
-        },
-        {
-          title: "Proof for every job",
-          description:
-            "Photos, bills and updates for every job, saved in one place you can check any time.",
-        },
-      ],
-    },
-  },
-  {
-    key: "how_it_works",
-    label: "How it works",
-    description: "The four steps from a message to a completed job.",
-    fields: [
-      { key: "title", label: "Section title", type: "text" },
-      { key: "subtitle", label: "Section subtitle", type: "textarea" },
-      {
-        key: "steps",
-        label: "Steps",
-        type: "list",
-        itemLabel: "Step",
-        itemFields: [
-          { key: "title", label: "Step title", type: "text" },
-          { key: "description", label: "Step description", type: "textarea" },
-        ],
-      },
-    ],
-    defaults: {
-      title: "How it works",
-      subtitle: "One message from you. One person handles it. One clear result.",
-      steps: [
-        { title: "Tell us what you need", description: "Send us a message on WhatsApp or fill the form on this page." },
-        { title: "We tell you the cost", description: "We tell you the plan, who will do it and the price before we start." },
-        { title: "We get the work done", description: "Our person does the work while we keep an eye on it." },
-        { title: "You get photos and a bill", description: "We send photos, bills and a simple invoice when it is finished." },
-      ],
-    },
-  },
-  {
-    key: "testimonials",
-    label: "Testimonials",
-    description: "Only real, consented words from real families. Leave empty until you have them.",
-    fields: [
-      { key: "title", label: "Section title", type: "text" },
-      {
-        key: "items",
-        label: "Testimonials",
-        type: "list",
-        itemLabel: "Testimonial",
-        itemFields: [
-          { key: "quote", label: "What they said", type: "textarea" },
-          { key: "author", label: "Name", type: "text" },
-          { key: "location", label: "Location", type: "text" },
-        ],
-      },
-    ],
-    defaults: {
-      title: "Priceless peace of mind",
-      items: [],
-    },
-  },
-  {
-    key: "cta",
-    label: "Call to action",
-    description: "The closing nudge before the contact block.",
-    fields: [
-      { key: "title", label: "Title", type: "text" },
-      { key: "subtitle", label: "Subtitle", type: "textarea" },
-      { key: "buttonLabel", label: "Button label", type: "text" },
-      { key: "buttonHref", label: "Button link", type: "text" },
-    ],
-    defaults: {
-      title: "Something to be done back home?",
-      subtitle: "Tell us once. We handle it and keep you updated at every step.",
-      buttonLabel: "Message us on WhatsApp",
-      buttonHref: "#contact",
-    },
-  },
-  {
-    key: "faq",
-    label: "FAQ",
-    description: "The questions families actually ask before trusting you.",
-    fields: [
-      { key: "title", label: "Section title", type: "text" },
-      {
-        key: "items",
-        label: "Questions",
-        type: "list",
-        itemLabel: "Question",
-        itemFields: [
-          { key: "question", label: "Question", type: "text" },
-          { key: "answer", label: "Answer", type: "textarea" },
-        ],
-      },
-    ],
-    defaults: {
-      title: "Common questions",
-      items: [
-        {
-          question: "Which cities do you cover?",
-          answer: "Tell us the city. We will say yes or no before we take the job.",
-        },
-        {
-          question: "How do I pay?",
-          answer:
-            "You agree the cost first. Then you get a bill that shows the shop or worker cost and our fee separately.",
-        },
-        {
-          question: "How will I know the work is done?",
-          answer: "When a job is finished we send photos, the bill and a message on WhatsApp.",
-        },
-      ],
-    },
-  },
-  {
-    key: "contact",
-    label: "Contact",
-    description: "How families reach you, and where the enquiry lands.",
-    fields: [
-      { key: "title", label: "Section title", type: "text" },
-      { key: "subtitle", label: "Section subtitle", type: "textarea" },
-      { key: "whatsapp", label: "WhatsApp number (digits only)", type: "text" },
-      { key: "phone", label: "Phone number", type: "text" },
-      { key: "email", label: "Email", type: "text" },
-      { key: "location", label: "Location line", type: "text" },
-    ],
-    defaults: {
-      title: "Talk to us",
-      subtitle: "Send us the details. We will reply with the plan, the person and the cost.",
-      whatsapp: "",
-      phone: "",
-      email: "",
-      location: "",
+      imageAlt: "Platform visual",
+      highlights: ["Fast Setup", "Enterprise Security", "Realtime Updates"],
     },
   },
   {
     key: "footer",
     label: "Footer",
-    description: "Closing band, quick links and the private CRM entry point.",
+    description: "Closing band, quick links and portal entry.",
     fields: [
       { key: "tagline", label: "Tagline", type: "textarea" },
-      {
-        key: "links",
-        label: "Quick links",
-        type: "list",
-        itemLabel: "Link",
-        itemFields: [
-          { key: "label", label: "Label", type: "text" },
-          { key: "href", label: "Link", type: "text" },
-        ],
-      },
       { key: "legal", label: "Legal line", type: "text" },
-      { key: "crmLabel", label: "CRM entry label", type: "text" },
     ],
     defaults: {
-      tagline: "We help Gulf families take care of their people back home in India.",
-      links: [
-        cta("Services", "/services"),
-        cta("How it works", "/about"),
-        cta("Questions", "/faq"),
-        cta("Talk to us", "/contact"),
-      ],
-      legal: "© SAFAR N MANZIL. All rights reserved.",
-      crmLabel: "Team login",
+      tagline: siteData.brand?.tagline || "Custom Business Software, Visual CMS & Operating Solutions",
+      legal: `© ${siteData.brand?.name || "Business Portal"}. All rights reserved.`,
     },
   },
 ];

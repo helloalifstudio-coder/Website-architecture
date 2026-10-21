@@ -7,41 +7,35 @@ import { PageIntro } from "../components/layout/page-intro";
 import { Reveal } from "../components/motion/primitives";
 import { site } from "../content/site";
 import { breadcrumbSchema } from "../lib/seo/json-ld";
-import castArt from "../assets/safar-cast.png";
 
 const TITLE = "Why we started, and how we work";
 const DESCRIPTION =
-  "SAFAR N MANZIL exists so that a son or daughter in the Gulf never has to depend on luck when their parents in India need help.";
+  "We exist to provide businesses with modern, scalable software, automated operations, and dedicated technical partnership.";
 
 const PRINCIPLES = [
   {
-    title: "We tell you the price first",
-    description:
-      "Before anything is bought or repaired, you know what it will cost. The final bill matches what we said.",
+    title: "Transparent Pricing Upfront",
+    description: "Before any commitment is made, you know exactly what it will cost. No hidden fees or unexpected invoices.",
   },
   {
-    title: "Nobody is left alone in your parents' home",
-    description:
-      "When an outside worker visits, our own coordinator stays for the whole visit.",
+    title: "Dedicated Technical Oversight",
+    description: "Every deployment and update is monitored by our dedicated engineering team with 99.9% uptime SLAs.",
   },
   {
-    title: "Every job comes back with proof",
-    description:
-      "Photos, the bill and a short message. You see what happened even though you are far away.",
+    title: "Verified Realtime Sync",
+    description: "Every change made in your visual studio publishes instantly to production edge networks worldwide.",
   },
   {
-    title: "We say no when we should",
-    description:
-      "If we cannot do something well, or we do not cover that area, we tell you instead of promising.",
+    title: "Zero Vendor Lock-In",
+    description: "Your data, customer pipelines, and codebase remain 100% yours with open standard architectures.",
   },
   {
-    title: "Your parents are treated gently",
-    description:
-      "We explain everything to them calmly, in their language, before anything happens.",
+    title: "Enterprise Grade Security",
+    description: "Built on battle-tested PostgreSQL, end-to-end type safety, and automated daily backups.",
   },
   {
-    title: "Your information stays yours",
-    description: "We do not sell or share your family's details with anyone.",
+    title: "Continuous Optimization",
+    description: "We proactively refine speed, mobile responsiveness, and conversion performance for your business.",
   },
 ];
 
@@ -90,31 +84,21 @@ function AboutPage() {
         ]}
       />
 
-      <section className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 lg:grid-cols-2">
+      <section className="mx-auto max-w-6xl px-5 py-14">
         <Reveal>
-          <h2 className="font-display text-2xl font-bold">The problem we kept seeing</h2>
-          <p className="mt-4 text-muted-foreground">
-            Someone works hard in Dubai, Doha or Riyadh. Back home, a tap breaks, a hospital
-            appointment comes up, or the monthly ration has to be carried up two floors. The
-            son or daughter cannot be there. So they call a neighbour, a cousin, a stranger
-            from the market — and hope it goes well.
-          </p>
-          <p className="mt-4 text-muted-foreground">
-            We built SAFAR N MANZIL so that hope is not the plan. One message to us, and a
-            checked person handles it, at a price we tell you first, with photos coming back
-            to your phone.
-          </p>
-          <p className="mt-6 font-display text-lg font-bold text-primary">{site.brand.motto}</p>
-        </Reveal>
-        <Reveal delay={80}>
-          <img
-            src={castArt}
-            alt="An illustration of a son abroad, his sister, and their parents at home in India"
-            width={1280}
-            height={768}
-            loading="lazy"
-            className="w-full rounded-3xl"
-          />
+          <div className="rounded-3xl border border-border bg-card p-8 md:p-12">
+            <h2 className="font-display text-2xl font-bold md:text-3xl">The vision behind our platform</h2>
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              Growing service enterprises often struggle with fragmented software: complex content management systems,
+              disconnected invoicing tools, and slow websites that require a developer for the simplest text edit.
+            </p>
+            <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+              We built this universal operating engine to unify your digital storefront, customer inquiries, and visual
+              page builder into a single, high-performance platform. You get complete creative control with sub-second
+              publishing.
+            </p>
+            <p className="mt-6 font-display text-lg font-bold text-primary">{site.brand.motto}</p>
+          </div>
         </Reveal>
       </section>
 
@@ -138,7 +122,7 @@ function AboutPage() {
         <Reveal>
           <h2 className="font-display text-2xl font-bold">Ready when you are</h2>
           <p className="mt-2 text-muted-foreground">
-            Tell us what your family needs. We will reply with the plan, the person and the cost.
+            Tell us about your business goals. We will reply with a complete architectural plan and transparent timeline.
           </p>
           <Link
             to="/contact"
@@ -153,9 +137,18 @@ function AboutPage() {
 }
 
 function AboutPageRoute() {
-  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } = Route.useLoaderData();
+  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } =
+    Route.useLoaderData();
   return (
-    <PublishedOr page="about" pageName="about" initialDocument={publishedDocument} status={publishedDocumentStatus} siteConfigContent={siteConfigContent} globalDocument={globalDocument} usesSeedFallback={usesSeedFallback}>
+    <PublishedOr
+      page="about"
+      pageName="about"
+      initialDocument={publishedDocument}
+      status={publishedDocumentStatus}
+      siteConfigContent={siteConfigContent}
+      globalDocument={globalDocument}
+      usesSeedFallback={usesSeedFallback}
+    >
       <AboutPage />
     </PublishedOr>
   );

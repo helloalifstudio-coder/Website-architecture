@@ -37,7 +37,7 @@ export function StoryCarousel({ slides, editing = false }: { slides: StorySlide[
   return (
     <section
       aria-roledescription="carousel"
-      aria-label="How Safar N manzil helps families"
+      aria-label="System Feature Highlights"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}

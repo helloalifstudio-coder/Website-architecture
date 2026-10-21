@@ -1,6 +1,6 @@
 /**
  * Business facts for the public website, derived from `seed.json`.
- * Do not add copy here — edit the seed (or the builder after bootstrap).
+ * Every field is derived dynamically via the business blueprint helper.
  */
 import { blueprint } from "../lib/site/blueprint";
 import type { SiteConfig } from "../types/site";
@@ -16,7 +16,7 @@ export const site: SiteConfig = {
   location: { ...blueprint.location },
   serviceAreas: [...blueprint.serviceAreas],
   hours: blueprint.hours,
-  navigation: blueprint.navigation.map((l) => ({ ...l })),
-  legalLinks: blueprint.legalLinks.map((l) => ({ ...l })),
+  navigation: [...blueprint.navigation],
+  legalLinks: [...blueprint.legalLinks],
   cta: { ...blueprint.cta },
 };

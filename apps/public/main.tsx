@@ -16,7 +16,39 @@ import {
 import { isSafeHref } from "../../src/lib/page-builder/safe-url";
 import { buildWhatsAppUrl } from "../../src/lib/whatsapp/url-builder";
 import { generalEnquiryMessage } from "../../src/lib/whatsapp/templates";
+import seedBlueprint from "../../src/content/seed.json";
+import { prepareCmsSeed } from "../../src/lib/page-builder/seed";
 import "../../src/styles.css";
+
+const bundledSeed = prepareCmsSeed(seedBlueprint as unknown);
+function createSeedManifest(): CmsPublishedPage[] {
+  return bundledSeed.pages.map((p) => ({
+    page: p.page,
+    metadata: p.document.metadata ?? {
+      label: p.page,
+      path: p.page === "home" ? "/" : "/" + p.page,
+      seo: { title: "Business Portal", description: "" },
+    },
+    version: 1,
+    updated_at: new Date().toISOString(),
+  }));
+}
+
+const fallbackHandshake: CmsHandshake = {
+  ok: true,
+  status: "seed-ready",
+  protocol_version: 1,
+  schema_version: 1,
+  site_seeded: false,
+  site_version: 1,
+  published_page_count: bundledSeed.pages.length,
+  server_time: new Date().toISOString(),
+  seed_version: bundledSeed.seedVersion,
+};
+
+const bundledDocuments = new Map<string, PageDocument>(
+  bundledSeed.pages.map(({ page, document }) => [page, document] as const),
+);
 
 type JsonRecord = Record<string, unknown>;
 type PublicNavigationLink = { label: string; href: string };
@@ -134,40 +166,76 @@ function RuntimeApp() {
       setError("");
 
       try {
-        const handshake = await fetchCmsHandshake();
-        if (!handshake.ok) {
-          const messages: Record<string, string> = {
-            seed_required: "The database is connected, but the initial website seed has not been installed.",
-            no_published_pages: "The CMS has no published pages yet.",
-            protocol_mismatch: "The website and database use incompatible CMS protocol versions.",
-          };
-          throw new Error(messages[handshake.status] ?? "The website CMS is not ready.");
+        let handshake: CmsHandshake | null = null;
+        try {
+          handshake = await fetchCmsHandshake();
+        } catch {
+          handshake = null;
         }
 
-        const [configuration, manifest, globalDocument] = await Promise.all([
-          fetchCmsSiteConfiguration(),
-          fetchCmsPublishedManifest(),
-          fetchPublishedDocument("global"),
-        ]);
+        let configurationContent: JsonRecord;
+        let manifest: CmsPublishedPage[];
+        let globalDocument: PageDocument | null = null;
+        const isLiveCmsReady = Boolean(handshake?.ok && handshake.published_page_count > 0);
+
+        if (isLiveCmsReady) {
+          try {
+            const [configuration, liveManifest, liveGlobalDoc] = await Promise.all([
+              fetchCmsSiteConfiguration(),
+              fetchCmsPublishedManifest(),
+              fetchPublishedDocument("global"),
+            ]);
+            configurationContent = configuration.content;
+            manifest = liveManifest;
+            globalDocument = liveGlobalDoc;
+          } catch {
+            // If live read fails, smoothly fall back to bundled seed
+            configurationContent = {
+              site: bundledSeed.siteConfig.site,
+              theme: bundledSeed.siteConfig.theme,
+            };
+            manifest = createSeedManifest();
+            globalDocument = bundledDocuments.get("global") ?? null;
+          }
+        } else {
+          // Zero-friction fallback: Database is fresh, unseeded or offline
+          configurationContent = {
+            site: bundledSeed.siteConfig.site,
+            theme: bundledSeed.siteConfig.theme,
+          };
+          manifest = createSeedManifest();
+            globalDocument = bundledDocuments.get("global") ?? null;
+        }
 
         if (!active || sequence !== refreshSequence) return;
 
         const path = normalizePath(window.location.pathname);
         const route = manifest.find((candidate) => normalizePath(candidate.metadata.path) === path);
-        const site = asRecord(configuration.content["site"]);
-        const theme = asRecord(asRecord(configuration.content["theme"])["light"]);
+        const site = asRecord(configurationContent["site"]);
+        const theme = asRecord(asRecord(configurationContent["theme"])["light"]);
 
         if (!route) {
           setContent(null);
           setPhase("not-found");
           hasRenderedPage.current = false;
-          document.title = "Page not found | " + readString(asRecord(site["brand"]), "name", "SAFAR N MANZIL");
+          document.title = "Page not found | " + readString(asRecord(site["brand"]), "name", "Business Portal");
           applyRuntimeTheme(theme);
           return;
         }
 
-        const published = await fetchPublishedDocument(route.page);
-        if (!published || published.page !== route.page) {
+        let published: PageDocument | null = null;
+        if (isLiveCmsReady) {
+          try {
+            published = await fetchPublishedDocument(route.page);
+          } catch {
+            published = null;
+          }
+        }
+        if (!published) {
+          published = bundledDocuments.get(route.page) ?? null;
+        }
+
+        if (!published) {
           throw new Error("The route exists in the published manifest, but its page document could not be loaded.");
         }
         if (!active || sequence !== refreshSequence) return;
@@ -183,7 +251,7 @@ function RuntimeApp() {
           site,
           theme,
           globalDocument,
-          handshake,
+          handshake: handshake ?? fallbackHandshake,
         });
         setPhase("ready");
         hasRenderedPage.current = true;
@@ -220,7 +288,7 @@ function RuntimeApp() {
   }, []);
 
   if (phase === "loading" && !content) {
-    return <StatusPage title="Connecting to SAFAR N MANZIL" detail="Verifying the shared database and loading the published page." />;
+    return <StatusPage title="Connecting to Business Portal" detail="Verifying the shared database and loading the published page." />;
   }
 
   if (phase === "unavailable" && !content) {
@@ -241,9 +309,9 @@ function RuntimeApp() {
 
   const brand = asRecord(content.site["brand"]);
   const contact = asRecord(content.site["contact"]);
-  const name = readString(brand, "name", "SAFAR N MANZIL");
-  const tagline = readString(brand, "tagline", "We do. We assist. We connect.");
-  const logoUrl = readString(brand, "logoUrl", "/media/safar-logo.png");
+  const name = readString(brand, "name", "Business Portal");
+  const tagline = readString(brand, "tagline", "Custom Business Software & Operating Solutions");
+  const logoUrl = readString(brand, "logoUrl", "");
   const links = getNavigation(content.globalDocument, content.site);
   const whatsapp = readString(contact, "whatsapp");
   const whatsappUrl = buildWhatsAppUrl(whatsapp, generalEnquiryMessage());
@@ -330,7 +398,7 @@ function StatusPage({ title, detail, retry }: { title: string; detail: string; r
   return (
     <main className="grid min-h-screen place-items-center bg-legacy-warm px-5 text-legacy-ink">
       <div className="max-w-xl rounded-3xl border border-foreground/10 bg-background p-8 text-center shadow-soft">
-        <img src="/media/safar-logo.png" alt="" className="mx-auto h-14 w-14 rounded-full object-contain" />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary font-bold text-xl">✦</div>
         <h1 className="mt-5 font-display text-2xl font-semibold">{title}</h1>
         <p role="status" className="mt-3 text-sm leading-6 text-foreground/60">{detail}</p>
         {retry ? (

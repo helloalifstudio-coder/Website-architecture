@@ -79,18 +79,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Safar Studio | SAFAR N MANZIL" },
+      { title: "Visual Studio | Business Platform" },
       {
         name: "description",
         content:
-          "A secure, schema-driven website publishing platform and visual content studio for SAFAR N MANZIL.",
+          "A secure, schema-driven website publishing platform and visual content studio.",
       },
-      { name: "author", content: "SAFAR N MANZIL" },
-      { name: "application-name", content: "Safar Studio" },
-      { property: "og:title", content: "SAFAR N MANZIL — Business Console" },
+      { name: "author", content: "Alif Growth Media" },
+      { name: "application-name", content: "Website Studio" },
+      { property: "og:title", content: "Visual Studio — Business Console" },
       {
         property: "og:description",
-        content: "Edit and publish SAFAR N MANZIL website content through a validated visual studio.",
+        content: "Edit and publish website content through a validated visual studio.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },

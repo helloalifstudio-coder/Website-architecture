@@ -1,0 +1,548 @@
+import { writeFileSync, readFileSync } from "node:fs";
+import { prepareCmsSeed } from "../src/lib/page-builder/seed.js";
+
+const originalSeed = JSON.parse(readFileSync("src/content/seed.json", "utf8"));
+
+const cleanSite = {
+  brand: {
+    name: "Enterprise Business",
+    tagline: "Custom Business Software, Visual CMS & Operating Solutions",
+    description: "We partner with local enterprises to deliver world-class digital storefronts, automated customer pipelines, and reliable operating systems.",
+    motto: "Reliable · Fast · Trusted",
+    logoUrl: ""
+  },
+  contact: {
+    whatsapp: "919000000000",
+    phone: "+91 90000 00000",
+    email: "contact@example.com",
+    location: "Main Commercial District, City"
+  },
+  location: {
+    city: "City",
+    region: "State",
+    country: "India"
+  },
+  serviceAreas: ["Local & Regional Markets", "Enterprise Clients", "Global Partners"],
+  hours: "Mon – Sat, 09:00 – 19:00 IST",
+  navigation: [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services", hint: "What we can do for your business" },
+    { label: "How it works", href: "/about", hint: "Who we are and our partnership model" },
+    { label: "Questions", href: "/faq", hint: "Common questions and transparent answers" },
+    { label: "Talk to us", href: "/contact", hint: "Start your pilot project" }
+  ],
+  legalLinks: [
+    { label: "Privacy", href: "/privacy" },
+    { label: "Terms", href: "/terms" }
+  ],
+  cta: {
+    primary: "Start Your Pilot",
+    whatsapp: "Message us on WhatsApp",
+    call: "Call our team"
+  }
+};
+
+const cleanPages = {
+  home: {
+    label: "Home",
+    path: "/",
+    seo: {
+      title: "Enterprise Business — Custom Software, Visual CMS & Operating Systems",
+      description: "Automate customer operations, eliminate developer dependency, and manage your entire business from a single real-time dashboard."
+    },
+    blocks: [
+      {
+        id: "home-001",
+        type: "cinematicHero",
+        layout: { align: "left", width: "full", spaceTop: 0, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "ENTERPRISE-GRADE DIGITAL INFRASTRUCTURE",
+          title: "Scale Your Business With",
+          accent: "Modern Operating Systems.",
+          text: "We partner with local businesses to provide custom digital storefronts, automated WhatsApp pipelines, and self-serve visual management with zero developer bottlenecks.",
+          image: "",
+          imageAlt: "Modern Digital Infrastructure",
+          buttons: [
+            { id: "home-btn-1", label: "Start Your Pilot", href: "/contact", style: "solid", size: "md" },
+            { id: "home-btn-2", label: "Explore Platform", href: "/services", style: "outline", size: "md" }
+          ]
+        }
+      },
+      {
+        id: "home-004",
+        type: "serviceFilm",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "PLATFORM OVERVIEW",
+          title: "Engineered for Complete Operational Control",
+          text: "See how our integrated software stack powers local businesses with visual management, live customer pipelines, and zero-downtime reliability.",
+          items: [
+            { id: "film-01", title: "Live Visual Page Editor", text: "Update copy, photos, and prices on the fly." },
+            { id: "film-02", title: "Realtime Customer CRM", text: "Multi-agent WhatsApp inbox and automated lead tracking." },
+            { id: "film-03", title: "Instant 1-Tap Invoicing", text: "Digital PDF invoices with Cash vs. UPI ledgers." },
+            { id: "film-04", title: "Direct Business Intelligence", text: "Mobile dashboard with live revenue and conversion metrics." }
+          ],
+          src: "",
+          poster: ""
+        },
+        anchor: "film"
+      },
+      {
+        id: "home-009",
+        type: "storyCarousel",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Engineered For Real Business Operations",
+          text: "Designed from the ground up for owners who need simplicity, speed, and complete control.",
+          items: [
+            { id: "slide-01", title: "Zero Developer Dependency", accent: "FULL CONTROL", text: "Change announcements, prices, and banners with 1 click without paying a developer or touching code.", image: "", imageAlt: "Visual Editor" },
+            { id: "slide-02", title: "Instant Lead Capture", accent: "HIGH CONVERSION", text: "Never miss a customer inquiry across Google, WhatsApp, or Instagram with automated routing.", image: "", imageAlt: "Customer CRM" },
+            { id: "slide-03", title: "Realtime Collections", accent: "FINANCIAL CLARITY", text: "Track Cash, UPI, and bank transfers automatically with daily closing reconciliations.", image: "", imageAlt: "Cashflow Ledger" }
+          ]
+        }
+      },
+      {
+        id: "home-013",
+        type: "careJourney",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "OUR PROCESS",
+          title: "How We Partner With You",
+          text: "A structured, transparent three-step journey from initial audit to automated daily operations.",
+          items: [
+            { id: "step-01", title: "01 Architecture & Audit", text: "We assess your customer workflows, daily bottlenecks, and digital gaps to design your tailor-made system." },
+            { id: "step-02", title: "02 Engineering & Integration", text: "We deploy your custom web app, visual admin editor, and branded software tools configured in your name." },
+            { id: "step-03", title: "03 Empower & Scale", text: "You control content, monitor live cashflow, and retain customers effortlessly with our ongoing technical partnership." }
+          ]
+        },
+        anchor: "journey"
+      },
+      {
+        id: "home-017",
+        type: "serviceStory",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "SOLUTIONS IN ACTION",
+          title: "Tailored to Your Business Model",
+          text: "Whether you run retail, manufacturing, services, or appointments, our modular systems adapt to your workflow.",
+          items: [
+            { id: "story-01", title: "Retail & Wholesalers", text: "High-speed product catalogs with automated stock reduction and 1-tap WhatsApp billing receipts.", href: "/services/groceries-and-gifts", image: "" },
+            { id: "story-02", title: "Service & Contracting Firms", text: "Capture high-value leads, dispatch customized quotations, and collect milestone payments with clear tracking.", href: "/services/home-repairs", image: "" },
+            { id: "story-03", title: "Membership & Clinics", text: "Automate renewal reminders before subscriptions expire, schedule appointments, and manage patient/client records.", href: "/services/medical-and-errands", image: "" }
+          ]
+        }
+      },
+      {
+        id: "home-024",
+        type: "trustDossier",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "TRANSPARENCY & TRUST",
+          title: "Built For Long-Term Partnership",
+          text: "We don't build a generic website and disappear. We operate as your dedicated internal IT division.",
+          items: [
+            { id: "trust-01", title: "100% Platform Ownership", text: "You own every line of code, cloud database, domain, and deployment from day one." },
+            { id: "trust-02", title: "No Developer Lock-in", text: "Update copy, images, and prices anytime through the visual admin editor with zero technical skill." },
+            { id: "trust-03", title: "Dedicated Senior Architect", text: "Direct line with your technical co-founder. No junior support queues or unresolved tickets." }
+          ]
+        }
+      },
+      {
+        id: "home-029",
+        type: "invoiceExample",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Transparent Billing & Instant Invoicing",
+          text: "Deliver clear, itemized digital invoices to customers via WhatsApp in 1 tap.",
+          items: [
+            { id: "inv-01", title: "Enterprise System Setup & Configuration", text: "₹ 0" },
+            { id: "inv-02", title: "Visual CMS & Storefront Deployment", text: "₹ 0" },
+            { id: "inv-03", title: "WhatsApp CRM & Automation Setup", text: "₹ 0" },
+            { id: "inv-04", title: "Total Agreed Investment", text: "Included in Pilot" }
+          ]
+        }
+      },
+      {
+        id: "home-033",
+        type: "faq",
+        layout: { align: "left", width: "narrow", spaceTop: 4, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Frequently Asked Questions",
+          items: [
+            { id: "h-faq-1", question: "How does the zero-upfront pilot work?", answer: "We partner with selected businesses to deploy our custom website and software suite at zero upfront cost. You experience live operational value first before any commercial commitment." },
+            { id: "h-faq-2", question: "Can I update the website without knowing code?", answer: "Yes. Our platform includes an embedded Visual CMS. Click on any text, photo, banner, or price directly on your screen and update it live in seconds." },
+            { id: "h-faq-3", question: "Who owns the code and customer database?", answer: "You own 100% of your platform from day one. All code repositories, database instances, and domain registrations belong entirely to your business." }
+          ]
+        }
+      },
+      {
+        id: "home-039",
+        type: "contactStrip",
+        layout: { align: "center", width: "normal", spaceTop: 4, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Ready to Upgrade Your Business?",
+          text: "Message our team on WhatsApp or schedule an operational audit. We are ready to build your custom system.",
+          buttons: [
+            { id: "cs-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }
+          ]
+        }
+      }
+    ]
+  },
+  services: {
+    label: "Services",
+    path: "/services",
+    seo: {
+      title: "Services & Systems — Enterprise Business",
+      description: "Explore our modular business software: Visual CMS, WhatsApp CRM, Digital Invoicing, and Inventory Management."
+    },
+    blocks: [
+      {
+        id: "services-041",
+        type: "heading",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "SOFTWARE SUITE",
+          text: "Integrated Business Systems",
+          level: "h1"
+        }
+      },
+      {
+        id: "services-042",
+        type: "text",
+        layout: { align: "left", width: "normal", spaceTop: 0, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          text: "We replace fragmented apps, messy spreadsheets, and developer dependency with modern, connected software systems custom-branded for your business."
+        }
+      },
+      {
+        id: "services-043",
+        type: "cards",
+        layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Core Operating Modules",
+          subtitle: "Explore our integrated systems designed for rapid deployment and immediate business impact.",
+          columns: 3,
+          items: [
+            { id: "services-044", title: "Visual CMS & Storefront", text: "Ultra-fast website with an embedded visual admin editor so you can edit text, photos, and prices in seconds.", href: "/services/groceries-and-gifts" },
+            { id: "services-045", title: "WhatsApp CRM & Lead Pipeline", text: "Multi-agent WhatsApp inbox, automated customer capture, and deal stages for every incoming enquiry.", href: "/services/home-repairs" },
+            { id: "services-046", title: "Instant Invoicing & Billing", text: "Generate professional PDF bills, share via WhatsApp in 1 tap, and maintain a daily Cash vs UPI ledger.", href: "/services/medical-and-errands" },
+            { id: "services-047", title: "Inventory & SKU Management", text: "Track stock movements, receive low-stock alerts, and auto-deduct inventory as invoices are generated.", href: "/services/parcels-and-deliveries" },
+            { id: "services-048", title: "Client Records & Dues Tracker", text: "Automated recurring renewal reminders and fee tracking for gyms, academies, and membership firms.", href: "/services/paperwork-and-documents" },
+            { id: "services-049", title: "Mobile Owner Dashboard", text: "A single screen showing today's revenue, active enquiries, website traffic, and customer retention metrics.", href: "/services/property-checks" }
+          ]
+        }
+      },
+      {
+        id: "services-050",
+        type: "contactStrip",
+        layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 3, background: "primary", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Need a Custom Software Solution?",
+          text: "Send us a message on WhatsApp and we reply the same day.",
+          buttons: [
+            { id: "services-051", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }
+          ]
+        }
+      }
+    ]
+  },
+  "service:groceries-and-gifts": {
+    label: "Visual CMS",
+    path: "/services/groceries-and-gifts",
+    seo: { title: "Visual CMS & Storefront — Enterprise Business", description: "Ultra-fast website with an embedded visual editor." },
+    blocks: [
+      { id: "sg-1", type: "heading", layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "MODULE 01", text: "Visual CMS & Web Engineering", level: "h1" } },
+      { id: "sg-2", type: "text", layout: { align: "left", width: "normal", spaceTop: 1, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "We build ultra-fast, modern web applications that give business owners a private visual admin editor. Update text, banners, and product catalogs instantly without writing code." } },
+      { id: "sg-3", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Included Capabilities", subtitle: "Key features built into every storefront deployment.", columns: 2, items: [
+        { id: "sg-c1", title: "Click-to-Edit Visual Admin", text: "Change copy, photos, and banners directly on your live website." },
+        { id: "sg-c2", title: "Zero-Downtime Atomic Publishing", text: "Changes update in realtime across all edge locations with instant rollbacks." }
+      ] } },
+      { id: "sg-4", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Technical Highlights", subtitle: "Production engineering standards.", columns: 2, items: [
+        { id: "sg-c3", title: "Mobile Optimized", text: "Responsive design fine-tuned for high conversion on smartphones." },
+        { id: "sg-c4", title: "100% Clean Code Ownership", text: "You own the full codebase and cloud deployments from day one." }
+      ] } },
+      { id: "sg-5", type: "contactStrip", layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false }, props: { title: "Upgrade Your Website", text: "Contact us to replace your static website with a live visual CMS.", buttons: [{ id: "sg-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }] } }
+    ]
+  },
+  "service:home-repairs": {
+    label: "WhatsApp CRM",
+    path: "/services/home-repairs",
+    seo: { title: "WhatsApp CRM & Lead Pipeline — Enterprise Business", description: "Automated WhatsApp lead capture and multi-agent customer pipeline." },
+    blocks: [
+      { id: "shr-1", type: "heading", layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "MODULE 02", text: "WhatsApp CRM & Lead Pipeline", level: "h1" } },
+      { id: "shr-2", type: "text", layout: { align: "left", width: "normal", spaceTop: 1, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "Local customers communicate on WhatsApp. We engineer custom-tailored CRM systems that capture every inquiry across Google, Instagram, and web, routing them directly into a shared WhatsApp pipeline." } },
+      { id: "shr-3", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Core Capabilities", subtitle: "Enterprise messaging infrastructure simplified for local teams.", columns: 2, items: [
+        { id: "shr-c1", title: "Multi-Agent Shared Inbox", text: "Your team can answer customer conversations from a single centralized WhatsApp screen." },
+        { id: "shr-c2", title: "Automated Instant Greetings", text: "Never miss an enquiry after hours with automated greetings and catalog sharing." }
+      ] } },
+      { id: "shr-4", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Lead Stages & Automation", subtitle: "Structure your sales process from contact to closed transaction.", columns: 2, items: [
+        { id: "shr-c3", title: "Visual Sales Pipeline", text: "Track leads from initial inquiry to proposal, negotiation, and closed sale." },
+        { id: "shr-c4", title: "Automated Follow-ups", text: "Schedule reminder messages to keep deals moving forward without manual effort." }
+      ] } },
+      { id: "shr-5", type: "contactStrip", layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false }, props: { title: "Automate Your WhatsApp Sales", text: "Message our team to integrate our CRM with your WhatsApp Business number.", buttons: [{ id: "shr-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }] } }
+    ]
+  },
+  "service:medical-and-errands": {
+    label: "Digital Invoicing",
+    path: "/services/medical-and-errands",
+    seo: { title: "Digital Invoicing & Cashflow — Enterprise Business", description: "1-tap WhatsApp digital PDF billing and cash ledger." },
+    blocks: [
+      { id: "sme-1", type: "heading", layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "MODULE 03", text: "Instant Invoicing & Cashflow Ledgers", level: "h1" } },
+      { id: "sme-2", type: "text", layout: { align: "left", width: "normal", spaceTop: 1, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "High-speed digital invoice generator that creates PDF bills, sends them straight to customer WhatsApp chats, and keeps a real-time ledger of Cash vs. UPI collections for daily closing." } },
+      { id: "sme-3", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Billing Features", subtitle: "Fast, branded customer invoices in one tap.", columns: 2, items: [
+        { id: "sme-c1", title: "1-Tap WhatsApp PDF Delivery", text: "Generate polished branded bills and dispatch directly to the customer's chat." },
+        { id: "sme-c2", title: "Cash vs. UPI Breakdown", text: "Instant daily collection closing so you always know your exact ledger balance." }
+      ] } },
+      { id: "sme-4", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "CRM Syncing", subtitle: "Every transaction connects to the central database.", columns: 2, items: [
+        { id: "sme-c3", title: "Automatic Customer History", text: "Every invoice syncs to the customer's profile in the CRM automatically." },
+        { id: "sme-c4", title: "Itemized Tax & Presets", text: "Easily configure GST, custom discounts, and payment terms in seconds." }
+      ] } },
+      { id: "sme-5", type: "contactStrip", layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false }, props: { title: "Simplify Your Daily Billing", text: "Connect with us to test our invoicing generator for your store or firm.", buttons: [{ id: "sme-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }] } }
+    ]
+  },
+  "service:parcels-and-deliveries": {
+    label: "Inventory Management",
+    path: "/services/parcels-and-deliveries",
+    seo: { title: "Inventory & SKU Management — Enterprise Business", description: "Real-time stock tracking and low-inventory warnings." },
+    blocks: [
+      { id: "spd-1", type: "heading", layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "MODULE 04", text: "Inventory & Stock Management", level: "h1" } },
+      { id: "spd-2", type: "text", layout: { align: "left", width: "normal", spaceTop: 1, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "Designed for retailers, wholesalers, and manufacturers. Maintain live SKU balances, receive low-stock alerts, and auto-deduct items as customer invoices are issued." } },
+      { id: "spd-3", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Inventory Tools", subtitle: "Real-time stock control without complex software.", columns: 2, items: [
+        { id: "spd-c1", title: "Realtime SKU Tracking", text: "Monitor item quantities, variants, and warehouse locations in real time." },
+        { id: "spd-c2", title: "Low-Stock Notifications", text: "Receive WhatsApp or email alerts before high-demand items run out." }
+      ] } },
+      { id: "spd-4", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Supplier Tracking", subtitle: "Batch intake and delivery tracking.", columns: 2, items: [
+        { id: "spd-c3", title: "Purchase Orders & Stock In", text: "Record incoming supplier deliveries with clear batch records." },
+        { id: "spd-c4", title: "Auto Invoice Deduction", text: "Stock balances decrement automatically whenever an invoice is completed." }
+      ] } },
+      { id: "spd-5", type: "contactStrip", layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false }, props: { title: "Control Your Stock", text: "Deploy our lightweight inventory manager alongside your invoicing system.", buttons: [{ id: "spd-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }] } }
+    ]
+  },
+  "service:paperwork-and-documents": {
+    label: "Membership & Dues",
+    path: "/services/paperwork-and-documents",
+    seo: { title: "Membership & Dues Manager — Enterprise Business", description: "Automated recurring fee collection and renewal reminders." },
+    blocks: [
+      { id: "smd-1", type: "heading", layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "MODULE 05", text: "Membership & Fee Renewal Manager", level: "h1" } },
+      { id: "smd-2", type: "text", layout: { align: "left", width: "normal", spaceTop: 1, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "Member management and fee cycle automation for gyms, academies, and membership businesses. Tracks attendance, active packages, overdue fees, and dispatches automated WhatsApp reminder links." } },
+      { id: "smd-3", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Fee Automation", subtitle: "Eliminate manual payment follow-ups.", columns: 2, items: [
+        { id: "smd-c1", title: "Automated WhatsApp Alerts", text: "Members receive polite reminder links before their membership cycle expires." },
+        { id: "smd-c2", title: "Overdue Tracking", text: "Clear dashboard highlighting pending payments and collection totals." }
+      ] } },
+      { id: "smd-4", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Member Profiles", subtitle: "Attendance and package management.", columns: 2, items: [
+        { id: "smd-c3", title: "Pass & Plan Management", text: "Configure monthly, quarterly, and annual packages with custom rates." },
+        { id: "smd-c4", title: "Attendance & Check-in", text: "Simple mobile-first check-in tool for staff at front desks." }
+      ] } },
+      { id: "smd-5", type: "contactStrip", layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false }, props: { title: "Automate Member Fees", text: "Schedule a live demo to stop revenue leakage in your membership business.", buttons: [{ id: "smd-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }] } }
+    ]
+  },
+  "service:property-checks": {
+    label: "Owner Dashboard",
+    path: "/services/property-checks",
+    seo: { title: "Mobile Owner Intelligence Dashboard — Enterprise Business", description: "Realtime mobile dashboard for daily revenue and customer metrics." },
+    blocks: [
+      { id: "spc-1", type: "heading", layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "MODULE 06", text: "Mobile Owner Intelligence Dashboard", level: "h1" } },
+      { id: "spc-2", type: "text", layout: { align: "left", width: "normal", spaceTop: 1, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "A single mobile dashboard showing today's collections, website lead conversions, social media inquiries, and customer purchase histories in real time." } },
+      { id: "spc-3", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Executive Overview", subtitle: "Instant financial and lead visibility.", columns: 2, items: [
+        { id: "spc-c1", title: "Today's Collections", text: "Instant ledger of daily Cash vs. UPI collections at a glance." },
+        { id: "spc-c2", title: "Lead Conversion Velocity", text: "Track the percentage of enquiries turning into paying customers." }
+      ] } },
+      { id: "spc-4", type: "cards", layout: { align: "left", width: "normal", spaceTop: 2, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { title: "Mobile-First Accessibility", subtitle: "Zero confusing IT metrics.", columns: 2, items: [
+        { id: "spc-c3", title: "Clean Visuals", text: "Clear charts and numbers designed specifically for busy business owners." },
+        { id: "spc-c4", title: "Automated Monthly Summaries", text: "Receive auto-generated monthly growth graphs directly to your device." }
+      ] } },
+      { id: "spc-5", type: "contactStrip", layout: { align: "center", width: "normal", spaceTop: 3, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false }, props: { title: "Gain Total Visibility", text: "Empower your business with a unified owner intelligence dashboard.", buttons: [{ id: "spc-btn-1", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }] } }
+    ]
+  },
+  about: {
+    label: "About",
+    path: "/about",
+    seo: {
+      title: "About Us — Enterprise Business",
+      description: "Our philosophy, mission, and long-term partnership model for local enterprises."
+    },
+    blocks: [
+      {
+        id: "about-001",
+        type: "heading",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "ABOUT OUR PARTNERSHIP",
+          text: "We Are Your Dedicated Technology Division",
+          level: "h1"
+        }
+      },
+      {
+        id: "about-002",
+        type: "imageText",
+        layout: { align: "left", width: "normal", spaceTop: 3, spaceBottom: 3, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "OUR PHILOSOPHY",
+          title: "Build Systems, Not Just Campaigns",
+          text: "Marketing ad campaigns stop the moment your ad budget runs out. A custom-built website, WhatsApp CRM, and automated invoicing system run 24/7/365, compounding efficiency and protecting your business.",
+          image: "",
+          imageAlt: "Business Systems Engineering",
+          imageSide: "right",
+          buttons: [
+            { id: "abt-btn-1", label: "Start a Conversation", href: "/contact", style: "solid", size: "md" }
+          ]
+        }
+      },
+      {
+        id: "about-003",
+        type: "contactStrip",
+        layout: { align: "center", width: "normal", spaceTop: 4, spaceBottom: 4, background: "primary", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Partner With Our Technical Team",
+          text: "Reach out on WhatsApp to learn more about our zero-cost pilot program and how we can support your business.",
+          buttons: [
+            { id: "abt-btn-2", label: "Message us on WhatsApp", href: "whatsapp", style: "outline", size: "md" }
+          ]
+        }
+      }
+    ]
+  },
+  faq: {
+    label: "FAQ",
+    path: "/faq",
+    seo: {
+      title: "Frequently Asked Questions — Enterprise Business",
+      description: "Answers to common questions regarding our software platforms, pilot model, and ownership."
+    },
+    blocks: [
+      {
+        id: "faq-001",
+        type: "heading",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "TRANSPARENT ANSWERS",
+          text: "Frequently Asked Questions",
+          level: "h1"
+        }
+      },
+      {
+        id: "faq-002",
+        type: "faq",
+        layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "General Inquiries",
+          items: [
+            { id: "f-01", question: "How does the zero-upfront pilot program work?", answer: "We partner with selected businesses to deploy our custom website and software suite at zero upfront cost. You experience the live operational impact and value first before entering a commercial partnership." },
+            { id: "f-02", question: "Can I update the website without knowing how to code?", answer: "Yes, completely. Our platform includes a private Visual CMS. You can click on any text, photo, banner, or price directly on your screen and update it live in seconds." },
+            { id: "f-03", question: "Who owns the code, data, and domain name?", answer: "You own 100% of your platform from day one. All GitHub code repositories, cloud database instances, and domain registrations belong entirely to your business." },
+            { id: "f-04", question: "How are the tools connected with each other?", answer: "All modules share a unified Supabase database backbone. When you generate an invoice, customer records, CRM deal stages, and inventory balances update automatically in real time." },
+            { id: "f-05", question: "What ongoing technical support is provided?", answer: "You have a direct line to your dedicated technical partner on WhatsApp. We monitor system uptime, security, database backups, and feature improvements continuously." }
+          ]
+        }
+      }
+    ]
+  },
+  contact: {
+    label: "Contact",
+    path: "/contact",
+    seo: {
+      title: "Contact Our Team — Enterprise Business",
+      description: "Send an enquiry or message us on WhatsApp to discuss your business requirements."
+    },
+    blocks: [
+      {
+        id: "contact-001",
+        type: "heading",
+        layout: { align: "left", width: "normal", spaceTop: 4, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          eyebrow: "GET IN TOUCH",
+          text: "Start a Conversation",
+          level: "h1"
+        }
+      },
+      {
+        id: "contact-002",
+        type: "text",
+        layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          text: "Fill out the enquiry form below or click the WhatsApp button to message our team directly. We typically respond within minutes during business hours."
+        }
+      },
+      {
+        id: "contact-003",
+        type: "enquiryForm",
+        layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          title: "Tell us about your business",
+          text: "We reply on WhatsApp or email within minutes.",
+          submitLabel: "Send Enquiry"
+        }
+      }
+    ]
+  },
+  privacy: {
+    label: "Privacy Policy",
+    path: "/privacy",
+    seo: { title: "Privacy Policy — Enterprise Business", description: "Our commitment to data privacy, confidentiality, and security." },
+    blocks: [
+      { id: "p-01", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 4, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "LEGAL", text: "Privacy Policy", level: "h1" } },
+      { id: "p-02", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "We respect your privacy and are committed to protecting all personal and customer information entrusted to our platforms." } },
+      { id: "p-03", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "", text: "1. Information We Collect", level: "h2" } },
+      { id: "p-04", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "We collect only information necessary to deliver our business software and support services, including contact information, operational settings, and transaction records." } },
+      { id: "p-05", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "", text: "2. How We Protect Your Data", level: "h2" } },
+      { id: "p-06", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "All database connections are encrypted in transit via SSL/TLS and safeguarded by strict Row Level Security (RLS) policies. We never sell or share client data with third parties." } },
+      { id: "p-07", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "", text: "3. Your Rights & Data Portability", level: "h2" } },
+      { id: "p-08", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "You have complete authority over your business data and can request full exports, modifications, or deletions at any time by contacting our support team." } }
+    ]
+  },
+  terms: {
+    label: "Terms of Service",
+    path: "/terms",
+    seo: { title: "Terms of Service — Enterprise Business", description: "Standard operating terms, service level commitments, and code ownership." },
+    blocks: [
+      { id: "t-01", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 4, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "LEGAL", text: "Terms of Service", level: "h1" } },
+      { id: "t-02", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "By using our digital software and web engineering platforms, you agree to these standard operational terms." } },
+      { id: "t-03", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "", text: "1. Platform Ownership & Licensing", level: "h2" } },
+      { id: "t-04", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "All client-specific content, branding, databases, and custom configurations are the sole property of the client. Core frameworks are provided under standard commercial and open-source licenses." } },
+      { id: "t-05", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "", text: "2. Availability & Service Commitments", level: "h2" } },
+      { id: "t-06", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 2, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "We strive for 99.9% uptime across all edge hosting deployments and provide ongoing maintenance, health monitoring, and security patching." } },
+      { id: "t-07", type: "heading", layout: { align: "left", width: "narrow", spaceTop: 2, spaceBottom: 1, background: "none", hideMobile: false, hideDesktop: false }, props: { eyebrow: "", text: "3. Termination & Data Handover", level: "h2" } },
+      { id: "t-08", type: "text", layout: { align: "left", width: "narrow", spaceTop: 1, spaceBottom: 4, background: "none", hideMobile: false, hideDesktop: false }, props: { text: "Either party may terminate the partnership with written notice. Upon termination, all code repositories, domain DNS records, and database credentials remain under your full ownership." } }
+    ]
+  },
+  global: {
+    label: "Global Elements",
+    path: "/global",
+    seo: { title: "Global Settings", description: "Global layout and navigation controls." },
+    blocks: [
+      {
+        id: "global-nav-01",
+        type: "navigation",
+        layout: { align: "left", width: "normal", spaceTop: 0, spaceBottom: 0, background: "none", hideMobile: false, hideDesktop: false },
+        props: {
+          links: [
+            { id: "gn-1", label: "Home", href: "/" },
+            { id: "gn-2", label: "Services", href: "/services" },
+            { id: "gn-3", label: "How it works", href: "/about" },
+            { id: "gn-4", label: "Questions", href: "/faq" },
+            { id: "gn-5", label: "Talk to us", href: "/contact" }
+          ]
+        }
+      }
+    ]
+  }
+};
+
+const newSeed = {
+  schemaVersion: 1,
+  version: 1,
+  site: cleanSite,
+  theme: originalSeed.theme,
+  pages: cleanPages
+};
+
+try {
+  const prepared = prepareCmsSeed(newSeed);
+  console.log("SUCCESS! Prepared seed valid with pages:", prepared.pages.length);
+  writeFileSync("src/content/seed.json", JSON.stringify(newSeed, null, 2), "utf8");
+  console.log("Successfully wrote clean skeleton to src/content/seed.json");
+} catch (err) {
+  console.error("VALIDATION ERROR:", err);
+  process.exit(1);
+}

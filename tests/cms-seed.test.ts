@@ -19,7 +19,7 @@ describe("versioned CMS bootstrap seed", () => {
     const home = prepared.pages.find((page) => page.page === "home");
     expect(home).toBeTruthy();
     expect(home?.document.metadata?.path).toBe("/");
-    expect(home?.document.metadata?.seo.title).toContain("SAFAR N MANZIL");
+    expect(home?.document.metadata?.seo.title).toContain("Enterprise Business");
     expect(home?.document.blocks.length).toBe(9);
 
     const global = prepared.pages.find((page) => page.page === "global");
