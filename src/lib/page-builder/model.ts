@@ -196,7 +196,7 @@ export function createBlock(type: BlockType): Block {
       return { id, type, layout: defaultLayout({ width: "normal", background: "muted", spaceTop: 5, spaceBottom: 5 }), props: { title: "A clear breakdown, not a surprise bill.", text: "Every real request is different. This example shows the structure you can expect, without using any customer or payment details.", items: [
         { id: uid(), title: "The work requested", text: "Written in plain language" },
         { id: uid(), title: "Outside costs", text: "Shop, worker or materials" },
-        { id: uid(), title: "Safar N manzil fee", text: "Shown separately" },
+        { id: uid(), title: "Platform fee", text: "Shown separately" },
       ] } };
     case "hero":
       return { id, type, layout, props: { eyebrow: "Small line", title: "Your headline", text: "A short supporting sentence.", image: "", imageAlt: "", imageSide: "right", buttons: [btn("Ask for help now", "/contact")] } };
@@ -300,7 +300,7 @@ export function defaultDocument(page: string): PageDocument {
   if (page === "about") {
     return b([
       { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4 }), props: { eyebrow: "How it works", text: site.brand.motto, level: "h1" } },
-      { id: uid(), type: "imageText", layout: defaultLayout(), props: { eyebrow: "", title: "Who we are", text: site.brand.description, image: castArt, imageAlt: "The SAFAR family characters", imageSide: "right", buttons: [btn(site.cta.primary, "/contact")] } },
+      { id: uid(), type: "imageText", layout: defaultLayout(), props: { eyebrow: "", title: "Who we are", text: site.brand.description, image: castArt, imageAlt: "Team members", imageSide: "right", buttons: [btn(site.cta.primary, "/contact")] } },
       createBlock("contactStrip"),
     ]);
   }

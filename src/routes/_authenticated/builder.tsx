@@ -24,8 +24,8 @@ const usePuck = createUsePuck();
 export const Route = createFileRoute("/_authenticated/builder")({
   head: () => ({
     meta: [
-      { title: "Website studio — SAFAR N MANZIL" },
-      { name: "description", content: "Drag, drop, edit and publish every section of the SAFAR website." },
+      { title: "Website Studio" },
+      { name: "description", content: "Drag, drop, edit and publish every section of the website." },
       { name: "robots", content: "noindex" },
     ],
   }),

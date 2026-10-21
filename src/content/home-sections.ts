@@ -97,7 +97,7 @@ export const SECTION_DEFS: SectionDef[] = [
     defaults: {
       title: "Three ways we help you",
       subtitle:
-        "Instead of searching for many different people, just ask SAFAR N MANZIL. Here is how we handle your requests — and we tell you the price before we start.",
+        "Instead of searching for many different people, just ask us. Here is how we handle your requests — and we tell you the price before we start.",
       groceriesImageUrl: "",
       repairsImageUrl: "",
       healthcareImageUrl: "",
@@ -385,7 +385,7 @@ export const SECTION_DEFS: SectionDef[] = [
         cta("Questions", "/faq"),
         cta("Talk to us", "/contact"),
       ],
-      legal: "© SAFAR N MANZIL. All rights reserved.",
+      legal: "All rights reserved.",
       crmLabel: "Team login",
     },
   },

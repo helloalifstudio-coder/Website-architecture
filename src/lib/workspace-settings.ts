@@ -91,7 +91,7 @@ export interface WorkspaceSettings {
 
 export const DEFAULT_SETTINGS: WorkspaceSettings = {
   branding: {
-    name: "Safar N manzil",
+    name: "Business Portal",
     tagline: "We do. We assist. We connect.",
     initial: "S",
     logoUrl: "",

@@ -10,7 +10,7 @@ import type { SiteConfig } from "../types/site";
  */
 export const site: SiteConfig = {
   brand: {
-    name: "SAFAR N MANZIL",
+    name: "Business Portal",
     tagline: "Help for your family in India, while you work in the Gulf",
     description:
       "We do the shopping, parcels, home repairs, hospital visits and paperwork for your family back home in India — with photos, updates and a clear price agreed before we start.",

@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "A secure, schema-driven website publishing platform and visual content studio.",
       },
       { name: "author", content: "Alif Growth Media" },
-      { name: "application-name", content: "Safar Studio" },
+      { name: "application-name", content: "Website Studio" },
       { property: "og:title", content: "Visual Studio — Business Console" },
       {
         property: "og:description",
