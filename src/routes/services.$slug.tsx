@@ -61,15 +61,15 @@ function ServiceNotFound() {
   return (
     <PageShell pageName="service-not-found">
       <PageIntro
-        title="We could not find that page"
-        lead="The help you were looking for may have moved. Here is everything we do."
+        title="We could not find that service"
+        lead="The service you were looking for may have moved. Here is our full catalog of capabilities."
       />
       <div className="mx-auto max-w-4xl px-5 py-12">
         <Link
           to="/services"
           className="inline-flex min-h-[48px] items-center rounded-full bg-primary px-6 font-semibold text-primary-foreground"
         >
-          See all our help
+          See all services
         </Link>
       </div>
     </PageShell>
@@ -85,13 +85,13 @@ function ServiceDetail() {
   return (
     <PageShell pageName={`service:${service.slug}`}>
       <PageIntro
-        eyebrow="Our help"
+        eyebrow="Capability"
         title={service.title}
         lead={service.description}
         trail={[
           { label: "Home", href: "/" },
           { label: "Services", href: "/services" },
-          { label: service.title, href: "/services" },
+          { label: service.title, href: `/services/${service.slug}` },
         ]}
       >
         {whatsappUrl ? (
@@ -131,7 +131,7 @@ function ServiceDetail() {
         </Reveal>
 
         <Reveal delay={80}>
-          <h2 className="font-display text-2xl font-bold">What comes back to you</h2>
+          <h2 className="font-display text-2xl font-bold">Deliverables & Outcomes</h2>
           <ul className="mt-4 space-y-3">
             {service.deliverables.map((item) => (
               <li key={item} className="flex gap-3 text-muted-foreground">
@@ -145,7 +145,7 @@ function ServiceDetail() {
 
       <section className="border-y border-border bg-card py-14">
         <div className="mx-auto max-w-6xl px-5">
-          <h2 className="font-display text-2xl font-bold">How one job goes</h2>
+          <h2 className="font-display text-2xl font-bold">Execution Process</h2>
           <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {service.process.map((step, index) => (
               <Reveal as="li" key={step.step} delay={index * 70}>
@@ -164,11 +164,11 @@ function ServiceDetail() {
 
       <section className="mx-auto max-w-6xl px-5 py-14">
         <Reveal className="rounded-2xl border border-border bg-accent/40 p-7">
-          <h2 className="font-display text-xl font-bold">What it costs</h2>
+          <h2 className="font-display text-xl font-bold">Pricing & Terms</h2>
           <p className="mt-2 text-muted-foreground">{service.pricingNote}</p>
         </Reveal>
 
-        <h2 className="mt-12 font-display text-2xl font-bold">We also help with</h2>
+        <h2 className="mt-12 font-display text-2xl font-bold">Related capabilities</h2>
         <ul className="mt-5 grid gap-4 sm:grid-cols-3">
           {others.map((item) => (
             <li key={item.id}>
@@ -192,9 +192,18 @@ function ServiceDetail() {
 
 function ServiceDetailRoute() {
   const { slug } = Route.useParams();
-  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } = Route.useLoaderData();
+  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } =
+    Route.useLoaderData();
   return (
-    <PublishedOr page={`service:${slug}`} pageName={`service:${slug}`} initialDocument={publishedDocument} status={publishedDocumentStatus} siteConfigContent={siteConfigContent} globalDocument={globalDocument} usesSeedFallback={usesSeedFallback}>
+    <PublishedOr
+      page={`service:${slug}`}
+      pageName={`service:${slug}`}
+      initialDocument={publishedDocument}
+      status={publishedDocumentStatus}
+      siteConfigContent={siteConfigContent}
+      globalDocument={globalDocument}
+      usesSeedFallback={usesSeedFallback}
+    >
       <ServiceDetail />
     </PublishedOr>
   );

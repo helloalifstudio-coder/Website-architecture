@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 import { BUILDER_PAGES, defaultDocument } from "../../lib/page-builder/model";
 import { bundledDocuments } from "../../lib/page-builder/published-state";
-import { documentToPuck, puckToDocument, safarPuckConfig } from "../../lib/page-builder/puck-config";
+import { documentToPuck, puckToDocument, universalPuckConfig } from "../../lib/page-builder/puck-config";
 import {
   fetchCmsHandshake,
   fetchCmsSiteConfiguration,
@@ -145,7 +145,7 @@ function StudioPage() {
         ) : data ? (
           <Puck
             key={page}
-            config={safarPuckConfig}
+            config={universalPuckConfig}
             data={data}
             onPublish={publish}
             headerTitle={BUILDER_PAGES.find((p) => p.id === page)?.label ?? "Page"}

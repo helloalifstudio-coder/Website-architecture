@@ -1,21 +1,11 @@
 /**
  * Visual page builder — document model.
  *
- * Every public page is a list of structured blocks. Blocks carry typed props
- * and a shared layout object. No raw HTML/CSS/JS can be stored, so an edit
- * can never break the site.
+ * Every public page is an ordered list of structured blocks. Blocks carry typed props
+ * and a shared layout object. Content is strictly decoupled from presentation: no raw
+ * HTML/CSS/JS is stored, guaranteeing type safety, XSS protection and crash-proof rendering.
  */
-import { site } from "../../content/site";
-import { services } from "../../content/services";
-import { faqs } from "../../content/faqs";
-import { defaultSections } from "../../content/home-sections";
-import heroFamily from "../../assets/safar-hero-family.png";
-import groceriesStory from "../../assets/safar-story-groceries.png";
-import repairsStory from "../../assets/safar-story-repairs.png";
-import healthcareStory from "../../assets/safar-story-health.png";
-import castArt from "../../assets/safar-cast.png";
-import updatesArt from "../../assets/safar-updates.png";
-import { campaignDreams, campaignJourney, campaignWorries } from "@/lib/media";
+import seedBlueprint from "../../content/seed.json";
 import type { StorySlide } from "../../components/site/story-carousel";
 import type { InvoiceExampleRow } from "../../components/site/invoice-example";
 
@@ -70,17 +60,256 @@ interface BaseBlock<T extends string, P> {
   anchor?: string;
 }
 
-export type Block =
-  | BaseBlock<"hero", { eyebrow: string; title: string; text: string; image: string; imageAlt: string; imageSide: "left" | "right"; buttons: ButtonItem[] }>
-  | BaseBlock<"cinematicHero", { eyebrow: string; title: string; accent: string; text: string; image: string; imageAlt: string; buttons: ButtonItem[] }>
-  | BaseBlock<"careJourney", { eyebrow: string; title: string; text: string; items: CardItem[] }>
-  | BaseBlock<"serviceStory", { eyebrow: string; title: string; text: string; items: CardItem[] }>
-  | BaseBlock<"trustDossier", { eyebrow: string; title: string; text: string; items: CardItem[] }>
-  | BaseBlock<"proofReturn", { eyebrow: string; title: string; text: string; image: string; imageAlt: string; items: CardItem[] }>
-  | BaseBlock<"serviceFilm", { eyebrow: string; title: string; text: string; src: string; poster: string; items: CardItem[] }>
+/* ============================================================================
+   UNIVERSAL 12-BLOCK CATALOG INTERFACES
+   ============================================================================ */
 
-  | BaseBlock<"storyCarousel", { title: string; text: string; items: StorySlide[] }>
-  | BaseBlock<"invoiceExample", { title: string; text: string; items: InvoiceExampleRow[] }>
+export interface HeroBlockProps {
+  eyebrow?: string;
+  title: string;
+  accent?: string;
+  text: string;
+  buttons: ButtonItem[];
+  image?: string;
+  imageAlt?: string;
+  imageSide?: "left" | "right";
+  variant?: "split" | "center" | "minimal";
+  badge?: string;
+}
+
+export interface FeatureItem {
+  id: string;
+  icon?: string;
+  title: string;
+  description: string;
+  badge?: string;
+  href?: string;
+}
+
+export interface FeatureGridBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  columns: 2 | 3 | 4;
+  items: FeatureItem[];
+}
+
+export interface ProcessStep {
+  id: string;
+  step: number;
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface ProcessFlowBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  steps: ProcessStep[];
+}
+
+export interface CatalogServiceItem {
+  id: string;
+  title: string;
+  slug: string;
+  summary: string;
+  price?: string;
+  duration?: string;
+  features: string[];
+  href: string;
+  badge?: string;
+}
+
+export interface ServiceCatalogBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  categories: string[];
+  services: CatalogServiceItem[];
+}
+
+export interface PricingTier {
+  id: string;
+  name: string;
+  price: string;
+  badge?: string;
+  description: string;
+  highlighted: boolean;
+  features: string[];
+  cta: {
+    label: string;
+    href: string;
+  };
+}
+
+export interface PricingTableBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  billingNote?: string;
+  tiers: PricingTier[];
+}
+
+export interface TestimonialItem {
+  id: string;
+  quote: string;
+  author: string;
+  role?: string;
+  company?: string;
+  avatar?: string;
+  rating?: number;
+}
+
+export interface TestimonialsBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  layout: "grid" | "carousel";
+  items: TestimonialItem[];
+}
+
+export interface StatItem {
+  id: string;
+  value: string;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+  description?: string;
+}
+
+export interface StatsBannerBlockProps {
+  eyebrow?: string;
+  title?: string;
+  stats: StatItem[];
+}
+
+export interface AccordionFaqItem {
+  id: string;
+  question: string;
+  answer: string;
+  category?: string;
+}
+
+export interface AccordionFaqBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  items: AccordionFaqItem[];
+}
+
+export interface FormField {
+  id: string;
+  name: string;
+  label: string;
+  type: "text" | "email" | "tel" | "textarea" | "select";
+  required: boolean;
+  placeholder?: string;
+}
+
+export interface LeadCaptureBlockProps {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  fields: FormField[];
+  submitLabel: string;
+  dispatchTarget: "whatsapp" | "email" | "api";
+  successMessage?: string;
+}
+
+export interface ContentSectionBlockProps {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  layout: "mediaLeft" | "mediaRight" | "centered" | "prose";
+  mediaType: "image" | "video";
+  mediaUrl?: string;
+  mediaAlt?: string;
+  buttons: ButtonItem[];
+}
+
+export interface CtaBannerBlockProps {
+  eyebrow?: string;
+  title: string;
+  text: string;
+  background: "primary" | "accent" | "card" | "muted";
+  buttons: ButtonItem[];
+}
+
+export interface LogoItem {
+  id: string;
+  name: string;
+  logoUrl: string;
+  href?: string;
+}
+
+export interface LogoCloudBlockProps {
+  eyebrow?: string;
+  title?: string;
+  logos: LogoItem[];
+}
+
+/* ============================================================================
+   BLOCK UNION
+   ============================================================================ */
+
+export type UniversalBlockType =
+  | "hero"
+  | "featureGrid"
+  | "processFlow"
+  | "serviceCatalog"
+  | "pricingTable"
+  | "testimonials"
+  | "statsBanner"
+  | "accordionFaq"
+  | "leadCapture"
+  | "contentSection"
+  | "ctaBanner"
+  | "logoCloud";
+
+export type PrimitiveBlockType =
+  | "heading"
+  | "text"
+  | "image"
+  | "buttons"
+  | "imageText"
+  | "cards"
+  | "faq"
+  | "contactStrip"
+  | "enquiryForm"
+  | "video"
+  | "spacer"
+  | "divider"
+  | "navigation";
+
+export type LegacyBlockType =
+  | "cinematicHero"
+  | "careJourney"
+  | "serviceStory"
+  | "trustDossier"
+  | "proofReturn"
+  | "serviceFilm"
+  | "storyCarousel"
+  | "invoiceExample";
+
+export type BlockType = UniversalBlockType | PrimitiveBlockType | LegacyBlockType;
+
+export type Block =
+  // Universal 12-block catalog
+  | BaseBlock<"hero", HeroBlockProps>
+  | BaseBlock<"featureGrid", FeatureGridBlockProps>
+  | BaseBlock<"processFlow", ProcessFlowBlockProps>
+  | BaseBlock<"serviceCatalog", ServiceCatalogBlockProps>
+  | BaseBlock<"pricingTable", PricingTableBlockProps>
+  | BaseBlock<"testimonials", TestimonialsBlockProps>
+  | BaseBlock<"statsBanner", StatsBannerBlockProps>
+  | BaseBlock<"accordionFaq", AccordionFaqBlockProps>
+  | BaseBlock<"leadCapture", LeadCaptureBlockProps>
+  | BaseBlock<"contentSection", ContentSectionBlockProps>
+  | BaseBlock<"ctaBanner", CtaBannerBlockProps>
+  | BaseBlock<"logoCloud", LogoCloudBlockProps>
+
+  // Primitive blocks
   | BaseBlock<"heading", { eyebrow: string; text: string; level: "h1" | "h2" | "h3" }>
   | BaseBlock<"text", { text: string }>
   | BaseBlock<"image", { src: string; alt: string; caption: string }>
@@ -93,9 +322,17 @@ export type Block =
   | BaseBlock<"video", { url: string; caption: string }>
   | BaseBlock<"spacer", { size: number }>
   | BaseBlock<"divider", Record<string, never>>
-  | BaseBlock<"navigation", { links: LinkItem[] }>;
+  | BaseBlock<"navigation", { links: LinkItem[] }>
 
-export type BlockType = Block["type"];
+  // Legacy blocks
+  | BaseBlock<"cinematicHero", { eyebrow: string; title: string; accent: string; text: string; image: string; imageAlt: string; buttons: ButtonItem[] }>
+  | BaseBlock<"careJourney", { eyebrow: string; title: string; text: string; items: CardItem[] }>
+  | BaseBlock<"serviceStory", { eyebrow: string; title: string; text: string; items: CardItem[] }>
+  | BaseBlock<"trustDossier", { eyebrow: string; title: string; text: string; items: CardItem[] }>
+  | BaseBlock<"proofReturn", { eyebrow: string; title: string; text: string; image: string; imageAlt: string; items: CardItem[] }>
+  | BaseBlock<"serviceFilm", { eyebrow: string; title: string; text: string; src: string; poster: string; items: CardItem[] }>
+  | BaseBlock<"storyCarousel", { title: string; text: string; items: StorySlide[] }>
+  | BaseBlock<"invoiceExample", { title: string; text: string; items: InvoiceExampleRow[] }>;
 
 export interface PageSeoMetadata {
   title: string;
@@ -144,80 +381,297 @@ export const btn = (label: string, href: string, style: ButtonItem["style"] = "s
 });
 
 /** Block library shown in the editor's "Add block" menu. */
-export const BLOCK_LIBRARY: { type: BlockType; label: string; description: string }[] = [
-  { type: "cinematicHero", label: "Cinematic opening", description: "Brand promise, family picture and main action" },
-  { type: "serviceFilm", label: "Brand film", description: "The two-minute story film with chapters" },
+export const BLOCK_LIBRARY: { type: BlockType; label: string; group: string; description: string }[] = [
+  // 1. Hero & Header
+  { type: "hero", label: "Hero Banner", group: "Hero & Header", description: "Headline, accent, supporting copy, CTA buttons and media" },
+  { type: "heading", label: "Heading", group: "Hero & Header", description: "H1, H2, or H3 section title with optional eyebrow" },
+  { type: "cinematicHero", label: "Cinematic Hero", group: "Hero & Header", description: "Full-width visual opening with badge and image" },
 
-  { type: "careJourney", label: "Care journey", description: "The request-to-result story" },
-  { type: "serviceStory", label: "Service stories", description: "Interactive service choices with pictures" },
-  { type: "trustDossier", label: "Trust dossier", description: "What stays under the customer's control" },
-  { type: "proofReturn", label: "Proof packet", description: "Photos, bill and completion update" },
-  { type: "storyCarousel", label: "Family story slider", description: "Swipeable campaign pictures and family stories" },
-  { type: "invoiceExample", label: "Example cost breakdown", description: "A privacy-safe preview of costs before approval" },
-  { type: "hero", label: "Big banner", description: "Headline, text, picture and buttons" },
-  { type: "heading", label: "Heading", description: "A title for a new part of the page" },
-  { type: "text", label: "Paragraph", description: "Plain text" },
-  { type: "image", label: "Picture", description: "One picture with a caption" },
-  { type: "buttons", label: "Buttons", description: "One or more buttons in a row" },
-  { type: "imageText", label: "Picture + text", description: "Side-by-side story" },
-  { type: "cards", label: "Card grid", description: "Services, steps or features" },
-  { type: "faq", label: "Questions", description: "Question and answer list" },
-  { type: "contactStrip", label: "Contact strip", description: "WhatsApp / call band" },
-  { type: "enquiryForm", label: "Enquiry form", description: "Name, phone and request" },
-  { type: "video", label: "Video", description: "YouTube or Vimeo link" },
-  { type: "spacer", label: "Space", description: "Empty space" },
-  { type: "divider", label: "Line", description: "Thin dividing line" },
+  // 2. Services & Features
+  { type: "featureGrid", label: "Feature Grid", group: "Services & Features", description: "2, 3 or 4 column feature cards with icons and badges" },
+  { type: "serviceCatalog", label: "Service Catalog", group: "Services & Features", description: "Filterable services with pricing, duration and booking triggers" },
+  { type: "cards", label: "Cards Grid", group: "Services & Features", description: "Multi-column structured content cards" },
+  { type: "contentSection", label: "Content Section", group: "Services & Features", description: "Rich editorial section with media-left, media-right or prose layout" },
+  { type: "imageText", label: "Side-by-Side Story", group: "Services & Features", description: "Text narrative paired with an image" },
+
+  // 3. Process & Workflow
+  { type: "processFlow", label: "Process Flow", group: "Process & Workflow", description: "Numbered step-by-step onboarding or fulfillment timeline" },
+  { type: "careJourney", label: "Journey Steps", group: "Process & Workflow", description: "Numbered step cards with descriptions" },
+
+  // 4. Social Proof & Trust
+  { type: "testimonials", label: "Testimonials", group: "Social Proof & Trust", description: "5-star rating reviews, client quotes and author attribution" },
+  { type: "statsBanner", label: "Stats Banner", group: "Social Proof & Trust", description: "High-impact key numerical metrics and trust indicators" },
+  { type: "logoCloud", label: "Logo Cloud", group: "Social Proof & Trust", description: "Client, partner or certification brand logo strip" },
+  { type: "trustDossier", label: "Trust Dossier", group: "Social Proof & Trust", description: "Detailed trust and credential proof cards" },
+  { type: "storyCarousel", label: "Story Carousel", group: "Social Proof & Trust", description: "Interactive slide carousel" },
+
+  // 5. Pricing & Packages
+  { type: "pricingTable", label: "Pricing Table", group: "Pricing & Packages", description: "Tiered pricing comparison with highlighted popular plan" },
+  { type: "invoiceExample", label: "Pricing Breakdown", group: "Pricing & Packages", description: "Transparent line-item cost example" },
+
+  // 6. Lead Capture & Contact
+  { type: "leadCapture", label: "Lead Capture Form", group: "Lead Capture & Contact", description: "Configurable inquiry form with WhatsApp/email triggers" },
+  { type: "ctaBanner", label: "CTA Conversion Banner", group: "Lead Capture & Contact", description: "Full-width conversion banner with primary/accent background" },
+  { type: "contactStrip", label: "Contact Strip", group: "Lead Capture & Contact", description: "Quick action bar with direct contact buttons" },
+  { type: "enquiryForm", label: "Simple Enquiry", group: "Lead Capture & Contact", description: "Basic message enquiry form" },
+  { type: "buttons", label: "Button Row", group: "Lead Capture & Contact", description: "Group of call-to-action buttons" },
+
+  // 7. FAQ & Support
+  { type: "accordionFaq", label: "Accordion FAQ", group: "FAQ & Support", description: "Clean collapsible question and answer accordion" },
+  { type: "faq", label: "FAQ List", group: "FAQ & Support", description: "Question and answer list" },
+
+  // 8. Layout & Media
+  { type: "text", label: "Text Block", group: "Layout & Media", description: "Plain rich-text paragraph container" },
+  { type: "image", label: "Image", group: "Layout & Media", description: "Full-width or centered picture with caption" },
+  { type: "video", label: "Video Player", group: "Layout & Media", description: "Embedded video player" },
+  { type: "serviceFilm", label: "Brand Video", group: "Layout & Media", description: "Full-width video player with poster" },
+  { type: "spacer", label: "Vertical Spacer", group: "Layout & Media", description: "Configurable spacing gap between sections" },
+  { type: "divider", label: "Divider Line", group: "Layout & Media", description: "Horizontal rule separator" },
+  { type: "navigation", label: "Navigation Bar", group: "Layout & Media", description: "Global header navigation menu" },
 ];
 
+/** Factory for every block type in the catalog with sensible, professional defaults. */
 export function createBlock(type: BlockType): Block {
   const id = uid();
   const layout = defaultLayout();
-  switch (type) {
-    case "cinematicHero":
-      return { id, type, layout: defaultLayout({ width: "full", spaceTop: 0, spaceBottom: 0 }), props: { eyebrow: "From the Gulf to your family in India", title: "Your care,", accent: "carried home.", text: "Practical help for your family in India, coordinated while you live in the Gulf.", image: heroFamily, imageAlt: "A family member in the Gulf arranging help for parents in India", buttons: [btn("Tell us what they need", "/contact", "solid")] } };
-    case "careJourney":
-      return { id, type, layout: defaultLayout({ width: "full", background: "primary" }), props: { eyebrow: "One request. One clear journey.", title: "You never have to wonder what happens next.", text: "From your phone in the Gulf to the work in India—and back with proof.", items: ["You tell us", "We understand it", "You approve", "We coordinate", "Proof returns"].map((title) => ({ id: uid(), title, text: "Explain this step in one clear sentence." })) } };
-    case "serviceStory":
-      return { id, type, layout: defaultLayout({ width: "full" }), props: { eyebrow: "Help shaped around real life", title: "What needs doing back home?", text: "Choose a service to explain how it is handled.", items: services.map((service, index) => ({ id: uid(), title: service.title, text: service.shortDescription, image: [groceriesStory, groceriesStory, repairsStory, healthcareStory, healthcareStory, repairsStory][index] ?? "", href: `/services/${service.slug}` })) } };
-    case "trustDossier":
-      return { id, type, layout: defaultLayout({ background: "muted" }), props: { eyebrow: "Trust is not a slogan", title: "See what stays under your control.", text: "Show how each request is agreed, handled and completed.", items: ["Request confirmed", "Plan and price approved", "Work coordinated", "Proof returned"].map((title) => ({ id: uid(), title, text: "Explain what the customer sees at this stage." })) } };
-    case "proofReturn":
-      return { id, type, layout: defaultLayout({ width: "full", background: "primary" }), props: { eyebrow: "Proof returns home", title: "You see how it ended.", text: "The completed work comes back to your phone as a clear update.", image: updatesArt, imageAlt: "A completed task update returning to a family member in the Gulf", items: ["A photo of the work", "The shop or worker bill", "Our fee shown separately", "A short message on WhatsApp"].map((title) => ({ id: uid(), title, text: "" })) } };
-    case "serviceFilm":
-      return { id, type, layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }), props: { eyebrow: "Our story in two minutes", title: "The worry you carry. The help we bring.", text: "From a worried night in the Gulf to your parents cared for at home — the whole journey, scene by scene.", src: "/media/safar-brand-film.mp4", poster: "/media/safar-brand-film-poster.jpg", items: ["Elderly care visits", "Groceries and medicines", "Home and repair checks", "Photo proof after every task"].map((title) => ({ id: uid(), title, text: "" })) } };
-    case "storyCarousel":
-      return { id, type, layout: defaultLayout({ width: "normal", spaceTop: 5, spaceBottom: 5 }), props: { title: "We understand the distance.", text: "The practical needs back home do not pause while you are away.", items: [
 
-        { id: uid(), title: "You carry the dream.", accent: "We help carry the responsibility.", text: "While you build a future in the Gulf, we help with the things that still need doing at home.", image: campaignDreams.url, imageAlt: "A Gulf resident thinking about family and responsibilities in India" },
-        { id: uid(), title: "Your family’s needs", accent: "still reach you first.", text: "Groceries, appointments, repairs and paperwork can feel heavier when you have to solve them from another country.", image: campaignWorries.url, imageAlt: "A family in India sharing practical concerns with a relative in the Gulf" },
-        { id: uid(), title: "One message starts", accent: "a clear journey.", text: "Tell us what is needed. We confirm the task, share the plan, wait for approval and return with an update.", image: campaignJourney.url, imageAlt: "A simple illustrated journey from request to completed help" },
-      ] } };
-    case "invoiceExample":
-      return { id, type, layout: defaultLayout({ width: "normal", background: "muted", spaceTop: 5, spaceBottom: 5 }), props: { title: "A clear breakdown, not a surprise bill.", text: "Every real request is different. This example shows the structure you can expect, without using any customer or payment details.", items: [
-        { id: uid(), title: "The work requested", text: "Written in plain language" },
-        { id: uid(), title: "Outside costs", text: "Shop, worker or materials" },
-        { id: uid(), title: "Platform fee", text: "Shown separately" },
-      ] } };
+  switch (type) {
+    // Universal 12 blocks
     case "hero":
-      return { id, type, layout, props: { eyebrow: "Small line", title: "Your headline", text: "A short supporting sentence.", image: "", imageAlt: "", imageSide: "right", buttons: [btn("Ask for help now", "/contact")] } };
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "full", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "WORLD-CLASS SOLUTIONS",
+          title: "Custom Software & Operating Systems",
+          accent: "Built to Scale.",
+          text: "We partner with ambitious service enterprises to deliver high-performance digital storefronts, automated customer pipelines, and reliable cloud operations.",
+          buttons: [btn("Get Started Today", "/contact", "solid"), btn("Explore Capabilities", "#features", "outline")],
+          image: "",
+          imageAlt: "Platform dashboard preview",
+          variant: "split",
+          imageSide: "right",
+          badge: "ZERO UPFRONT PILOT",
+        },
+      };
+
+    case "featureGrid":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "CORE ADVANTAGES",
+          title: "Engineered for Reliability & Scale",
+          subtitle: "Everything you need to streamline client acquisition and business operations.",
+          columns: 3,
+          items: [
+            { id: uid(), icon: "Zap", title: "Instant Deployment", description: "Launch your custom platform in seconds with zero downtime or complex setups." },
+            { id: uid(), icon: "Shield", title: "Enterprise Security", description: "Row-Level Security, automated backups and encrypted credentials at rest." },
+            { id: uid(), icon: "Smartphone", title: "Mobile Optimized", description: "Ultra-responsive layouts designed for flawless performance on all devices." },
+            { id: uid(), icon: "RefreshCw", title: "Realtime Synchronization", description: "Publish visual edits from the studio that appear on live sites in milliseconds." },
+            { id: uid(), icon: "Code", title: "100% Code Ownership", description: "You own all code repositories, database instances and domain registrations." },
+            { id: uid(), icon: "Headphones", title: "Dedicated Tech Partner", description: "Direct WhatsApp access to senior engineers for continuous system monitoring." },
+          ],
+        },
+      };
+
+    case "processFlow":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "HOW IT WORKS",
+          title: "A Transparent 4-Step Journey",
+          subtitle: "From your initial request to delivered results, you always know what happens next.",
+          steps: [
+            { id: uid(), step: 1, title: "Discovery & Plan", description: "We outline scope, deliverables and pricing transparently before any work begins." },
+            { id: uid(), step: 2, title: "Rapid Build", description: "Our engineering team scaffolds your tailored cloud platform and visual editor." },
+            { id: uid(), step: 3, title: "Review & Refine", description: "You inspect the live preview, make visual adjustments, and approve deployment." },
+            { id: uid(), step: 4, title: "Launch & Support", description: "Your platform goes live with continuous uptime monitoring and feature enhancements." },
+          ],
+        },
+      };
+
+    case "serviceCatalog":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "OUR CAPABILITIES",
+          title: "Comprehensive Business Services",
+          subtitle: "Tailored software and operational systems designed for your industry.",
+          categories: ["All", "Core", "Advanced"],
+          services: [
+            { id: uid(), title: "Digital Platform Setup", slug: "platform-setup", summary: "Complete cloud website and visual CMS deployment.", price: "Custom Quote", duration: "1-2 Weeks", features: ["Custom Domain & SSL", "Visual CMS Studio", "PostgreSQL Database"], href: "/contact", badge: "POPULAR" },
+            { id: uid(), title: "Operational Automation", slug: "automation", summary: "Automate leads, invoices and customer communication channels.", price: "Custom Quote", duration: "Ongoing", features: ["WhatsApp Notifications", "CRM Pipeline", "Automated Billing"], href: "/contact" },
+            { id: uid(), title: "Dedicated Maintenance", slug: "maintenance", summary: "24/7 technical monitoring, database backups and speed optimization.", price: "Monthly Retainer", duration: "Continuous", features: ["SLA Guarantee", "Zero-Downtime Updates", "Security Hardening"], href: "/contact" },
+          ],
+        },
+      };
+
+    case "pricingTable":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "TRANSPARENT INVESTMENT",
+          title: "Simple, Predictable Plans",
+          subtitle: "No hidden charges. Upgrade, downgrade, or cancel anytime.",
+          billingNote: "All plans include 24/7 uptime monitoring and automated daily backups.",
+          tiers: [
+            { id: uid(), name: "Starter Pilot", price: "$0 Upfront", badge: "PILOT", description: "Experience the system before entering a commercial partnership.", highlighted: false, features: ["Complete Website Skeleton", "Visual CMS Editor", "Basic Lead Capture", "Community Support"], cta: { label: "Start Pilot", href: "/contact" } },
+            { id: uid(), name: "Growth Engine", price: "$499 /mo", badge: "POPULAR", description: "Full operational suite for active, growing service businesses.", highlighted: true, features: ["Custom Domain & SSL", "Realtime WhatsApp Dispatch", "CRM & Invoicing Hub", "Priority 24/7 Support", "Unlimited Visual Edits"], cta: { label: "Get Started", href: "/contact" } },
+            { id: uid(), name: "Enterprise Hub", price: "Custom", badge: "ENTERPRISE", description: "Tailored multi-location architecture and custom integrations.", highlighted: false, features: ["Dedicated Cloud Cluster", "Multi-Tenant Workspaces", "Custom API Integrations", "Dedicated Account Manager", "Custom SLA"], cta: { label: "Contact Sales", href: "/contact" } },
+          ],
+        },
+      };
+
+    case "testimonials":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "VERIFIED REVIEWS",
+          title: "Trusted by Growing Businesses",
+          subtitle: "See how our platform has transformed operations for our partners.",
+          layout: "grid",
+          items: [
+            { id: uid(), quote: "The visual editor transformed how we run our company. We update our services and prices in seconds without needing a developer.", author: "Mohammed Al-Rashid", role: "Managing Director", company: "Prime Logistics", rating: 5 },
+            { id: uid(), quote: "Uptime has been 100% and the WhatsApp integration has doubled our customer inquiry conversion rate in 30 days.", author: "Sarah Jenkins", role: "Founder", company: "Apex Health Group", rating: 5 },
+            { id: uid(), quote: "Having our database, CRM, and website all synchronized in real time eliminated hours of manual paperwork each week.", author: "David Vance", role: "Operations Lead", company: "Vance Home Services", rating: 5 },
+          ],
+        },
+      };
+
+    case "statsBanner":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ background: "card", width: "normal", align: "center", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "PROVEN IMPACT",
+          title: "Results You Can Measure",
+          stats: [
+            { id: uid(), value: "99.9", suffix: "%", label: "Uptime Reliability", description: "Monitored 24/7 at edge" },
+            { id: uid(), value: "< 100", suffix: "ms", label: "Realtime Sync", description: "Instant content propagation" },
+            { id: uid(), value: "100", suffix: "%", label: "Client Code Ownership", description: "Zero vendor lock-in" },
+            { id: uid(), value: "12", suffix: "+", label: "Service Industries", description: "Customized solutions" },
+          ],
+        },
+      };
+
+    case "accordionFaq":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "narrow", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "HAVE QUESTIONS?",
+          title: "Frequently Asked Questions",
+          subtitle: "Clear, straightforward answers about our technology and partnership model.",
+          items: [
+            { id: uid(), question: "How does the zero-upfront pilot program work?", answer: "We partner with selected businesses to deploy the platform at zero upfront cost. You experience live operational value first before entering a commercial partnership." },
+            { id: uid(), question: "Can I update the website without knowing how to code?", answer: "Yes. Our visual studio allows you to click on any element, change text or photos, and publish live in milliseconds." },
+            { id: uid(), question: "Who owns the platform, database, and domain?", answer: "You own 100% of your platform, database, and domain from day one. There is zero proprietary lock-in." },
+            { id: uid(), question: "How do customer inquiries reach our team?", answer: "Inquiries dispatch directly to your WhatsApp or email in real time, formatted clearly with all customer details." },
+          ],
+        },
+      };
+
+    case "leadCapture":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "narrow", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "GET IN TOUCH",
+          title: "Start Your Pilot Project",
+          subtitle: "Fill out the short form below and our team will get in touch with you today.",
+          fields: [
+            { id: uid(), name: "name", label: "Your Name", type: "text", required: true, placeholder: "John Doe" },
+            { id: uid(), name: "phone", label: "Phone / WhatsApp", type: "tel", required: true, placeholder: "+1 234 567 8900" },
+            { id: uid(), name: "email", label: "Email Address", type: "email", required: false, placeholder: "john@example.com" },
+            { id: uid(), name: "message", label: "Tell us about your requirements", type: "textarea", required: true, placeholder: "Describe what your business needs..." },
+          ],
+          submitLabel: "Send Inquiry",
+          dispatchTarget: "whatsapp",
+          successMessage: "Thank you! Your message has been sent.",
+        },
+      };
+
+    case "contentSection":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }),
+        props: {
+          eyebrow: "ABOUT OUR APPROACH",
+          title: "A Dedicated Long-Term Technology Partner",
+          text: "We do not simply build websites and walk away. We operate as your internal technology department, continuously maintaining infrastructure, monitoring performance, and automating operations.",
+          layout: "mediaRight",
+          mediaType: "image",
+          mediaUrl: "",
+          mediaAlt: "Technology partnership illustration",
+          buttons: [btn("Learn More About Us", "/about", "outline")],
+        },
+      };
+
+    case "ctaBanner":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ background: "primary", width: "full", align: "center", spaceTop: 5, spaceBottom: 5 }),
+        props: {
+          eyebrow: "READY TO ELEVATE YOUR OPERATIONS?",
+          title: "Let's Build Something Exceptional Together",
+          text: "Join forward-thinking service businesses that run on our high-performance architecture.",
+          background: "primary",
+          buttons: [btn("Start Your Free Pilot", "/contact", "solid")],
+        },
+      };
+
+    case "logoCloud":
+      return {
+        id,
+        type,
+        layout: defaultLayout({ align: "center", spaceTop: 3, spaceBottom: 3 }),
+        props: {
+          eyebrow: "TRUSTED BY LEADING ENTERPRISES",
+          title: "Powering Modern Service Businesses",
+          logos: [
+            { id: uid(), name: "Apex Group", logoUrl: "" },
+            { id: uid(), name: "Prime Legal", logoUrl: "" },
+            { id: uid(), name: "Metro Health", logoUrl: "" },
+            { id: uid(), name: "Vance Services", logoUrl: "" },
+          ],
+        },
+      };
+
+    // Primitive & legacy blocks
     case "heading":
-      return { id, type, layout, props: { eyebrow: "", text: "New heading", level: "h2" } };
+      return { id, type, layout, props: { eyebrow: "", text: "Section Heading", level: "h2" } };
     case "text":
-      return { id, type, layout, props: { text: "Write your paragraph here." } };
+      return { id, type, layout, props: { text: "Write your section paragraph here." } };
     case "image":
       return { id, type, layout, props: { src: "", alt: "", caption: "" } };
     case "buttons":
-      return { id, type, layout, props: { items: [btn("Button", "/contact")] } };
+      return { id, type, layout, props: { items: [btn("Action Button", "/contact")] } };
     case "imageText":
-      return { id, type, layout, props: { eyebrow: "", title: "A short title", text: "Tell the story here.", image: "", imageAlt: "", imageSide: "left", buttons: [] } };
+      return { id, type, layout, props: { eyebrow: "", title: "Featured Story", text: "Narrative description goes here.", image: "", imageAlt: "", imageSide: "left", buttons: [] } };
     case "cards":
-      return { id, type, layout, props: { title: "Section title", subtitle: "", columns: 3, items: [1, 2, 3].map((n) => ({ id: uid(), title: `Card ${n}`, text: "Short description." })) } };
+      return { id, type, layout, props: { title: "Featured Highlights", subtitle: "", columns: 3, items: [1, 2, 3].map((n) => ({ id: uid(), title: `Feature ${n}`, text: "Concise benefit description." })) } };
     case "faq":
-      return { id, type, layout, props: { title: "Questions", items: [{ id: uid(), question: "Your question?", answer: "Your answer." }] } };
+      return { id, type, layout, props: { title: "Frequently Asked Questions", items: [{ id: uid(), question: "How do we get started?", answer: "Reach out via our contact form or WhatsApp." }] } };
     case "contactStrip":
-      return { id, type, layout: defaultLayout({ background: "primary", align: "center" }), props: { title: "Need help for your family?", text: "Send us a message and we reply the same day.", buttons: [btn(site.cta.whatsapp, "whatsapp", "outline")] } };
+      return { id, type, layout: defaultLayout({ background: "primary", align: "center" }), props: { title: "Need immediate assistance?", text: "Send us a message and we reply the same day.", buttons: [btn("Message on WhatsApp", "whatsapp", "outline")] } };
     case "enquiryForm":
-      return { id, type, layout, props: { title: "Tell us what you need", text: "We reply on WhatsApp.", submitLabel: "Send request" } };
+      return { id, type, layout, props: { title: "Tell us what you need", text: "We reply directly on WhatsApp.", submitLabel: "Send request" } };
     case "video":
       return { id, type, layout, props: { url: "", caption: "" } };
     case "spacer":
@@ -225,111 +679,63 @@ export function createBlock(type: BlockType): Block {
     case "divider":
       return { id, type, layout, props: {} };
     case "navigation":
-      return { id, type, layout, props: { links: site.navigation.map((n) => ({ id: uid(), label: n.label, href: n.href })) } };
+      return { id, type, layout, props: { links: (seedBlueprint.site.navigation ?? []).map((n) => ({ id: uid(), label: n.label, href: n.href })) } };
+
+    // Legacy fallbacks
+    case "cinematicHero":
+      return { id, type, layout: defaultLayout({ width: "full", spaceTop: 0, spaceBottom: 2 }), props: { eyebrow: "WORLD-CLASS SOLUTIONS", title: "Enterprise Operations,", accent: "Built to Scale.", text: "High-performance software and cloud systems for service businesses.", image: "", imageAlt: "Platform visual", buttons: [btn("Get Started", "/contact"), btn("Learn More", "/about", "outline")] } };
+    case "careJourney":
+      return { id, type, layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }), props: { eyebrow: "HOW IT WORKS", title: "A Clear, Reliable Process", text: "Transparent steps from start to finish.", items: [1, 2, 3].map((n) => ({ id: uid(), title: `Step ${n}`, text: "Step explanation." })) } };
+    case "serviceStory":
+      return { id, type, layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }), props: { eyebrow: "SERVICES", title: "Solutions Tailored to Real Needs", text: "Explore what we do.", items: [1, 2, 3].map((n) => ({ id: uid(), title: `Service ${n}`, text: "Description of service." })) } };
+    case "trustDossier":
+      return { id, type, layout, props: { eyebrow: "TRUST & PROOF", title: "Why Businesses Trust Us", text: "Built on transparency.", items: [] } };
+    case "proofReturn":
+      return { id, type, layout, props: { eyebrow: "VERIFICATION", title: "Full Visibility", text: "Realtime reporting.", image: "", imageAlt: "", items: [] } };
+    case "serviceFilm":
+      return { id, type, layout, props: { eyebrow: "VIDEO OVERVIEW", title: "Our System in Action", text: "A 2-minute overview.", src: "", poster: "", items: [] } };
+    case "storyCarousel":
+      return { id, type, layout, props: { title: "Featured Stories", text: "Explore client highlights.", items: [] } };
+    case "invoiceExample":
+      return { id, type, layout, props: { title: "Transparent Pricing", text: "Sample line-item breakdown.", items: [] } };
   }
 }
 
-/** Every page the team can edit. */
-export const BUILDER_PAGES: { id: string; label: string; path: string }[] = [
-  { id: "home", label: "Home", path: "/" },
-  { id: "services", label: "Services", path: "/services" },
-  ...services.map((s) => ({ id: `service:${s.slug}`, label: `Service · ${s.title}`, path: `/services/${s.slug}` })),
-  { id: "about", label: "How it works", path: "/about" },
-  { id: "faq", label: "Questions", path: "/faq" },
-  { id: "contact", label: "Talk to us", path: "/contact" },
-  { id: "privacy", label: "Privacy", path: "/privacy" },
-  { id: "terms", label: "Terms", path: "/terms" },
-  { id: "global", label: "Header menu", path: "/" },
-];
+/** Every page available in the visual studio dropdown, derived dynamically from seed.json. */
+export const BUILDER_PAGES: { id: string; label: string; path: string }[] = Object.entries(
+  (seedBlueprint as unknown as { pages: Record<string, { label: string; path: string }> }).pages || {}
+).map(([id, page]) => ({
+  id,
+  label: page.label,
+  path: page.path,
+}));
 
-const s = (v: unknown, fallback = ""): string => (typeof v === "string" && v.trim() ? v : fallback);
-
-/** Starting document for a page, built from the current website content. */
+/** Resolves the starting document for a page from seed.json. */
 export function defaultDocument(page: string): PageDocument {
-  const cms = defaultSections();
-  const hero = cms["hero"] ?? {};
-  const b = (blocks: Block[]): PageDocument => ({ page, blocks });
+  const seedPages = (seedBlueprint as unknown as { pages: Record<string, { label: string; path: string; seo?: PageSeoMetadata; blocks?: Block[] }> }).pages || {};
+  const found = seedPages[page];
 
-  if (page === "global") return b([createBlock("navigation")]);
-
-  if (page === "home") {
-    const svc = cms["services"] ?? {};
-    const promise = cms["promise"] ?? {};
-    const items = Array.isArray(svc["items"]) ? (svc["items"] as { title?: string; description?: string }[]) : [];
-    const art = [groceriesStory, repairsStory, healthcareStory];
-    return b([
-      { id: uid(), type: "cinematicHero", layout: defaultLayout({ width: "full", spaceTop: 0, spaceBottom: 2 }), props: { eyebrow: s(hero["eyebrow"], "From the Gulf to your family in India"), title: "Your care,", accent: "carried home.", text: s(hero["subtitle"], "Practical help for your family in India, coordinated while you live in the Gulf."), image: heroFamily, imageAlt: s(hero["imageAlt"], "A family in India being looked after"), buttons: [btn("Tell us what they need", "/contact"), btn("See the care journey", "#journey", "outline")] } },
-      { ...createBlock("serviceFilm"), id: uid(), anchor: "film" },
-      { ...createBlock("storyCarousel"), id: uid() },
-      { id: uid(), type: "careJourney", layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }), anchor: "journey", props: { eyebrow: "One request, one clear journey", title: s(promise["title"], "You never have to wonder what happens next."), text: s(promise["body"], "From your phone in the Gulf to the work in India — and back with proof."), items: [
-        { id: uid(), title: "You message us", text: "Tell us in one message what your family needs." },
-        { id: uid(), title: "You approve", text: "We confirm the plan and the cost before any work begins." },
-        { id: uid(), title: "Proof returns", text: "Photos, the bill and a short update come back to your phone." },
-      ] } },
-      { id: uid(), type: "serviceStory", layout: defaultLayout({ width: "normal", spaceTop: 4, spaceBottom: 4 }), anchor: "services", props: { eyebrow: "Help shaped around real life", title: s(svc["title"], "What needs doing back home?"), text: s(svc["subtitle"], "Choose what your family needs and we take it from there."), items: items.slice(0, 6).map((it, i) => ({ id: uid(), title: s(it.title), text: s(it.description), image: art[i % art.length] ?? "", href: "/services" })) } },
-      { ...createBlock("trustDossier"), id: uid() },
-      { ...createBlock("invoiceExample"), id: uid() },
-      { id: uid(), type: "faq", layout: defaultLayout({ width: "narrow", spaceTop: 4, spaceBottom: 4 }), props: { title: "Questions families ask", items: faqs.slice(0, 5).map((f) => ({ id: uid(), question: f.question, answer: f.answer })) } },
-      createBlock("contactStrip"),
-    ]);
-
+  if (found && Array.isArray(found.blocks)) {
+    return {
+      schemaVersion: 1,
+      page,
+      metadata: {
+        label: found.label,
+        path: found.path,
+        seo: found.seo ?? { title: found.label, description: "" },
+      },
+      blocks: found.blocks,
+    };
   }
 
-  if (page === "services") {
-    return b([
-      { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4 }), props: { eyebrow: "Services", text: "What we can do for your family", level: "h1" } },
-      { id: uid(), type: "text", layout: defaultLayout({ spaceTop: 0 }), props: { text: site.brand.description } },
-      { id: uid(), type: "cards", layout: defaultLayout(), props: { title: "", subtitle: "", columns: 3, items: services.map((sv) => ({ id: uid(), title: sv.title, text: sv.shortDescription, href: `/services/${sv.slug}` })) } },
-      createBlock("contactStrip"),
-    ]);
-  }
-
-  if (page.startsWith("service:")) {
-    const sv = services.find((x) => `service:${x.slug}` === page);
-    if (sv) {
-      return b([
-        { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4 }), props: { eyebrow: "Service", text: sv.title, level: "h1" } },
-        { id: uid(), type: "text", layout: defaultLayout({ spaceTop: 0 }), props: { text: sv.description } },
-        { id: uid(), type: "cards", layout: defaultLayout(), props: { title: "How it works", subtitle: "", columns: 3, items: sv.process.map((p) => ({ id: uid(), title: `${p.step}. ${p.title}`, text: p.description })) } },
-        { id: uid(), type: "cards", layout: defaultLayout({ background: "muted" }), props: { title: "What you get", subtitle: sv.pricingNote, columns: 2, items: sv.deliverables.map((d) => ({ id: uid(), title: d, text: "" })) } },
-        createBlock("contactStrip"),
-      ]);
-    }
-  }
-
-  if (page === "about") {
-    return b([
-      { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4 }), props: { eyebrow: "How it works", text: site.brand.motto, level: "h1" } },
-      { id: uid(), type: "imageText", layout: defaultLayout(), props: { eyebrow: "", title: "Who we are", text: site.brand.description, image: castArt, imageAlt: "Team members", imageSide: "right", buttons: [btn(site.cta.primary, "/contact")] } },
-      createBlock("contactStrip"),
-    ]);
-  }
-
-  if (page === "faq") {
-    return b([
-      { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4 }), props: { eyebrow: "Questions", text: "Price, trust and timing", level: "h1" } },
-      { id: uid(), type: "faq", layout: defaultLayout({ width: "narrow" }), props: { title: "", items: faqs.map((f) => ({ id: uid(), question: f.question, answer: f.answer })) } },
-    ]);
-  }
-
-  if (page === "contact") {
-    return b([
-      { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4 }), props: { eyebrow: "Talk to us", text: "Tell us what your family needs", level: "h1" } },
-      { id: uid(), type: "text", layout: defaultLayout({ spaceTop: 0 }), props: { text: site.hours } },
-      createBlock("enquiryForm"),
-    ]);
-  }
-
-  if (page === "privacy" || page === "terms") {
-    return b([
-      { id: uid(), type: "heading", layout: defaultLayout({ spaceTop: 4, width: "narrow" }), props: { eyebrow: "", text: page === "privacy" ? "Privacy" : "Terms", level: "h1" } },
-      { id: uid(), type: "text", layout: defaultLayout({ width: "narrow" }), props: { text: "Write this page in the builder." } },
-    ]);
-  }
-
-  return b([createBlock("heading")]);
-}
-
-export function isPageDocument(value: unknown): value is PageDocument {
-  return !!value && typeof value === "object" && Array.isArray((value as PageDocument).blocks);
+  return {
+    schemaVersion: 1,
+    page,
+    metadata: {
+      label: page,
+      path: page === "home" ? "/" : "/" + page,
+      seo: { title: page, description: "" },
+    },
+    blocks: [createBlock("hero")],
+  };
 }

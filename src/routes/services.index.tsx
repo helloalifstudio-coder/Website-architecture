@@ -11,9 +11,9 @@ import { site } from "../content/site";
 import { track } from "../lib/analytics";
 import { breadcrumbSchema, serviceListSchema } from "../lib/seo/json-ld";
 
-const TITLE = "What we can do for your family in India";
+const TITLE = "Professional Services & Solutions";
 const DESCRIPTION =
-  "Shopping, home repairs, hospital visits, parcels, paperwork and property checks — done by people we have checked, with photos and a price agreed first.";
+  "Tailored service capabilities, operational systems, and digital platforms designed for your business.";
 
 export const Route = createFileRoute("/services/")({
   head: ({ loaderData }) => ({
@@ -52,7 +52,7 @@ function ServicesPage() {
   return (
     <PageShell pageName="services">
       <PageIntro
-        eyebrow="Our help"
+        eyebrow="Our capabilities"
         title={TITLE}
         lead={DESCRIPTION}
         trail={[
@@ -76,7 +76,7 @@ function ServicesPage() {
                   {service.shortDescription}
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                  See how it works <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  Learn more <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </span>
               </Link>
             </Reveal>
@@ -84,9 +84,9 @@ function ServicesPage() {
         </ul>
 
         <Reveal className="mt-12 rounded-2xl border border-border bg-accent/40 p-7 text-center">
-          <h2 className="font-display text-2xl font-bold">Not sure which one you need?</h2>
+          <h2 className="font-display text-2xl font-bold">Have unique requirements?</h2>
           <p className="mx-auto mt-2 max-w-xl text-muted-foreground">
-            Tell us what is happening at home and we will tell you honestly whether we can help.
+            Tell us about your operational workflows and we will architect a tailored solution for your team.
           </p>
           <Link
             to="/contact"
@@ -101,9 +101,18 @@ function ServicesPage() {
 }
 
 function ServicesPageRoute() {
-  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } = Route.useLoaderData();
+  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } =
+    Route.useLoaderData();
   return (
-    <PublishedOr page="services" pageName="services" initialDocument={publishedDocument} status={publishedDocumentStatus} siteConfigContent={siteConfigContent} globalDocument={globalDocument} usesSeedFallback={usesSeedFallback}>
+    <PublishedOr
+      page="services"
+      pageName="services"
+      initialDocument={publishedDocument}
+      status={publishedDocumentStatus}
+      siteConfigContent={siteConfigContent}
+      globalDocument={globalDocument}
+      usesSeedFallback={usesSeedFallback}
+    >
       <ServicesPage />
     </PublishedOr>
   );

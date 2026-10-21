@@ -24,9 +24,9 @@ import {
 import { detailedEnquiryMessage } from "../lib/whatsapp/templates";
 import { useSiteContact } from "../hooks/use-site-contact";
 
-const TITLE = "Tell us what your family needs";
+const TITLE = "Let's discuss your project";
 const DESCRIPTION =
-  "Send one message with the details. We reply with the plan, who will go and what it will cost.";
+  "Send us a message with your requirements. We will reply promptly with answers, architecture plans, and next steps.";
 
 /** Same schema for the field rules and the message we compose. */
 const enquirySchema = z.object({
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/contact")({
         children: JSON.stringify(
           breadcrumbSchema([
             { name: "Home", url: "/" },
-            { name: "Talk to us", url: "/contact" },
+            { name: "Contact", url: "/contact" },
           ]),
         ),
       },
@@ -92,7 +92,7 @@ function ContactPage() {
   });
 
   const telUrl = buildTelUrl(contact.phone);
-  const mailUrl = buildMailUrl(contact.email, "Help for my family in India");
+  const mailUrl = buildMailUrl(contact.email, "New Business Enquiry");
   const plainWhatsapp = buildWhatsAppUrl(contact.whatsapp, detailedEnquiryMessage({}));
 
   async function onSubmit(values: EnquiryValues) {
@@ -116,19 +116,19 @@ function ContactPage() {
       window.open(url, "_blank", "noopener,noreferrer");
       toast.success("Opening WhatsApp with your details filled in.");
     } else {
-      toast.success("Thank you. We have your request and will come back to you.");
+      toast.success("Thank you. We have received your request and will follow up shortly.");
     }
   }
 
   return (
     <PageShell pageName="contact">
       <PageIntro
-        eyebrow="Talk to us"
+        eyebrow="Contact us"
         title={TITLE}
         lead={DESCRIPTION}
         trail={[
           { label: "Home", href: "/" },
-          { label: "Talk to us", href: "/contact" },
+          { label: "Contact", href: "/contact" },
         ]}
       />
 
@@ -155,7 +155,7 @@ function ContactPage() {
 
               <div>
                 <label htmlFor="phone" className="text-sm font-semibold">
-                  Your number (with country code)
+                  Your phone / WhatsApp number
                 </label>
                 <input
                   id="phone"
@@ -173,31 +173,31 @@ function ContactPage() {
 
               <div>
                 <label htmlFor="livingIn" className="text-sm font-semibold">
-                  Where you live
+                  Company / Organization
                 </label>
                 <input
                   id="livingIn"
                   className={FIELD}
-                  placeholder="Dubai, Doha, Riyadh…"
+                  placeholder="Your company or business name"
                   {...register("livingIn")}
                 />
               </div>
 
               <div>
                 <label htmlFor="familyCity" className="text-sm font-semibold">
-                  Where your family lives
+                  Location / City
                 </label>
                 <input
                   id="familyCity"
                   className={FIELD}
-                  placeholder="City or town in India"
+                  placeholder="City, State, Country"
                   {...register("familyCity")}
                 />
               </div>
 
               <div>
                 <label htmlFor="service" className="text-sm font-semibold">
-                  What do you need?
+                  Service of interest
                 </label>
                 <select id="service" className={FIELD} {...register("service")}>
                   <option value="">Choose one</option>
@@ -206,7 +206,7 @@ function ContactPage() {
                       {service.title}
                     </option>
                   ))}
-                  <option value="Something else">Something else</option>
+                  <option value="Custom Project">Custom Project</option>
                 </select>
                 {errors.service ? (
                   <p role="alert" className="mt-1 text-sm text-destructive">
@@ -217,20 +217,20 @@ function ContactPage() {
 
               <div>
                 <label htmlFor="urgency" className="text-sm font-semibold">
-                  How soon?
+                  Timeline
                 </label>
                 <select id="urgency" className={FIELD} {...register("urgency")}>
-                  <option>Today — it is urgent</option>
+                  <option>Immediate / Urgent</option>
                   <option>In the next few days</option>
                   <option>This month</option>
-                  <option>Just asking for now</option>
+                  <option>Planning phase</option>
                 </select>
               </div>
             </div>
 
             <div className="mt-5">
               <label htmlFor="message" className="text-sm font-semibold">
-                Tell us a little more
+                Project requirements & notes
               </label>
               <textarea id="message" rows={4} className={FIELD} {...register("message")} />
             </div>
@@ -246,13 +246,12 @@ function ContactPage() {
               className="mt-6 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-full bg-primary px-6 text-base font-semibold text-primary-foreground disabled:opacity-60 sm:w-auto"
             >
               <MessageCircle className="h-5 w-5" aria-hidden="true" />
-              {isSubmitting ? "Sending…" : "Send my request"}
+              {isSubmitting ? "Sending…" : "Submit Request"}
             </button>
 
             {sent ? (
               <p className="mt-4 text-sm text-muted-foreground">
-                Thank you. If WhatsApp did not open, use the buttons on the right and we will
-                still have your request.
+                Thank you. We have received your inquiry and will follow up shortly.
               </p>
             ) : null}
           </form>
@@ -260,7 +259,7 @@ function ContactPage() {
 
         <Reveal delay={80}>
           <div className="rounded-3xl border border-border bg-accent/40 p-6 sm:p-8">
-            <h2 className="font-display text-xl font-bold">Other ways to reach us</h2>
+            <h2 className="font-display text-xl font-bold">Direct communication channels</h2>
             <ul className="mt-4 space-y-3">
               {plainWhatsapp ? (
                 <li>
@@ -316,9 +315,18 @@ function ContactPage() {
 }
 
 function ContactPageRoute() {
-  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } = Route.useLoaderData();
+  const { publishedDocument, publishedDocumentStatus, siteConfigContent, globalDocument, usesSeedFallback } =
+    Route.useLoaderData();
   return (
-    <PublishedOr page="contact" pageName="contact" initialDocument={publishedDocument} status={publishedDocumentStatus} siteConfigContent={siteConfigContent} globalDocument={globalDocument} usesSeedFallback={usesSeedFallback}>
+    <PublishedOr
+      page="contact"
+      pageName="contact"
+      initialDocument={publishedDocument}
+      status={publishedDocumentStatus}
+      siteConfigContent={siteConfigContent}
+      globalDocument={globalDocument}
+      usesSeedFallback={usesSeedFallback}
+    >
       <ContactPage />
     </PublishedOr>
   );

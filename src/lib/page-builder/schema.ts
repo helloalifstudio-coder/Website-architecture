@@ -82,8 +82,211 @@ const sharedLayoutSchema = z.object({
 const buttonList = z.array(buttonSchema).max(12);
 const cardList = z.array(cardSchema).max(40);
 
-const propsSchemas: Record<BlockType, z.ZodTypeAny> = {
+/* ============================================================================
+   UNIVERSAL 12-BLOCK SUBSCHEMAS
+   ============================================================================ */
+
+const featureItemSchema = z.object({
+  id: idSchema,
+  icon: shortTextSchema.optional(),
+  title: shortTextSchema,
+  description: textSchema,
+  badge: shortTextSchema.optional(),
+  href: hrefSchema.optional(),
+}).strict();
+
+const processStepSchema = z.object({
+  id: idSchema,
+  step: z.number().int().min(1).max(50),
+  title: shortTextSchema,
+  description: textSchema,
+  icon: shortTextSchema.optional(),
+}).strict();
+
+const catalogServiceItemSchema = z.object({
+  id: idSchema,
+  title: shortTextSchema,
+  slug: shortTextSchema,
+  summary: textSchema,
+  price: shortTextSchema.optional(),
+  duration: shortTextSchema.optional(),
+  features: z.array(shortTextSchema).max(20),
+  href: hrefSchema,
+  badge: shortTextSchema.optional(),
+}).strict();
+
+const pricingTierSchema = z.object({
+  id: idSchema,
+  name: shortTextSchema,
+  price: shortTextSchema,
+  badge: shortTextSchema.optional(),
+  description: textSchema,
+  highlighted: z.boolean(),
+  features: z.array(shortTextSchema).max(30),
+  cta: z.object({
+    label: shortTextSchema,
+    href: hrefSchema,
+  }).strict(),
+}).strict();
+
+const testimonialItemSchema = z.object({
+  id: idSchema,
+  quote: textSchema,
+  author: shortTextSchema,
+  role: shortTextSchema.optional(),
+  company: shortTextSchema.optional(),
+  avatar: assetSchema.optional(),
+  rating: z.number().int().min(1).max(5).optional(),
+}).strict();
+
+const statItemSchema = z.object({
+  id: idSchema,
+  value: shortTextSchema,
+  label: shortTextSchema,
+  prefix: shortTextSchema.optional(),
+  suffix: shortTextSchema.optional(),
+  description: textSchema.optional(),
+}).strict();
+
+const accordionFaqItemSchema = z.object({
+  id: idSchema,
+  question: shortTextSchema,
+  answer: textSchema,
+  category: shortTextSchema.optional(),
+}).strict();
+
+const formFieldSchema = z.object({
+  id: idSchema,
+  name: shortTextSchema,
+  label: shortTextSchema,
+  type: z.enum(["text", "email", "tel", "textarea", "select"]),
+  required: z.boolean(),
+  placeholder: shortTextSchema.optional(),
+}).strict();
+
+const logoItemSchema = z.object({
+  id: idSchema,
+  name: shortTextSchema,
+  logoUrl: assetSchema,
+  href: hrefSchema.optional(),
+}).strict();
+
+export const propsSchemas: Record<BlockType, z.ZodTypeAny> = {
+  // 12 Universal Blocks
   hero: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    accent: shortTextSchema.optional(),
+    text: textSchema,
+    image: assetSchema.optional(),
+    imageAlt: shortTextSchema.optional(),
+    imageSide: z.enum(["left", "right"]).optional(),
+    variant: z.enum(["split", "center", "minimal"]).optional(),
+    badge: shortTextSchema.optional(),
+    buttons: buttonList,
+  }).strict(),
+
+  featureGrid: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    columns: z.union([z.literal(2), z.literal(3), z.literal(4)]),
+    items: z.array(featureItemSchema).max(30),
+  }).strict(),
+
+  processFlow: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    steps: z.array(processStepSchema).max(20),
+  }).strict(),
+
+  serviceCatalog: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    categories: z.array(shortTextSchema).max(20),
+    services: z.array(catalogServiceItemSchema).max(50),
+  }).strict(),
+
+  pricingTable: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    billingNote: shortTextSchema.optional(),
+    tiers: z.array(pricingTierSchema).max(10),
+  }).strict(),
+
+  testimonials: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    layout: z.enum(["grid", "carousel"]),
+    items: z.array(testimonialItemSchema).max(40),
+  }).strict(),
+
+  statsBanner: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema.optional(),
+    stats: z.array(statItemSchema).max(20),
+  }).strict(),
+
+  accordionFaq: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    items: z.array(accordionFaqItemSchema).max(60),
+  }).strict(),
+
+  leadCapture: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    subtitle: textSchema.optional(),
+    fields: z.array(formFieldSchema).max(15),
+    submitLabel: shortTextSchema,
+    dispatchTarget: z.enum(["whatsapp", "email", "api"]),
+    successMessage: shortTextSchema.optional(),
+  }).strict(),
+
+  contentSection: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    text: textSchema,
+    layout: z.enum(["mediaLeft", "mediaRight", "centered", "prose"]),
+    mediaType: z.enum(["image", "video"]),
+    mediaUrl: assetSchema.optional(),
+    mediaAlt: shortTextSchema.optional(),
+    buttons: buttonList,
+  }).strict(),
+
+  ctaBanner: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema,
+    text: textSchema,
+    background: z.enum(["primary", "accent", "card", "muted"]),
+    buttons: buttonList,
+  }).strict(),
+
+  logoCloud: z.object({
+    eyebrow: shortTextSchema.optional(),
+    title: shortTextSchema.optional(),
+    logos: z.array(logoItemSchema).max(30),
+  }).strict(),
+
+  // Primitive Blocks
+  heading: z.object({
+    eyebrow: shortTextSchema,
+    text: textSchema,
+    level: z.enum(["h1", "h2", "h3"]),
+  }).strict(),
+  text: z.object({ text: textSchema }).strict(),
+  image: z.object({
+    src: assetSchema,
+    alt: shortTextSchema,
+    caption: textSchema,
+  }).strict(),
+  buttons: z.object({ items: buttonList }).strict(),
+  imageText: z.object({
     eyebrow: shortTextSchema,
     title: shortTextSchema,
     text: textSchema,
@@ -92,6 +295,35 @@ const propsSchemas: Record<BlockType, z.ZodTypeAny> = {
     imageSide: z.enum(["left", "right"]),
     buttons: buttonList,
   }).strict(),
+  cards: z.object({
+    title: shortTextSchema,
+    subtitle: textSchema,
+    columns: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
+    items: cardList,
+  }).strict(),
+  faq: z.object({
+    title: shortTextSchema,
+    items: z.array(faqItemSchema).max(60),
+  }).strict(),
+  contactStrip: z.object({
+    title: shortTextSchema,
+    text: textSchema,
+    buttons: buttonList,
+  }).strict(),
+  enquiryForm: z.object({
+    title: shortTextSchema,
+    text: textSchema,
+    submitLabel: shortTextSchema,
+  }).strict(),
+  video: z.object({
+    url: assetSchema,
+    caption: textSchema,
+  }).strict(),
+  spacer: z.object({ size: z.number().finite().min(0).max(40) }).strict(),
+  divider: z.object({}).strict(),
+  navigation: z.object({ links: z.array(navigationLinkSchema).max(60) }).strict(),
+
+  // Legacy Blocks
   cinematicHero: z.object({
     eyebrow: shortTextSchema,
     title: shortTextSchema,
@@ -145,54 +377,6 @@ const propsSchemas: Record<BlockType, z.ZodTypeAny> = {
     text: textSchema,
     items: z.array(invoiceExampleRowSchema).max(40),
   }).strict(),
-  heading: z.object({
-    eyebrow: shortTextSchema,
-    text: textSchema,
-    level: z.enum(["h1", "h2", "h3"]),
-  }).strict(),
-  text: z.object({ text: textSchema }).strict(),
-  image: z.object({
-    src: assetSchema,
-    alt: shortTextSchema,
-    caption: textSchema,
-  }).strict(),
-  buttons: z.object({ items: buttonList }).strict(),
-  imageText: z.object({
-    eyebrow: shortTextSchema,
-    title: shortTextSchema,
-    text: textSchema,
-    image: assetSchema,
-    imageAlt: shortTextSchema,
-    imageSide: z.enum(["left", "right"]),
-    buttons: buttonList,
-  }).strict(),
-  cards: z.object({
-    title: shortTextSchema,
-    subtitle: textSchema,
-    columns: z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]),
-    items: cardList,
-  }).strict(),
-  faq: z.object({
-    title: shortTextSchema,
-    items: z.array(faqItemSchema).max(60),
-  }).strict(),
-  contactStrip: z.object({
-    title: shortTextSchema,
-    text: textSchema,
-    buttons: buttonList,
-  }).strict(),
-  enquiryForm: z.object({
-    title: shortTextSchema,
-    text: textSchema,
-    submitLabel: shortTextSchema,
-  }).strict(),
-  video: z.object({
-    url: assetSchema,
-    caption: textSchema,
-  }).strict(),
-  spacer: z.object({ size: z.number().finite().min(0).max(40) }).strict(),
-  divider: z.object({}).strict(),
-  navigation: z.object({ links: z.array(navigationLinkSchema).max(60) }).strict(),
 };
 
 const blockTypes = new Set<string>(Object.keys(propsSchemas));

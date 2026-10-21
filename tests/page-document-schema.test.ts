@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 
 import { parsePageDocument, validatePageDocument } from "../src/lib/page-builder/schema";
+import { createBlock } from "../src/lib/page-builder/model";
 import { isSafeHref } from "../src/lib/page-builder/safe-url";
 
 const layout = {
@@ -151,6 +152,34 @@ describe("page document contract", () => {
     circular["self"] = circular;
     expect(validatePageDocument(circular).ok).toBe(false);
   });
+  test("validates all 12 universal block models created by factory", () => {
+    const universalTypes = [
+      "hero",
+      "featureGrid",
+      "processFlow",
+      "serviceCatalog",
+      "pricingTable",
+      "testimonials",
+      "statsBanner",
+      "accordionFaq",
+      "leadCapture",
+      "contentSection",
+      "ctaBanner",
+      "logoCloud",
+    ] as const;
+
+    for (const type of universalTypes) {
+      const block = createBlock(type);
+      const document = {
+        schemaVersion: 1,
+        page: "home",
+        blocks: [block],
+      };
+      const validation = validatePageDocument(document);
+      expect(validation.ok).toBe(true);
+    }
+  });
+
   test("shares a safe URL allow-list between validation and rendering", () => {
     expect(isSafeHref("/about")).toBe(true);
     expect(isSafeHref("#contact")).toBe(true);
